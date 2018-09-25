@@ -803,7 +803,7 @@ Fujisan uses the reverse side of 21 of the 24 tiles to form the mountain, the ob
 \noindent
 Using the PCG taxonomy described in Section \ref{sec:Background}, Fujisan, like Klondike Solitaire, uses an {\it online, stochastic, generate-and-test, optional} PCG algorithm for challenge setup. However, if the solver reaches a point in Fujisan where progress toward a solution no longer appears to be made, it might not be obvious whether the challenge setup is indeed solvable. Fujisan's initial game state is preserved throughout play; the solver can easily return the Priests to their starting locations and begin the challenge anew at any time. Thus, it is important to find algorithms that maximize solvability.
 
-Here we explore a progression of constraints that create multiple variant algorithms that can be used for online challenge setup for Fujisan. Important statistics about each algorithm are summarized in Table \ref{table_stats}, namely the number of possible challenges, the number of times a value may be repeated in a challenge, if the same value can occur in two spaces on the same step, and if the value pair present on a step can be repeated elsewhere in the challenge.
+Here we explore a progression of constraints that create multiple variant algorithms that can be used for physical online challenge setup for Fujisan. Important statistics about each algorithm are summarized in Table \ref{table_stats}, namely the number of possible challenges, the number of times a value may be repeated in a challenge, if the same value can occur in two spaces on the same step, and if the value pair present on a step can be repeated elsewhere in the challenge.
 
 \begin{table*}[]
 \centering
@@ -923,7 +923,7 @@ For each generated challenge in our trials, we recorded if the challenge was sol
 
 The {\bf Pure Random} algorithm rates very low on the ease of setup metric when considering the piecepack components. There could be many cases when a number was selected more than 4 times, thus exhausting the coins of one piecepack. Ultimately, 6 piecepacks would be needed for extreme cases when the same number is rolled for every space. Also, rolling a die 24 times at the beginning of a challenge quickly becomes tedious. 
 
-Alternately, {\bf Any Coin} is much more straightforward, since the coins can be shuffled on the table quickly, then added one by one to the board spaces. The {\bf piecepack} constraint, while equivalent in the number of actual coin placements, is a little more difficult to setup by the solver. Keeping track of the ordering of suits and following the pattern can slow down a solver setup, but this ordering can be quickly memorized on repeated play.
+Alternately, {\bf Any Coin} is much more straightforward, since the coins can be shuffled on the table quickly, then added one by one to the board spaces. The {\bf piecepack} constraint, while equivalent in the number of actual coin placements, is a little more difficult to setup by the solver. Tracking the ordering of suits and following the pattern can slow down a solver setup, but this ordering can be quickly memorized on repeated play.
 
 {\bf Engraved Tiles} shows a marked improvement in physical setup ease.
 The numbers are already on the tiles, so the challenge is created in the process of building the mountain; no additional algorithm is needed. Likewise with {\bf Dominoes}, the challenge is again encoded in the board setup, and with less tiles, this setup is even less fiddly.
@@ -936,7 +936,7 @@ The numbers are already on the tiles, so the challenge is created in the process
 \label{fig:strategycomp}
 \end{figure}
 
-Figure \ref{fig:strategycomp} shows a box-and-whisker plot for the five PCG algorithms, ordered from left to right by their mean solvability. This ordering also matches the progression of constraints and reduction of the possible challenge space. Each method produces a healthy number of solvable challenges; every trial was above 75\% solvable. Individual t-tests using a p-value of 0.05 demonstrate that {\bf Random} is significantly less solvable than all others, followed by {\bf Any Coin}. Within the top three algorithms, {\bf Dominoes} dominates {\bf Piecepack}, but otherwise the differences seen are not statistically significant. We believe this is due to {\bf Dominoes} requiring that each step have two unique values, and that this pairing of values is not repeated elsewhere in the challenge on other steps, as shown in Table \ref{table_stats}. These two constraints appear to create a well-connected and well-distributed challenge.
+Figure \ref{fig:strategycomp} shows a box-and-whisker plot for the five PCG algorithms, ordered from left to right by their mean solvability. This ordering also matches the progression of constraints and reduction of the possible challenge space. Each method produces a healthy number of solvable challenges; every trial was above 75\% solvable. Individual t-tests using a p-value of 0.05 demonstrate that {\bf Pure Random} is significantly less solvable than all others, followed by {\bf Any Coin}. Within the top three algorithms, {\bf Dominoes} dominates {\bf Piecepack}, but otherwise the differences seen are not statistically significant. We believe this is due to {\bf Dominoes} requiring that each step have two unique values, and that this pairing of values is not repeated elsewhere in the challenge on other steps, as shown in Table \ref{table_stats}. These two constraints appear to create a well-connected and well-distributed challenge.
 
 \subsection{Difficulty}
 
@@ -972,7 +972,7 @@ The algorithm responsible for this result is {\bf Engraved Tiles}. We can see a 
 \end{tabular}
 \end{table}
 
-Table \ref{table_example} summarizes our results on the three evaluation metrics. We can see computational evidence that the original {\bf piecepack} ruleset is an improvement over both the {\bf Random} and {\bf Any Coin} setup algorithm as hoped by the designer. While {\bf Engraved Tiles} simplifies the ease of physical setup over the {\bf piecepack} version, it is at the cost of challenge difficulty. The {\bf Dominoes} algorithm maintains this easy setup and returns the challenge generation to a reasonable difficulty distribution.
+Table \ref{table_example} summarizes our results on the three evaluation metrics. We can see computational evidence that the original {\bf piecepack} ruleset is an improvement over both the {\bf Pure Random} and {\bf Any Coin} setup algorithm as hoped by the designer. While {\bf Engraved Tiles} simplifies the ease of physical setup over the {\bf piecepack} version, it is at the cost of challenge difficulty. The {\bf Dominoes} algorithm maintains this easy setup and returns the challenge generation to a reasonable difficulty distribution.
 
 
 %====================================================================================
@@ -980,9 +980,9 @@ Table \ref{table_example} summarizes our results on the three evaluation metrics
 \section{Conclusion}   \label{sec:Conclusion}
 
 \noindent
-Our work helps frame puzzle generation, particularly within solitaire puzzle games, as a form of procedural content generation (PCG). By examining variants for challenge creation, we can see that subtle changes in the random distribution used in an algorithm can have large-scale changes on the generated content.
+Our work helps frame puzzle generation, particularly within solitaire puzzle games, within the taxonomy of procedural content generation (PCG). By examining variants for challenge creation, we can see that subtle changes in the random distribution used in an algorithm can have large-scale changes on the generated content.
 
-There are many open questions related to physical games and PCG. First, we believe there is work to be done in formalizing our ease of physical setup metric. A simple approximation would be the time complexity of the algorithm, however, certain operations that are straightforward to a computer can be difficulty for humans to track. With a formal metric, game and puzzle designers could be inclined to include more intricate PCG algorithms in their designs when provided guarantees these algorithms can reasonably be executed by a human player.
+There are many open questions related to physical games and PCG. First, we believe there is work to be done in formalizing our ease of physical setup metric. A simple approximation would be the time complexity of the algorithm, however, certain operations that are straightforward to a computer can be difficulty for humans to track, and vice versa. With a formal metric, game and puzzle designers could be inclined to include more intricate PCG algorithms in their designs when provided guarantees these algorithms can reasonably be executed by a human player.
 
 A further point to clarify is the exact relationship between the minimum solution length and challenge difficulty. We believe this metric can be expanded to include the branching factor along the solution path. Also, we have ignored a difference in move clarity for Fujisan. Up and down moves are always available for Priests on the mountain, but left and right moves must be visually identified and recalculated as spaces become occupied. It is unclear, therefore, whether both types of movement contribute equally to the level of challenge experienced by the solver. A more sophisticated difficulty metric could take these into account and further differentiate the above setup algorithms.
 
