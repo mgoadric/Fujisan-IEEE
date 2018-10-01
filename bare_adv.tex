@@ -627,14 +627,13 @@ E-mail: see http://mark.goadrich.com/schedule.html
 % in the abstract or keywords.
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-    Challenges for solitaire puzzle games are typically created offline by humans. Alternately, some games incorporate stochastic setup rules, in which the solver randomly sets up the game board before solving the challenge. However, these setup rules can sometimes generate unsolvable or uninteresting challenges. To better understand this setup process and minimize undesirable challenges, we apply a taxonomy for procedural content generation algorithms to solitaire puzzle games.
-    In particular, for the game Fujisan, we examine how different stochastic challenge generation algorithms affect ease of physical setup, challenge solvability, and challenge difficulty. We find that algorithms can be simple for the solver yet generate solvable and difficult challenges, by constraining randomness through embedding sub-elements of quality challenges into the physical pieces of the game.
-    
+    Challenges for physical solitaire puzzle games are typically designed in advance by humans and limited in number. Alternately, some games incorporate stochastic setup rules, where the human solver randomly sets up the game board before solving the challenge, which can greatly increase the number of possible challenges. However, these setup rules can often generate unsolvable or uninteresting challenges. To better understand these setup processes, we apply a taxonomy for procedural content generation algorithms to solitaire puzzle games.
+    In particular, for the game Fujisan, we examine how different stochastic challenge generation algorithms attempt to minimize undesirable challenges, and we report their affect on ease of physical setup, challenge solvability, and challenge difficulty. We find that algorithms can be simple for the solver yet generate solvable and difficult challenges, by constraining randomness through embedding sub-elements of the puzzle mechanics into the physical pieces of the game.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-Procedural Content Generation, Puzzle Design, Solitaire Games, Solvability
+Board Games, Procedural Content, Monte Carlo Methods, Game Design
 \end{IEEEkeywords}}
 
 
@@ -699,12 +698,11 @@ Procedural Content Generation, Puzzle Design, Solitaire Games, Solvability
 % and "HIS" in caps to complete the first word.
 \IEEEPARstart{F}{ujisan} 
 % Maybe start with describing Fujisan, make most of this background section?
-\footnote{http://www.ludism.org/ppwiki/Fuji-san} is a solitaire game created for the piecepack game system \cite{GAMESYSTEM}. In this game, the solver must find a way to cooperatively move four Shinto Priests to the top of Mt. Fuji through incremental steps up the mountainside. A sample Fujisan challenge is shown in Figure \ref{fig:SampleFujisan}, with two Priests on each edge and the goal summit spaces in gray. 
+\footnote{http://www.ludism.org/ppwiki/Fuji-san} is a physical solitaire puzzle game created for the piecepack game system \cite{GAMESYSTEM}. In this game, a human solver must find a way to cooperatively move four Shinto Priests to the top of Mt. Fuji through incremental steps up the mountainside. A sample Fujisan challenge is shown in Figure \ref{fig:SampleFujisan}, with two Priests on each edge and the goal summit spaces in gray. More details on Fujisan can be found in Section \ref{section:fujisan}.
 
 Challenges for Fujisan are created by the solver, using a random setup process to assemble the game pieces into the mountain. However, this process leads to three natural questions. {\it How easy is the setup process for the solver to execute? Can all such challenges be solved? How difficult are the created challenges? }
-To answer these questions, we compare and contrast multiple setup algorithms and constraints using computational simulations. Fujisan is well-suited for this computational analysis because of its simple rules, small component count, and tractable solve times. 
 
-First, we examine solitaire games through the lens of procedural content generation, where algorithms are used to create game content \cite{PCGSURVEY}. Next, we explore the creation of Fujisan and the piecepack game system, followed by a detailed description of five different challenge setup algorithms. Finally, we evaluate these algorithms with respect to ease of player setup, solvability, and difficulty. We find that algorithms can succeed across all three metrics by carefully incorporating desirable constraints based on the puzzle mechanics of Fujisan. 
+To answer these questions, we first examine solitaire games through the lens of procedural content generation, where algorithms are used to create game content \cite{PCGSURVEY}. Next, we explore the creation of Fujisan and the piecepack game system, followed by a detailed description of five different challenge setup algorithms. We compare and contrast these multiple setup algorithms and constraints using computational simulations. Finally, we evaluate these algorithms with respect to ease of player setup, solvability, and difficulty. We find that algorithms can succeed across all three metrics by carefully incorporating desirable constraints based on the puzzle mechanics of Fujisan. 
 
 %===========================================
 
@@ -730,14 +728,14 @@ Khalifa and Fayek\cite{PUZZLELANG} investigated a combination of construction an
 
 A less-explored variety of puzzles with relation to PCG 
 are solitaire games, for example
-sliding block puzzles \cite{FIFTEEN} (including Rush Hour) \footnote{https://www.thinkfun.com/products/rush-hour/}, 
+sliding block puzzles \cite{FIFTEEN} (including Rush Hour\footnote{https://www.thinkfun.com/products/rush-hour/}), 
 and Hi-Q (generalized peg solitaire) \cite{PEG}. In these games, solvers must manipulate physical pieces as they solve a challenge. Since the initial setup for these games must be executed by the solver, providing the solver with predefined challenges and a solution book is common practice. PCG can also be applied to these games, by again constructing challenges offline and guaranteeing they are solvable, as seen in recent work by van Dijk \cite{RUSHHOUR} and K{\"o}pp \cite{TANGRAM}. 
 
-There are, however, alternative PCG approaches available for physical solitaire games, most popularly demonstrated by the card game Klondike Solitaire. In particular, this game uses an {\it online, stochastic, generate-and-test} PCG algorithm, which is as simple as shuffling the deck of cards at the start of the game. Also of note, having a solution for Klondike is {\it optional}; the {\it test} portion of the generate-and-test algorithm is left to the solver as they play through the game. Wolter \cite{SOLITAIREVARIANTS} developed the Politaire system, and examines the effect of various shuffling algorithms across multiple solitaire card game variations. One variant called Thoughtful Solitaire, played such that all card locations are known to the solver at the beginning of the game, has been separately found to be solvable between 82\% and 91.44\% \cite{THOUGHTFUL}. Also falling within this classification is BoxOff, a 2D token removal puzzle, where Browne and Maire investigated game parameters using Monte Carlo simulation \cite{MCPUZZLE}.
+There are, however, alternative PCG approaches available for physical solitaire games, most popularly demonstrated by the card game Klondike Solitaire. In particular, this game uses an {\it online, stochastic, generate-and-test} PCG algorithm, which is as simple as shuffling the deck of cards at the start of the game. Also of note, having a solution for Klondike is {\it optional}; the {\it test} portion of the generate-and-test algorithm is left to the solver as they play through the game. Wolter \cite{SOLITAIREVARIANTS} developed the Politaire system, and examines the effect of various shuffling algorithms across multiple solitaire card game variations. One variant called Thoughtful Solitaire, played such that all card locations are known to the solver at the beginning of the game, has been separately found to have between 82\% and 91.44\% of setups are solvable \cite{THOUGHTFUL}. Also falling within this classification is BoxOff, a 2D token removal puzzle, where Browne and Maire investigated game parameters using Monte Carlo simulation \cite{MCPUZZLE}.
 \noindent
 
 %====================================================================================
-\section{Fujisan}
+\section{Fujisan} \label{section:fujisan}
 
 \begin{figure}[t]
 \centering
@@ -819,8 +817,8 @@ Here we explore a progression of constraints that create multiple variant algori
 \textbf{Random}                   & $10^{18}$                                  & 0 to 24                                                    & yes                                                      & yes                                                            \\ \hline
 \textbf{Any Coin}                 & $10^{14}$ & exactly 4                                                  & yes                                                      & yes                                                            \\ \hline
 \textbf{Piecepack}                & $10^{10}$                                             & exactly 4                                                  & no                                                       & yes                                                            \\ \hline
-\textbf{Engraved}                 & $10^{7}$                                                 & 0 to 7                                                     & yes                                                      & only at summit                                                 \\ \hline
-\textbf{Domino}                   & $10^{5} $                                                   & 2 to 5                                                     & no                                                       & no                                                             \\ \hline
+\textbf{Engraved}                 & $10^{13}$                                                 & 0 to 7                                                     & yes                                                      & only at summit                                                 \\ \hline
+\textbf{Domino}                   & $10^{13} $                                                   & 2 to 5                                                     & no                                                       & no                                                             \\ \hline
 \end{tabular}
 \end{table*}
 
@@ -833,7 +831,7 @@ First, we examine a purely random process as a baseline algorithm for comparison
   Take one die from the piecepack. For each space, roll the die and place a coin that matches the number rolled on the space.
 \end{quote}
 
-With 24 spaces and six options for each space, this algorithm can generate $\frac{6^{24}}{4} \approx 10^{18}$ possible challenges. We divide by 4 here and in subsequent calculations to account for Fujisan challenges displaying rotational, horizontal, and vertical symmetry. Each subsequent algorithm will constrain this randomness in some way, eliminating possible challenges from consideration.
+With 24 spaces and six options for each space, this algorithm can generate $\frac{6^{24}}{4} \approx 10^{18}$ possible challenges. We divide by 4 here and in subsequent calculations to account for Fujisan challenges displaying rotational, horizontal, and vertical symmetry, however, this is slightly underestimates due to some challenges displaying more than one symmetry. Each subsequent algorithm will constrain this randomness in some way, eliminating possible challenges from consideration.
 
 \subsection{Any Coin}
 
@@ -845,8 +843,8 @@ Next, we examine two algorithms that make use of the piecepack coin components t
   
 \end{quote}
 
-Since each of the numbers 0 to 5 are present four times (once per suit), we can use the multinomial theorem to determine this method can create
-$\frac{24!}{4!^{7}} \approx 10^{14}$ possible challenges. 
+Since each of the numbers 0 to 5 are present four times (once per suit), we can use the multinomial theorem to determine that this method can create
+$\frac{24!}{4!^{6}4} \approx 10^{14}$ possible challenges. 
 
 However, if two 0 coins are placed in same row, then it becomes impossible to move a Priest onto that row. This creates holes in our challenges and limits the number of solvable setups. 
 More importantly, when both spaces of either of the summit columns contain 0s, the challenge becomes impossible to solve.
@@ -883,7 +881,7 @@ numbers onto the spaces. Here, we explore creating tiles with every possible pai
   Shuffle the tiles face-down. Then assemble the mountain using face-up tiles, using six for the bottom row, five for the next row, then four, then three, and finally two. The summit will be the center four spaces.
 \end{quote}
 
-This further constrains each pair of numbers to appear only once in the puzzle, except for the top two tiles. There are 20 possible tiles, and only 10 of them can be seen once the puzzle is constructed, as shown in Figure \ref{fig:tileexample}. 15 of these tiles have two possible orientations, for a total of $\sum_{i = 5}^{10}\frac{{15 \choose i}\binom{5}{5 - i}2^{i}}{4} \approx 10^{7}
+This further constrains each pair of numbers to appear only once in the puzzle, except for the top two tiles. There are 20 possible tiles, and only 10 of them can be seen once the puzzle is constructed, as shown in Figure \ref{fig:tileexample}. 15 of these tiles have two possible orientations, for a total of $\sum_{i = 5}^{10}\frac{{15 \choose i}\binom{5}{10 - i}2^{i}10!}{4} \approx 10^{13}
 $ possible challenges.
 
 \begin{figure}[b]
@@ -894,12 +892,6 @@ $ possible challenges.
 
 
 \subsection{Dominoes}
-\begin{figure}[b]
-\includegraphics[width=8.8cm]{graphics/dominoexample.png}
-\caption{A sample Fujisan challenge from the Dominoes algorithm.}
-\label{fig:dominoexample}
-\end{figure}
-
 Furthermore, we can look at alternate existing pieces with which to construct Fujisan challenges. A standard double-six domino set includes 28 dominoes. If we eliminate those dominoes that include a 6, along with all doubles, we are left with 15 dominoes. 
 
 \begin{quote}
@@ -908,28 +900,35 @@ Furthermore, we can look at alternate existing pieces with which to construct Fu
 \end{quote}
 
 This constraint is similar to the Engraved Tiles algorithm, but with a subset of the value pairs, thus a different probability on their selection.  Additionally, unlike the Engraved Tiles algorithm, the summit values are distinct from the two steps closest the summit.
-With 15 possible dominoes, only 12 of them are used in the challenge, as shown in Figure \ref{fig:dominoexample}. Each of these dominoes has two possible orientations, for a total of $\frac{{15 \choose 12}2^{12}}{4} \approx 10^{5}$ possible challenges. 
+With 15 possible dominoes, only 12 of them are used in the challenge, as shown in Figure \ref{fig:dominoexample}. Each of these dominoes has two possible orientations, for a total of $\frac{{15 \choose 12}2^{12}12!}{4} \approx 10^{13}$ possible challenges. 
+
+\begin{figure}[b]
+\includegraphics[width=8.8cm]{graphics/dominoexample.png}
+\caption{A sample Fujisan challenge from the Dominoes algorithm.}
+\label{fig:dominoexample}
+\end{figure}
+
 
 
 \section{Evaluation}
 
  \noindent
-To evaluate each of the algorithms discussed above, we encoded a Fujisan challenge generator using C\#, along with an A* solver for Fujisan challenges. Our admissible heuristic for A* is the number of empty spaces on the summit. For each PCG algorithm, we generated 1000 random challenges, divided into 10 trials of 100 challenges. 
+To evaluate each of the algorithms discussed above, we encoded a Monte Carlo Fujisan challenge generator using C\#, along with an A* solver for Fujisan challenges. Our admissible heuristic for A* is the number of empty spaces on the summit. For each PCG algorithm, we generated 1000 random challenges, divided into 10 trials of 100 challenges. 
 
 We will use three criteria to quantify each of these variants:
 {\bf ease of physical setup}, {\bf solvability}, and {\bf difficulty}.  First, our stochastic 
-generation algorithm must be easy for the solver to execute without complicated lookup tables or large numbers of components. Next, we judge a PCG algorithm to be working well when a high percentage of generated games are solvable by our A* solver. Beyond solvabilty, we also wish for PCG algorithms to have a strong inclination to generate interesting and difficult challenges for the solver. 
+generation algorithm must be easy for the solver to execute without complicated lookup tables or large numbers of components. Next, we judge a PCG algorithm to be working well when a high percentage of generated games are solvable by our A* solver. Beyond solvability, we also wish for PCG algorithms to have a strong inclination to generate interesting and difficult challenges for the solver. 
 
 For each generated challenge in our trials, we recorded if the challenge was solvable, and if so, we also recorded the minimum solution length found with our A* solver. The code used for our simulations is available on Github \footnote{http://github.com/mgoadric/fujisan}. 
 
 \subsection{Ease of Physical Setup}
 
-The {\bf Pure Random} algorithm rates very low on the ease of setup metric when considering the piecepack components. There could be many cases when a number was selected more than 4 times, thus exhausting the coins of one piecepack. Ultimately, 6 piecepacks would be needed for extreme cases when the same number is rolled for every space. Also, rolling a die 24 times at the beginning of a challenge quickly becomes tedious. 
+The {\bf Pure Random} algorithm rates very low on the ease of setup metric when considering the piecepack components. There could be many cases when a number was selected more than 4 times, thus exhausting the coins of one piecepack. Ultimately, six piecepacks would be needed for extreme cases when the same number is rolled for every space. Also, rolling a die 24 times at the beginning of a challenge quickly becomes tedious. 
 
 Alternately, {\bf Any Coin} is much more straightforward, since the coins can be shuffled on the table quickly, then added one by one to the board spaces. The {\bf piecepack} constraint, while equivalent in the number of actual coin placements, is a little more difficult to setup by the solver. Tracking the ordering of suits and following the pattern can slow down a solver setup, but this ordering can be quickly memorized on repeated play.
 
 {\bf Engraved Tiles} shows a marked improvement in physical setup ease.
-The numbers are already on the tiles, so the challenge is created in the process of building the mountain; no additional algorithm is needed. Likewise with {\bf Dominoes}, the challenge is again encoded in the board setup, and with less tiles, this setup is even less fiddly.
+The numbers are already on the tiles, so the challenge is created in the process of building the mountain; no additional algorithm is needed. Likewise with {\bf Dominoes}, the challenge is again encoded in the board setup, and with less tiles, this setup is even more elegant.
 
 \subsection{Solvability}
 
@@ -939,7 +938,13 @@ The numbers are already on the tiles, so the challenge is created in the process
 \label{fig:strategycomp}
 \end{figure}
 
-Figure \ref{fig:strategycomp} shows a box-and-whisker plot for the five PCG algorithms, ordered from left to right by their mean solvability, marked with a green triangle. This ordering also matches the progression of constraints and reduction of the possible challenge space. Each method produces a healthy number of solvable challenges; every trial was above 75\% solvable. Individual t-tests using a p-value of 0.05 demonstrate that {\bf Pure Random} is significantly less solvable than all others, followed by {\bf Any Coin}. 
+Figure \ref{fig:strategycomp} shows the distribution of solvability for the five PCG algorithms across the 10 trials in a box-and-whisker plot. The mean for each method is marked with a green triangle. Each method produces a healthy number of solvable challenges; every trial was above 75\% solvable. {\bf Pure Random} and {\bf Any Coin} have the lowest mean value for solvability and these results are significantly lower than the other three algorithms, which is confirmed by t-tests using a p-value of 0.05. 
+
+Within the top three algorithms, only {\bf Dominoes} is statistically higher than {\bf piecepack}. To understand these results, we first explore the connections between steps in a challenge. We say step $A$ is connected to step $B$ in Fujisan if there is a move available according to rule 2 from $B$ to $A$. While critical to solving most challenges, we simplify our calculation and ignore the impact of intermediate Priests between $B$ and $A$. 
+
+Figure \ref{fig:connected} shows the average step connectedness within a challenge for each setup algorithm, differentiating solvable challenges in black from unsolvable challenges in white. We can see a large divide between solvable and unsolvable challenges on this metric for each algorithm, with higher connectivity always related to higher solvability. Also, as shown in Table \ref{table_stats}, both {\bf piecepack} and {\bf Dominoes} require that each step has two unique values. In these two algorithms, this uniqueness constraint strongly increases the connectedness of both solvable and unsolvable challenges, but the divide remains intact.
+
+Second, for {\bf Engraved Tiles} and {\bf Dominoes}, repetition of pairs of values on a step are either restricted to the summit or not allowed elsewhere in the challenge. This causes the connections between steps to be more distributed and bind the puzzle together as a whole, instead of breaking apart into disjoint pieces. {\bf Dominoes} combines two constraints to create well-connected and well-distributed challenges.
 
 \begin{figure}[t]
 \includegraphics[width=8.8cm]{graphics/connectedness.png}
@@ -948,29 +953,22 @@ Solvable challenges shown in green, and unsolvable challenges shown in red.}
 \label{fig:connected}
 \end{figure}
 
-Within the top three algorithms, only {\bf Dominoes} is statistically higher than {\bf piecepack}. As shown in Table \ref{table_stats}, both of these strategies require that each step has two unique values.
-To understand these results, we explore the relationships between this constraint and connections between steps in a challenge. We say step $A$ is connected to step $B$ in Fujisan if there is a move available according to rule 2 from $B$ to $A$. While critical to solving most challenges, we simplify our calculation and ignore the impact of intermediate Priests between $B$ and $A$. 
-
-Figure \ref{fig:connected} shows the average step connectedness within a challenge for each setup algorithm, differentiating solvable challenges in green from unsolvable challenges in red. We can see a large divide between solvable and unsolvable challenges on this metric, with higher connectivity related to solvability. For {\bf piecepack} and {\Dominoes}, the uniqueness constraint strongly increases the connectedness of both solvable and unsolvable challenges, but the divide remains intact.
-
-Second, for {\bf Dominoes} and {\bf Engraved Tiles}, repetition of pairs of values on a step are either restricted to the summit or not allowed elsewhere in the challenge. This causes the connections between steps to be more likely to overlap and bind the puzzle together as a whole, instead of breaking apart into disjoint pieces. { \bf Dominoes} appears to combine these two constraints to create well-connected and well-distributed challenges.
 
 \subsection{Difficulty}
 
-Browne and Maire \cite{MCPUZZLE} propose a metric where a solitaire game is interesting if the difference in solvability between an AI solver and a random solver is high. However, across all of our PCG algorithms implemented for Fujisan, we found a random solver would win less than 0.3\%. We define here challenge difficulty to be the minimum number of moves requires to solve, and are interested in the distribution of challenge difficulties generated by each algorithm. We compare here the median level of challenge difficulty generated by each algorithm. The shortest possible solution to a Fujisan challenge requires eight moves, while 
+Browne and Maire \cite{MCPUZZLE} propose a metric where a solitaire game is interesting if the difference in solvability between an AI solver and a random solver is high. However, across all of our PCG algorithms implemented for Fujisan, we found a random solver would win less than 0.3\%, making their metric equivalent to solvability. We define here challenge difficulty to be the minimum number of moves required to solve the challenge, and are interested in the distribution of challenge difficulties generated by each algorithm. We compare here the median level of challenge difficulty generated by each algorithm. The shortest possible solution to a Fujisan challenge requires eight moves, while 
 the longest-known constructed challenge involves 62 moves\footnote{http://www.ludism.org/ppwiki/Fuji-san\#Heading9}.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=8.8cm]{graphics/standalonediff.png}
-\caption{Effect of challenge generation algorithms on difficulty.}
+\caption{Histograms showing the effect of challenge generation algorithms on difficulty.}
 \label{fig:difficultycomp}
 \end{figure}
 
-Looking at the results in Figure \ref{fig:difficultycomp}, our algorithms appear to follow a Poisson distribution rather than a normal distribution.
-Thus, we employ a Kruskal-Wallis H-test \cite{KRUSKAL} to determine if the median difficulty of our five algorithms is the same. We reject this null hypothesis very strongly, with a p-value of $1.9 x 10^{-8}$.
+Figure \ref{fig:difficultycomp} shows histograms of the minimum solution length for solvable challenges, pooled across all trials for each algorithm. The median is denoted with a dotted line. Our algorithms appear to follow a Poisson distribution rather than a normal distribution, since the smallest possible solution length for any challenge is 8, and the maximum solution length is currently unbounded. We employ a Kruskal-Wallis H-test \cite{KRUSKAL} to determine if the median difficulty of our five algorithms is statistically the same, and we reject this null hypothesis very strongly, with a p-value of $1.9 \times 10^{-8}$.
 
-The algorithm responsible for this result is {\bf Engraved Tiles}. We can see a strong tendency to have shorter solution lengths, with 9.5\% of challenges having a solution length of eight or nine, whereas for {\bf Domino}, this is true for only 3\% of challenges. In {\bf Engraved Tiles}, there are five tiles that contain a 0; since there will be ten total tiles hidden, on average a challenge will contain 2.5 zeros. It appears that 0 spaces are one part of what makes Fujisan challenges interesting, since having fewer 0 spaces decreases the challenge difficulty.
+The algorithm responsible for this result is {\bf Engraved Tiles}. We can see a strong tendency to have shorter solution lengths, with almost 10\% of challenges having a solution length of eight or nine, whereas for {\bf Domino}, this is true for only 3\% of challenges. In {\bf Engraved Tiles}, there are five tiles that contain a 0 value; since there will be ten total tiles hidden, on average a challenge will contain 2.5 zeros values. It appears that 0 values are one part of what makes Fujisan challenges interesting, since having fewer 0 values decreases the challenge difficulty.
 
 
 \subsection{Summary}
@@ -1200,8 +1198,8 @@ Finally, are there general methods that allow solvers to {\it construct} challen
 % or if you just want to reserve a space for a photo:
 \newpage 
 
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{graphics/markpic.png}}]{Mark Goadrich}
-is an Associate Professor of Computer Science at Hendrix College in Conway, AR.
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{graphics/markpic.png}}]{Mark Goadrich} earned an A.B. in Mathematics and Philosophy at Kenyon College, and a M.S. and Ph.D. in Computer Sciences from the University of Wisconsin - Madison.
+He is currently an Associate Professor of Computer Science at Hendrix College in Conway, AR.
 \end{IEEEbiography}
 
 % if you will not have a photo at all:
