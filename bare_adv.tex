@@ -729,13 +729,7 @@ Khalifa and Fayek\cite{PUZZLELANG} investigated a combination of construction an
 A less-explored variety of puzzle with relation to PCG 
 are solitaire games, for example
 sliding block puzzles \cite{FIFTEEN} (including Rush Hour\footnote{https://www.thinkfun.com/products/rush-hour/}), 
-and Hi-Q (generalized peg solitaire) \cite{PEG}. In these games, solvers must manipulate physical pieces to solve a challenge. Since the initial setup for these games must be executed by the solver, providing the solver with predefined challenges and a solution book is common practice. PCG can also be applied to these games by, again, constructing challenges offline and guaranteeing they are solvable, as seen in recent work by van Dijk \cite{RUSHHOUR} and K{\"o}pp \cite{TANGRAM}. 
-
-There are, however, alternative PCG approaches available for physical solitaire games, most popularly demonstrated by the card game Klondike Solitaire. In particular, this game uses an {\it online, stochastic, generate-and-test} PCG algorithm, which is as simple as shuffling the deck of cards at the start of the game. Also of note, having a solution for Klondike is {\it optional}; the {\it test} portion of the generate-and-test algorithm is left to the solver as they play through the game. Wolter \cite{SOLITAIREVARIANTS} developed the Politaire system, and examines the effect of various shuffling algorithms across multiple solitaire card game variations. One variant called Thoughtful Solitaire, played such that all card locations are known to the solver at the beginning of the game, has been separately found to have setups between 82\% and 91.44\% solvable \cite{THOUGHTFUL}. Also falling within this classification is BoxOff, a 2D token removal puzzle, for which Browne and Maire investigated game parameters using Monte Carlo simulation \cite{MCPUZZLE}.
-\noindent
-
-%====================================================================================
-\section{Fujisan} \label{section:fujisan}
+and Hi-Q (generalized peg solitaire) \cite{PEG}. In these games, solvers must manipulate physical pieces to solve a challenge. Since the initial setup for these games must be executed by the solver, providing the solver with predefined challenges and a solution book is common practice. PCG can also be applied to these games by, again, constructing challenges offline and guaranteeing they are solvable, as seen in recent work by Fogleman \cite{RUSHHOUR} and K{\"o}pp \cite{TANGRAM}. 
 
 \begin{figure}[t]
 \centering
@@ -743,6 +737,13 @@ There are, however, alternative PCG approaches available for physical solitaire 
 \caption{The start of a solution demonstrating the rules of Priest movement, with move notation followed by the matching rule. }
 \label{fig:priestrules}
 \end{figure}
+
+
+There are, however, alternative PCG approaches available for physical solitaire games, most popularly demonstrated by the card game Klondike Solitaire. In particular, this game uses an {\it online, stochastic, generate-and-test} PCG algorithm, which is as simple as shuffling the deck of cards at the start of the game. Also of note, having a solution for Klondike is {\it optional}; the {\it test} portion of the generate-and-test algorithm is left to the solver as they play through the game. Wolter \cite{SOLITAIREVARIANTS} developed the Politaire system, and examines the effect of various shuffling algorithms across multiple solitaire card game variations. One variant called Thoughtful Solitaire, played such that all card locations are known to the solver at the beginning of the game, has been separately found to have setups between 82\% and 91.44\% solvable \cite{THOUGHTFUL}. Also falling within this classification is BoxOff, a 2D token removal puzzle, for which Browne and Maire investigated game parameters using Monte Carlo simulation \cite{MCPUZZLE}.
+\noindent
+
+%====================================================================================
+\section{Fujisan} \label{section:fujisan}
 
 
 To help us understand Fujisan challenge generation algorithms, we will first discuss the rules for solving Fujisan challenges, and the piecepack constraints that influenced its creation.
@@ -817,9 +818,11 @@ Here we explore a progression of constraints that create multiple variant algori
 \textbf{Random}                   & $10^{18}$                                  & 0 to 24                                                    & yes                                                      & yes                                                            \\ \hline
 \textbf{Any Coin}                 & $10^{14}$ & exactly 4                                                  & yes                                                      & yes                                                            \\ \hline
 \textbf{Piecepack}                & $10^{10}$                                             & exactly 4                                                  & no                                                       & yes                                                            \\ \hline
-\textbf{Engraved}                 & $10^{13}$                                                 & 0 to 7 \footnote{0 to 5 for value 0}                                                     & yes                                                      & only at summit                                                 \\ \hline
-\textbf{Domino}                   & $10^{13} $                                                   & 2 to 5                                                     & no                                                       & no                                                             \\ \hline
+\textbf{Engraved}                 & $10^{13}$                                                 & 0 to 7$^*$                                                     & yes                                                      & only at summit                                                 \\ \hline
+\textbf{Domino}                   & $10^{14} $                                                   & 2 to 5                                                     & no                                                       & no                                                             \\ \hline
 \end{tabular}
+
+\vspace{0.2cm} * 0 to 5 for value 0
 \end{table*}
 
 \subsection{Pure Random}
@@ -900,7 +903,7 @@ Furthermore, we can look at alternate existing pieces with which to construct Fu
 \end{quote}
 
 This constraint is similar to the Engraved Tiles algorithm, but with a subset of the value pairs, thus a different probability on their selection.  Additionally, unlike the Engraved Tiles algorithm, the summit values are distinct from the two steps closest the summit.
-With 15 possible dominoes, only 12 of them are used in the challenge, as shown in Figure \ref{fig:dominoexample}. Each of these dominoes has two possible orientations, for a total of $\frac{{15 \choose 12}2^{12}12!}{4} \approx 10^{13}$ possible challenges. 
+With 15 possible dominoes, only 12 of them are used in the challenge, as shown in Figure \ref{fig:dominoexample}. Each of these dominoes has two possible orientations, for a total of $\frac{{15 \choose 12}2^{12}12!}{4} \approx 10^{14}$ possible challenges. 
 
 \begin{figure}[b]
 \includegraphics[width=8.8cm]{graphics/dominoexample.png}
@@ -961,14 +964,14 @@ the longest-known constructed challenge requires 62 moves\footnote{http://www.lu
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=8.8cm]{graphics/standalonediff.png}
+\includegraphics[width=8.5cm]{graphics/standalonediff.png}
 \caption{Histograms showing the effect of challenge generation algorithms on difficulty.}
 \label{fig:difficultycomp}
 \end{figure}
 
 Figure \ref{fig:difficultycomp} shows histograms of the minimum solution length for solvable challenges, pooled across all trials for each algorithm. The median is denoted with a dotted line. Our algorithms appear to follow a Poisson distribution rather than a normal distribution, since the smallest possible solution length for any challenge is 8, and the maximum solution length is currently unbounded. We employ a Kruskal-Wallis H-test \cite{KRUSKAL} to determine if the median difficulty of our five algorithms is statistically the same, and we reject this null hypothesis very strongly, with a p-value of $1.9 \times 10^{-8}$.
 
-The algorithm responsible for this result is {\bf Engraved Tiles}. We can see a strong tendency to have shorter solution lengths, with almost 10\% of challenges having a solution length of eight or nine, whereas for {\bf Domino}, this is true for only 3\% of challenges. In {\bf Engraved Tiles}, there are five tiles that contain a 0 value; since there will be ten total tiles hidden, on average a challenge will contain 2.5 zeros values. It appears that 0 values are one part of what makes Fujisan challenges interesting, since having fewer 0 values decreases the challenge difficulty.
+The algorithm responsible for this result is {\bf Engraved Tiles}. We can see a strong tendency to have shorter solution lengths, with almost 10\% of challenges having a solution length of eight or nine, whereas for {\bf Dominoes}, this is true for only 3\% of challenges. In {\bf Engraved Tiles}, there are five tiles that contain a 0 value; since there will be ten total tiles hidden, on average a challenge will contain 2.5 zeros values. It appears that 0 values are one part of what makes Fujisan challenges interesting, since having fewer 0 values decreases the challenge difficulty.
 
 
 \subsection{Summary}
