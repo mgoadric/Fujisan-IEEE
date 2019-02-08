@@ -531,7 +531,7 @@ pdfkeywords={Computer Society, IEEEtran, journal, LaTeX, paper,
 % not capitalized unless they are the first or last word of the title.
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
-\title{Improving Solvability for Procedurally\\ Generated Challenges in Physical Solitare\\Games Through Embedded Mechanics}
+\title{Improving Solvability for Procedurally\\ Generated Challenges in Physical Solitare\\Games Through Entangled Components}
 %
 %
 % author names and IEEE memberships
@@ -629,7 +629,7 @@ E-mail: see http://mark.goadrich.com/schedule.html
 % in the abstract or keywords.
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-    Challenges for physical solitaire puzzle games are typically designed in advance by humans and limited in number. Alternately, some games incorporate stochastic setup rules, where the human solver randomly sets up the game board before solving the challenge. \hl{These setup rules} greatly increase the number of possible challenges, but can often generate unsolvable or uninteresting challenges. To better understand \hl{the compromises involved in minimizing undesirable challenges, we examine three games where component design choices can influence the stochastic nature of the resulting challenge generation algorithms.} We evaluate the effect of these components and algorithms on ease of physical setup, challenge solvability, and challenge difficulty. \hl{We find that algorithms which constrain randomness through using embedding sub-elements of the puzzle mechanics into the components can be simple for the solver to construct yet generate solvable and difficult challenges.}
+    Challenges for physical solitaire puzzle games are typically designed in advance by humans and limited in number. Alternatively, some games incorporate rules for stochastic setup, where the human solver randomly sets up the game board before solving the challenge. \hl{These setup rules} greatly increase the number of possible challenges, but can often generate unsolvable or uninteresting challenges. To better understand \hl{the compromises involved in minimizing undesirable challenges, we examine three games where component design choices can influence the stochastic nature of the resulting challenge generation algorithms.} We evaluate the effect of these components and algorithms on challenge solvability, and challenge difficulty. \hl{We find that algorithms which control randomness through entangling components based on sub-elements of the puzzle mechanics can be simple for the solver to construct yet generate solvable and difficult challenges.}
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -698,10 +698,10 @@ Board Games, Procedural Content, Monte Carlo Methods, Game Design
 % Here we have the typical use of a "T" for an initial drop letter
 % and "HIS" in caps to complete the first word.
 
-\IEEEPARstart{P}{rocedural} content generation (PCG), where algorithms are used to create game content,\cite{PCGSURVEY} is increasingly being used to derive new challenges for a wide variety of games. Using the PCG taxonomy described by Togelius et al. \cite{SBPCG}, PCG can occur {\it offline} (beforehand) or {\it online} (dynamically during the game), the content can be {\it constructed}
+\IEEEPARstart{P}{rocedural} content generation (PCG) algorithms are increasingly being used to derive new content for a wide variety of games\cite{PCGSURVEY}. Using the PCG taxonomy described by Togelius et al. \cite{SBPCG}, PCG can occur {\it offline} (beforehand) or {\it online} (dynamically during the game), the content can be {\it constructed}
 by a system of rules, or use a {\it generate-and-test} process to winnow potential candidates for inclusion in the game, and the algorithm can be {\it deterministic} and fixed or {\it stochastic}, incorporating randomness. 
 
-Following the puzzle terminology of Browne \cite{PUZZLENATURE}, such that there is a setter who creates challenges and a solver who solves them, \hl{we can apply the above PCG terminology to puzzle design.} Setters typically {\it construct} their challenges {\it offline} in advance, using creative yet {\it deterministic} means. 
+Following the puzzle terminology of Browne \cite{PUZZLENATURE}, such that there is a setter who creates challenges and a solver who solves them, \hl{we can apply the above PCG terminology to puzzle design.} Setters typically {\it construct} their challenges using creative yet {\it deterministic} means. 
 Researchers have explored using PCG to replace the setter, employing metaheuristics to find interesting challenges for deductive logic puzzles, ranging from Sudoku \cite{SUDOKU} to Nonograms \cite{NONOGRAM}. These algorithms similarly construct their challenges offline, and guarantee they are solvable, but substitute {\it stochastic} algorithms for the creative human process. Khalifa and Fayek\cite{PUZZLELANG} investigated a combination of construction and generate-and-test PCG for \hl{Sokoban and related games} within a genetic algorithm framework, and this approach was extended to Monte Carlo Tree Search by Kartal et al. \cite{SOKOBAN}.
 
 A less-explored variety of puzzle with relation to PCG 
@@ -711,16 +711,241 @@ and Hi-Q (generalized peg solitaire) \cite{PEG}. In these games, solvers must ma
 
 There are, however, alternative PCG approaches available for physical solitaire games, most popularly demonstrated by the card game Klondike Solitaire. In particular, this game uses an {\it online, stochastic, generate-and-test} PCG algorithm, which is as simple as shuffling the deck of cards at the start of the game. Also of note, the {\it test} portion of the generate-and-test algorithm is left to the solver as they play through the game. Wolter \cite{SOLITAIREVARIANTS} developed the Politaire system, and examines the effect of various shuffling algorithms across multiple solitaire card game variations. One variant called Thoughtful Solitaire, played such that all card locations are known to the solver at the beginning of the game, has been separately found to have setups between 82\% and 91.44\% solvable \cite{THOUGHTFUL}. 
 
-When designing such a random setup process to assemble a challenge, three questions naturally arise: {\it How easy is the setup process for the solver to execute? Can all such challenges be solved? How difficult are the created challenges? } \hl{Since these puzzle challenges are created by the solver, they are restricted to using only the components included in the puzzle. However, as much of PCG research involves digital games and puzzles, where algorithms are only limited by computational time and space constraints, there is little research into the relationship between the choice and design of physical puzzle components and PCG}. 
+When designing such a random setup process to assemble a challenge, two questions naturally arise: {\it Can all such challenges be solved? How difficult are the created challenges? } \hl{Since these puzzle challenges are created by the solver, they are restricted to using only the components included in the puzzle. However, as much of PCG research involves digital games and puzzles, where algorithms are only limited by computational time and space constraints, there is little research into the relationship between the structural design of physical puzzle components and PCG}. 
 
-\hl{To understand this relationship, we examine three different styles of physical solitaire games that incorporate} {\it online, stochastic, generate-and-test} \hl{PCG algorithms for challenge setup: Fujisan\footnote{http://www.ludism.org/ppwiki/Fuji-san}, a transportation puzzle, BoxOff} \cite{BoxOffGAMES} \hl{, a token removal puzzle, and Pretzel} \cite{de1981pretzel} \hl{, a card arrangement puzzle.} We provide detailed descriptions of different \hl{game components and} challenge setup algorithms \hl{for each game}, then compare and contrast these multiple setup algorithms and constraints using computational simulations. Finally, we evaluate these algorithms with respect to ease of player setup, solvability, and difficulty. We find that \hl{those component choices
-and algorithms which intentionally incorporate desirable constraints based on each puzzle's mechanics are more successful across all three metrics}.
+\hl{To understand this relationship, we examine three different styles of physical solitaire games with perfect information that incorporate} {\it online, stochastic, generate-and-test} \hl{PCG algorithms for challenge setup: BoxOff} \cite{BoxOffGAMES} \hl{, a token removal puzzle, Pretzel} \cite{de1981pretzel} \hl{, a card arrangement puzzle, and Fujisan\footnote{http://www.ludism.org/ppwiki/Fuji-san}, a transportation puzzle. Each of these puzzles includes a basic algorithm where simple components (tokens or cards) are randomly shuffled to create a challenge. We define these components to become} {\it entangled} \hl{if their arrangement is no longer independent, either due to algorithmic constraints, or having been subsumed by new, larger components.}
+
+We provide detailed descriptions of different \hl{game components and} challenge setup algorithms \hl{for each game}, then compare and contrast these multiple setup algorithms and constraints using computational simulations. Finally, we evaluate these algorithms with respect to solvability and difficulty. We find that \hl{entanglements which incorporate desirable constraints based on each puzzle's mechanics are more successful across both metrics}.
+
+%==================================
+
+\section{BoxOff}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=6.8cm]{boxoff6x82.png}
+\caption{A sample 6$\times$8 BoxOff challenge with three colors.}
+\label{fig:boxoffbig}
+\end{figure}
+
+BoxOff is a 2D token removal puzzle designed by Stephen Myers  \cite{BoxOffGAMES}. Challenges for this puzzle consist of a 6$\times$8 grid of squares filled with exactly 16 each of three colors, an example of which is shown in 
+Figure \ref{fig:boxoffbig}. The challenge is solved when every square in the grid has been eliminated.  The solver can eliminate two squares of the same color at a time if either of the following two rules apply.
+\begin{enumerate}
+    \item The two squares are adjacent.
+    \item All other squares inside the box that circumscribes the two squares have previously been eliminated.\footnote{Rule 1 is actually subsumed by this rule, however, we find it helpful to separate them into two cases to facilitate our component design discussions later.}
+\end{enumerate}
+
+Figure \ref{fig:boxoffrules} shows an in-progress BoxOff challenge. The solver has a few options available, two of which are highlighted in dashed boxes. They could eliminate the two yellow squares in the upper-left quadrant using Rule 1, or eliminate the two blue squares in the middle using Rule 2. An invalid move is also shown in the upper right quadrant, where Rule 2 would not apply because of the blue square in the circumscribed box around the two red squares.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=6.8cm]{boxoffrules.png}
+\caption{Application of Rules 1 and 2 to an in-progress BoxOff challenge, and an illustrative invalid move.}
+\label{fig:boxoffrules}
+\end{figure}
+
+
+Browne and Maire previously investigated altering the game design parameters for BoxOff using Monte Carlo simulation \cite{MCPUZZLE}. They explored multiple grid sizes and numbers of colors, ultimately finding that challenges generated for the original 6$\times$8 puzzle configuration described by Myers were highly solvable and robust against random solvers. Other configurations, either of smaller board sizes, or more colors, exhibited poor solvability. In particular, we will examine the 4$\times$6 board with four colors, where challenge solvability was approximately 25\%, and the 6$\times$6 board with six colors, where challenge solvability was less than 5\%.
+
+%\begin{figure}[t]
+%\centering
+%\includegraphics[width=8.8cm]{boxoff4x6.png}
+%\caption{4$\times$6 BoxOff challenge with four colors, %generated with a simple shuffle of the 24 color tokens. }
+%\label{fig:boxoffbasic}
+%\end{figure}
+
+\subsection{Components and Algorithms}
+Here we explore two different sets of physical components and their resulting algorithms that can be used for challenge setup for Boxoff. 
+
+The components of a physical BoxOff puzzle consist of circular tokens equal to the number of grid squares. These tokens are equally distributed among the number of colors. 
+With these components, the solver can employ a simple shuffling algorithm to create a challenge.
+\begin{quote}
+    {\it \bf Shuffled:} Shuffle the color tokens randomly, and arrange them into a grid.
+\end{quote}
+
+THIS NEEDS WORK FOR BOTH 4x6 and 6x6
+We can use the multinomial theorem to determine that this method can create
+$\frac{24!}{4!^{6}??} \approx 10^{???}$ possible challenges.  We divide by ?????? here and in subsequent calculations to account for BoxOff challenges displaying rotational, horizontal, and vertical symmetry, however, this slightly underestimates due to some challenges displaying more than one symmetry.
+
+This shuffling works well on moderate sized boards with few colors, but as demonstrated by Browne and Maire, it suffers when applied to more colors, as shown in Figure \ref{fig:boxoff666}. The uniform nature of the shuffling appears to prevent a critical mass of adjacent tokens of the same color. Such adjacent tokens are the only way Rule 1 above can be fulfilled so that other more distant tokens can be eliminated.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=6.6cm]{boxoff666basic.png}
+\caption{A Sample 6$\times$6 BoxOff challenge with six colors, generated with a simple shuffle of the 36 color tokens. }
+\label{fig:boxoff666}
+\end{figure}
+
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=6.6cm]{boxoffltiles.png}
+\caption{Sample L-tiles for BoxOff challenge creation. Tiles can be rotated 180 degrees, and the dashed line shows how they can be flipped. }
+\label{fig:ltiles}
+\end{figure}
+
+%CAN I CONFIRM THIS WITH GRAPHS, LIKE CONNECTEDNESS BELOW????
+
+To address this issue, we introduce an {\it entangled} abstraction for creating the challenge using L-shaped tiles, as shown in Figure \ref{fig:ltiles}. These tiles allow us to entangle the colors on the tiles to create particular local color distributions.
+Our goal in creating these tiles is to encourage more adjacent tokens of the same color. However, we also must avoid creating situations where all tiles are adjacent to tokens of the same color, else the puzzle becomes too easy to solve. 
+
+For both the 4$\times$6 and 6$\times$6 grids, each tile is composed of exactly two squares of the same color, which we label $S$, and one square of a different color, labeled $D$. Each color is chosen as $S$ twice to ensure an equal distribution of the adjacent squares. We then distribute the third square colors using a cyclic arrangement of the colors, as shown in Figure \ref{fig:boxoffcycle}, where arrows are drawn from $S$ to $D$ for each tile in the set.  To increase the number of possible challenges, these tiles can be flipped to a mirror image along the center square of the L.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=8.8cm]{boxoffcycle.png}
+\caption{Cycle of color connections used to construct L-shaped tiles for BoxOff challenges, 4$\times$6 with four colors on the left, and 6$\times$6 BoxOff challenges with six colors on the right.}
+\label{fig:boxoffcycle}
+\end{figure}
+
+HOW MANY CHALLENGES WORK ON THESE NUMBERS???
+Each of these tiles has two possible orientations, for a total of $\frac{2^{12}12!}{4} \approx 10^{14}$ possible challenges. 
+The algorithm to create a challenge then is as follows:
+
+\begin{quote}
+    {\it \bf L-Tiles:} Shuffle and flip the tiles randomly, then arrange into a grid of connected 2$\times$3 subgrids. 
+\end{quote}
+
+Figure \ref{fig:boxofftiles} shows a 4$\times$6 grid created with L-tiles. To physically play BoxOff with this tile setup, the solver will need to place neutral tokens on each square as they are eliminated, continuing until the board is full of tokens. 
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=6.6cm]{boxoff46tiles.png}
+\caption{A sample 4$\times$6 BoxOff challenge with four colors, generated using L-shaped tiles. }
+\label{fig:boxofftiles}
+\end{figure}
+
+\subsection{Evaluation}
+
+We encoded a Monte Carlo BoxOff challenge generator using C\#, and implemented a breadth-first solver for BoxOff challenges. For each PCG algorithm, we generated 1000 random challenges. For each generated challenge in our trials, we recorded if the challenge was solvable. The code used for our simulations is available on Github \footnote{http://github.com/mgoadric/fujisan}. 
+To enable testing for statistical significance on solvability between these algorithms, we divided our pool of generated challenges into 10 trials of 100 challenges. We repeated this for both the 4$\times$6 with four colors puzzle and the 6$\times$6 with six colors puzzle.
+ 
+We will use the two criteria of solvability and difficulty to quantify each of the above \hl{components and algorithms. }
+First, we judge a PCG algorithm to be working well when a high percentage of generated challenges are solvable by our solver. Beyond solvability, we also wish for PCG algorithms to have a strong inclination to generate interesting and difficult challenges for the solver. 
+
+\subsubsection{Solvability}
+
+\begin{figure}[t]
+\includegraphics[width=8.8cm]{boxonsolve.png}
+\caption{Effect of challenge generation algorithms on solvability for BoxOff 4$\times$6 with four colors. $P(S_p)$ denoted in red, and $P(S_r)$ shown in blue.}
+\label{fig:boxoffsolvediff}
+\end{figure}
+
+\begin{figure}[t]
+\includegraphics[width=8.8cm]{6x6solvediff.png}
+\caption{Effect of challenge generation algorithms on solvability for BoxOff 6$\times$6 with six colors. $P(S_p)$ denoted in red, and $P(S_r)$ shown in blue.}
+\label{fig:boxoff666solvediff}
+\end{figure}
+
+Figure \ref{fig:boxoffsolvediff} shows the challenge solvability in red for the 4$\times$6 with four color BoxOff. This plot displays the distribution of the two PCG algorithms across the 10 trials in a box-and-whisker plot. The mean for each method is marked with a green triangle. 
+
+We find the {\bf L-Tiles} setup method produces solvable challenges at a probability of 0.88, a marked increase over the {\bf Shuffled} probability of 0.27, with this difference being statistically significant.
+Similarly, Figure \ref{fig:boxoff666solvediff} shows the solvability distributions in red for the 6$\times$6 with six color puzzle. We again see a drastic increase in solvability, moving from 0.03 for {\bf Shuffled} up to 0.57 for {\bf L-Tiles}. 
+
+\subsubsection{Difficulty}
+
+Following Browne and Maire \cite{MCPUZZLE}, if a challenge is solvable by the solver choosing random moves each time, then the challenge lacks difficulty and interest. Denoting the probability of solvability using the breadth-first search solver as $P(S_p)$ and the probability of the random solver as $P(S_r)$, we can calculate $P(S_p) - P(S_r)$, the difference between the intelligent and random solvability. Figures \ref{fig:boxoffsolvediff} and \ref{fig:boxoff666solvediff} also show in blue the solvability rate for these algorithm when using a random solver. 
+
+We see in both cases for {\bf L-Tiles}, there is an increase in the random solver performance over {\bf Shuffled}. However, there remains a significant gap between the general and random solvability in both puzzles. For the 4$\times$6 with four colors, this difference is 0.62, and for 6$\times$6 with six colors, this difference is 0.495. We can conclude that while more easy challenges generated from {\bf L-Tiles}, the large majority of generated solvable challenges involve difficult solutions.
+
+%=================================================
+
+\section{Pretzel}
+The Montana family of patience card games has many variations known by many names, including Gaps, Spaces, Vacancies, Clown, Paganini, Red Moon, and Blue Moon. One variant, which allows no re-shuffles or re-deals, is a puzzle described and named by de Bruijn \cite{helmstetter2004searching}, called Pretzel solitaire.
+
+Shuffle a deck of $S$ suits, each with $V$ values. Deal the shuffled cards face-up into a grid with $S$ rows, each with $V$ columns. Remove the lowest valued card of each suit (traditionally aces) and place them in a new column to the left of the existing grid in a prescribed order (traditionally, from top to bottom: spades, hearts, diamonds, clubs). Doing so vacates $S$ cells in the grid, thereafter called holes. A sample Pretzel setup with $S=4$ and $V=4$ is shown in Figure \ref{fig:pretzelbasic}.
+
+The solver's goal is to arrange all cards into ascending sorted order, one suit per row, following a single rule:
+
+1) A card may be moved from any location in the grid into any hole only if the card being moved is of the same suit and exactly one rank higher in value than the card immediately to the hole's left.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=4.8cm]{pretzelbasic.png}
+\caption{Pretzel solitaire challenge with four suits and four ranks, generated with a random shuffle.}
+\label{fig:pretzelbasic}
+\end{figure}
+
+\subsection{Components and Algorithms}
+Here we explore three different algorithms that can be used for challenge setup for Pretzel. Each algorithm uses the features of the existing components, in this case a standard French deck of cards, in different ways. For two setup algorithms (Random Suits and Sequential Suits) we introduce entanglement by first dividing the deck into smaller decks according to suit. Although this entanglement is not preserved during play, the lasting effects of such deck substitution during setup are nonetheless observable by measures similar to other games explored.
+
+In all setup algorithms described below, ``deal out" denotes placing cards face-up into the play grid starting in the upper-left corner, proceeding to the right within the same row, and beginning a new row each time $V$ columns are filled.
+
+\begin{quote}
+    {\bf Shuffled:} Shuffle the entire deck and deal out all cards.
+\end{quote}
+
+The number of possible challenges that result from the standard shuffle is the total number of permutations of cards in the deck, namely ($S$$V$)!.
+
+\begin{quote}
+    {\bf Random Suits:} Divide the deck into $S$ smaller decks, each comprising all cards of a single suit. Shuffle each small deck separately. Next, take the top card of each small deck, shuffle these $S$ cards together, and deal them out. Again, take the top card of each small deck, shuffle these cards together, and continue dealing out. Proceed in like fashion until all cards have been dealt.
+\end{quote}
+
+HOW TO CALCULATE NUMBER OF CHALLENGES?
+
+\begin{quote}
+    {\bf Sequential Suits:} Divide the deck into $S$ smaller decks, each comprising all cards of a single suit. Shuffle each small deck separately. Next, deal the top card from the first small deck, then the top card of the second small deck, and so on.  When the top card of each small deck has been dealt, return to the first small deck and deal the top card, then the top card of the second small deck, etc. Proceed in like fashion until all cards have been dealt.
+\end{quote}
+
+
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=8.8cm]{pretzel4x8.png}
+\caption{Pretzel solitaire challenge with four suits and eight ranks, generated with the Sequential Suits method.}
+\label{fig:pretzelsequential}
+\end{figure}
+
+
+\subsection{Evaluation}
+
+As with BoxOff we encoded a Monte Carlo Pretzel challenge generator using C\#, and a breadth-first solver for Pretzel challenges. For each PCG algorithm, we generated 1000 random challenges. For each generated challenge in our trials, we recorded whether the challenge was solvable, and if so, we also recorded the minimum solution length found with our solver. The code used for our simulations is available on Github \footnote{http://github.com/jdroscha/pretzel-solitaire-solver}. To enable testing for statistical significance on solvability between these algorithms, we divided our pool of generated challenges into 10 trials of 100 challenges. 
+
+Figure \ref{fig:pretzel44solved} shows the distribution of solvability for the three PCG algorithms across the 10 trials in a box-and-whisker plot. The mean for each method is marked with a green triangle. 
+
+%\subsubsection{Ease of Physical Setup}
+
+\subsubsection{Solvability}
+
+\begin{figure}[t]
+\includegraphics[width=8.8cm]{pretzelsolve4x4.png}
+\caption{Effect of challenge generation algorithms on solvability for Pretzel, four suits and four ranks}
+\label{fig:pretzel44solved}
+\end{figure}
+
+\subsubsection{Difficulty}
+For the 4x4
+
+Shuffled $P(S_p) - P(S_r) = 0.162$
+
+Random Suits $P(S_p) - P(S_r) = 0.169$
+
+Sequential Suits $P(S_p) - P(S_r) = 0.219$
+
+
+\begin{figure}[t]
+\includegraphics[width=8.8cm]{pretzelfulln.png}
+\caption{Effect of challenge generation algorithms on solvability for Pretzel, four suits and 2-9 ranks.}
+\label{fig:pretzelfullsolve}
+\end{figure}
+
+\begin{figure}[t]
+\includegraphics[width=8.8cm]{pretzeldiffdist.png}
+\caption{Effect of challenge generation algorithms on full minus random solvability for Pretzel, four suits and 2-9 ranks.}
+\label{fig:pretzelfullsolve}
+\end{figure}
+
+\begin{figure}[t]
+\includegraphics[width=8.8cm]{pretzel48lengthhist.png}
+\caption{Effect of challenge generation algorithms on solution length for Pretzel, four suits and eight ranks.}
+\label{fig:pretzelfullsolve}
+\end{figure}
 
 %====================================================================================
 
 \section{Fujisan}
 
-Fujisan is a physical solitaire puzzle game created for the piecepack game system \cite{GAMESYSTEM}. In this game, a human solver must find a way to cooperatively move four Shinto Priests to the top of Mt. Fuji through incremental steps up the mountainside. Functionally, the area of play consists of a grid of spaces arranged into two rows by twelve columns. Each space contains a single value in the range of 0 to 5, inclusive. The two middle columns together comprise the mountain {\it summit}, while each other column forms a {\it step} of the mountain. Four pawns, representing the Priests, start off the mountain, just outside the two columns furthest from the summit.
+In Fujisan, a solver must find a way to cooperatively move four Shinto Priests to the top of Mt. Fuji through incremental steps up the mountainside. Functionally, the area of play consists of a grid of spaces arranged into two rows by twelve columns. Each space contains a single value in the range of 0 to 5, inclusive. The two middle columns together comprise the mountain {\it summit}, while each other column forms a {\it step} of the mountain. Four pawns, representing the Priests, start off the mountain, just outside the two columns furthest from the summit.
 
 \begin{figure}[t]
 \centering
@@ -729,8 +954,7 @@ Fujisan is a physical solitaire puzzle game created for the piecepack game syste
 \label{fig:priestrules}
 \end{figure}
 
-
-The goal of the solver is to {\bf move Priests one at a time until all four are at the summit.} A Priest can be moved according to the following rules:  
+The goal of the solver is to move Priests one at a time until all four are at the summit. A Priest can be moved according to the following rules:  
 
 \begin{enumerate}
 \item No more than one Priest may occupy a space at any given time.
@@ -779,56 +1003,33 @@ Figure \ref{fig:priestrules} shows a visual example of how these rules can be us
 \subsection{Components and Algorithms}
 \label{section:pcgalgs}
 \noindent
-Here we explore \hl{three different sets of physical components and their resulting} algorithms that can be used for challenge setup for Fujisan. Important statistics about each algorithm are summarized in Table \ref{table_stats}, namely the number of possible challenges, the number of times a value may be repeated in a challenge, if the same value can occur in two spaces on the same step, and if the value pair present on a step can be repeated elsewhere in the challenge.
+Here we explore \hl{three different sets of physical components and their resulting} algorithms that can be used for challenge setup for Fujisan. 
 
-\begin{table*}[]
-\centering
-\renewcommand{\arraystretch}{1.3}
-\caption{Statistics about Fujisan Setup Algorithms for each metric.}
-\label{table_stats}
-\begin{tabular}{l|c|c|c|c|}
-\multicolumn{1}{c|}{\textbf{PCG}} & \multicolumn{1}{c|}{\textit{\textbf{Possible Challenges}}} & \multicolumn{1}{l|}{\textit{\textbf{Count of Each Value}}} & \multicolumn{1}{l|}{\textit{\textbf{Identical Step Values}}} & \multicolumn{1}{l|}{\textit{\textbf{Repeated Step Values}}} \\ \hline
-\textbf{Shuffled}                 & $10^{14}$ & exactly 4                                                  & yes                                                      & yes                                                            \\ \hline
-\textbf{Piecepack}                & $10^{10}$                                             & exactly 4                                                  & no                                                       & yes                                                            \\ \hline
-\textbf{Engraved}                 & $10^{13}$                                                 & 0 to 7$^*$                                                     & yes                                                      & only at summit                                                 \\ \hline
-\textbf{Domino}                   & $10^{14} $                                                   & 2 to 5                                                     & no                                                       & no                                                             \\ \hline
-\end{tabular}
-
-\vspace{0.2cm} * 0 to 5 for value 0
-\end{table*}
-
-\subsubsection{Shuffled}
-
-Fujisan was created specifically for the piecepack game system\footnote{http://www.ludism.org/ppwiki/SolitaryConfinement}. The piecepack is a set of board game parts that can be used to design and play a wide variety of games. \hl{The mountain in Fujisan was constructed with game tiles representing a 2$\times$2 grid. The values were added using 24 round coins, which represented the cross product of two sets: suits (sun, moon, crown, arms) and values (0, 1, 2, 3, 4, 5). Values are indicated on the front of the coin, while suits are found on the back.}
+Fujisan was created specifically for the piecepack game system \cite{GAMESYSTEM}. The piecepack is a set of board game parts that can be used to design and play a wide variety of games. \hl{The mountain in Fujisan was constructed with game tiles representing a 2$\times$2 grid. The values were added using 24 round coins, which represented the cross product of two sets: suits (sun, moon, crown, arms) and values (0, 1, 2, 3, 4, 5). Values are indicated on the front of the coin, while suits are found on the back.}
 
 We examine first a simple algorithms that can make use of the piecepack coin components to generate randomness. 
 
 \begin{quote}
     
-  Shuffle the 24 coins face-down. For each space on the board, randomly select one coin and place it face-up on this space.
+  {\it \bf Shuffled:} Shuffle the 24 coins face-down. For each space on the board, randomly select one coin and place it face-up on this space.
   
 \end{quote}
 
 We can use the multinomial theorem to determine that this method can create
-$\frac{24!}{4!^{6}4} \approx 10^{14}$ possible challenges. 
+$\frac{24!}{4!^{6}4} \approx 10^{14}$ possible challenges.  We divide by 4 here and in subsequent calculations to account for Fujisan challenges displaying rotational, horizontal, and vertical symmetry, however, this slightly underestimates due to some challenges displaying more than one symmetry.
 
 However, if two 0 coins end up placed in same row, then it becomes impossible to move a Priest onto that row. This creates holes in our challenges and reduces the number of solvable setups. 
 More importantly, when both spaces of either of the summit columns contain 0s, the challenge becomes impossible to solve.
 
-
-\subsubsection{piecepack}
-
-The original published Fujisan ruleset was devised to address the issue of double 0 steps, adding the constraint that each step must have two different values. This was achieved by using the suit information embedded on the backs of the coins.
+The original published Fujisan ruleset was devised to address the issue of double 0 steps, adding the constraint that each step must have two different values. This was achieved by using the suit information on the backs of the coins to {\hl entangle} the coins as they are placed, \hl{similar to the Sequential Suits method for Pretzel}.
 
 \begin{quote}
     
-  Shuffle the 24 coins face-down, and separate into four groups based on their suit. Then repeatedly place two coins on the two right-most available spaces, choosing from each of the suits in turn (sun, moon, crown, arms).
+  {\it \bf piecepack:} Shuffle the 24 coins face-down, and separate into four groups based on their suit. Then repeatedly place two coins on the two right-most available spaces, choosing from each of the suits in turn (sun, moon, crown, arms).
 \end{quote}
 
 With each space limited to choosing from a particular suit, the piecepack algorithm will generate $\frac{6!^4}{4} \approx 10^{10}$ possible challenges. 
 This algorithm will guarantee there are no double numbers on a step, thus eliminating the double 0 issue noted above. 
-
-\subsubsection{Engraved Tiles}
 
 \begin{figure}[t]
 \centering
@@ -846,24 +1047,22 @@ This algorithm will guarantee there are no double numbers on a step, thus elimin
 
 
 
-Another way to generate Fujisan challenges is to combine the values with the 2$\times$2 tiles, engraving
-numerals onto the spaces. Here, we explore creating tiles with every possible pairing of values 0 through 5, including pairing a value with itself, and repeating these values diagonally on the tiles. Example tiles of this style are shown in Figure \ref{fig:engravedsample}. We remove the 0:0 pairing, since it can create unsolvable challenges, leaving 20 tiles.
+Another way to \hl{entangle the components in Fujisan} is to combine the values with the 2$\times$2 tiles, engraving numerals onto the spaces. Here, we explore creating tiles with every possible pairing of values 0 through 5, including pairing a value with itself, and repeating these values diagonally on the tiles. Example tiles of this style are shown in Figure \ref{fig:engravedsample}. We remove the 0:0 pairing, since it can create unsolvable challenges, leaving 20 tiles.
 
 \begin{quote}
     
-  Shuffle the tiles face-down. Then, assemble the mountain by turning tiles face-up, using six for the bottom layer, five for the next layer, then four, then three, and finally two. The summit will be the center four spaces.
+  {\it \bf Engraved Tiles:} Shuffle the tiles face-down. Then, assemble the mountain by turning tiles face-up, using six for the bottom layer, five for the next layer, then four, then three, and finally two. The summit will be the center four spaces.
 \end{quote}
 
 This further constrains each pair of numbers to appear no more than once in the puzzle, except for the top two tiles. There are 20 possible tiles, and only 10 of them can be seen once the puzzle is constructed, as shown in Figure \ref{fig:tileexample}. 15 of these tiles have two possible orientations, for a total of $\sum_{i = 5}^{10}\frac{{15 \choose i}\binom{5}{10 - i}2^{i}10!}{4} \approx 10^{13}
 $ possible challenges.
 
-\subsubsection{Dominoes}
 Furthermore, a standard double-six domino set, which includes 28 dominoes, 
-can be used to construct Fujisan challenges. If we eliminate those dominoes that include a 6, along with all doubles, we are left with 15 dominoes. 
+can be used \hl{as entangled components}. If we eliminate those dominoes that include a 6, along with all doubles, we are left with 15 dominoes. 
 
 \begin{quote}
     
-  Shuffle the dominoes face-down. Place 12 of these dominoes face-up in a row to create the mountain. Place a face-down domino on each side of the mountain to denote the starting locations for the Priests. Place the remaining face-down domino horizontally in the middle to raise up the two central dominoes, denoting the summit.
+  {\it \bf Dominoes:} Shuffle the dominoes face-down. Place 12 of these dominoes face-up in a row to create the mountain. Place a face-down domino on each side of the mountain to denote the starting locations for the Priests. Place the remaining face-down domino horizontally in the middle to raise up the two central dominoes, denoting the summit.
 \end{quote}
 
 This constraint is similar to the Engraved Tiles algorithm, but with a subset of the value pairs, thus a different probability on their selection.  Additionally, unlike the Engraved Tiles algorithm, the summit values are distinct from the two steps closest the summit.
@@ -878,16 +1077,8 @@ With 15 possible dominoes, only 12 of them are used in the challenge, as shown i
 \subsection{Evaluation}
 
  \noindent
-We will use three criteria to quantify each of the above \hl{components and algorithms}:
-{\bf ease of physical setup}, {\bf solvability}, and {\bf difficulty}.  First, our stochastic 
-generation algorithm must be easy for the solver to execute without complicated lookup tables or large numbers of components. Next, we judge a PCG algorithm to be working well when a high percentage of generated challenges are solvable by our A* solver. Beyond solvability, we also wish for PCG algorithms to have a strong inclination to generate interesting and difficult challenges for the solver. 
+%First, our stochastic generation algorithm must be easy for the solver to execute without complicated lookup tables or large numbers of components. 
 
-\subsubsection{Ease of Physical Setup}
-
-{\bf Shuffled} is \hl{a straightforward algorithm}, since the coins can be shuffled on the table quickly, then added one by one to the board spaces. The {\bf piecepack} constraint, while equivalent in the number of actual coin placements, is a little more difficult to setup by the solver. Tracking the ordering of suits and following the pattern can slow down a solver setup, but this ordering can be quickly memorized on repeated play.
-
-{\bf Engraved Tiles} shows a marked improvement in physical setup ease.
-The numbers are already on the tiles, so the challenge is created in the process of building the mountain; no additional algorithm is needed. Likewise with {\bf Dominoes}, the challenge is again encoded in the board setup, and with fewer tiles, this setup is even more elegant.
 
 \subsubsection{Solvability}
 
@@ -901,12 +1092,14 @@ We encoded a Monte Carlo Fujisan challenge generator using C\#, along with an A*
 For each generated challenge in our trials, we recorded if the challenge was solvable, and if so, we also recorded the minimum solution length found with our A* solver. The code used for our simulations is available on Github \footnote{http://github.com/mgoadric/fujisan}. 
 \hl{To enable testing for statistical significance on solvability between these algorithms, we divided our pool of generated challenges into 10 trials of 100 challenges. }
  
-Figure \ref{fig:strategycomp} shows the distribution of solvability for the four PCG algorithms across the 10 trials in a box-and-whisker plot. The mean for each method is marked with a green triangle. Each method produces a healthy number of solvable challenges; every trial was above 75\% solvable. {\bf Shuffled} \hl{has} the lowest mean value for solvability and \hl{this} result is significantly lower than the other three algorithms, which is confirmed by t-tests using a p-value of 0.05. Within the top three algorithms, only {\bf Dominoes} is statistically higher than {\bf piecepack}. 
+Figure \ref{fig:strategycomp} shows the distribution of solvability for the four PCG algorithms across the 10 trials in a box-and-whisker plot. The mean for each method is marked with a green triangle. Each method produces a healthy \hl{probability} of solvable challenges; every trial was above 75\% solvable. {\bf Shuffled} \hl{has} the lowest mean value for solvability and \hl{this} result is significantly lower than the other three algorithms, which is confirmed by t-tests using a p-value of 0.05. Within the top three algorithms, only {\bf Dominoes} is statistically higher than {\bf piecepack}. 
 
 SAY MORE HERE NOW THAT CONNECTEDNESS IS IN GENERAL DISCUSSION BELOW
 \subsubsection{Difficulty}
 
-Browne and Maire \cite{MCPUZZLE} propose a metric by which a solitaire game is interesting if the difference in solvability between an AI solver and a random solver is high. Across all of our PCG algorithms implemented for Fujisan, however, we found a random solver would win less than 0.3\%, making their metric equivalent to solvability for Fujisan. Instead, we define challenge difficulty here to be the minimum number of moves required to solve the challenge, and are interested in the distribution of challenge difficulties generated by each algorithm. We compare here the median level of challenge difficulty generated by each algorithm. The shortest possible solution to a Fujisan challenge involves eight moves, while 
+Unfortunately, the difficulty metric of Browne and Maire \cite{MCPUZZLE} is unsuitable for Fujisan. Across all of our PCG algorithms, we found that $P(S_r)$, the probability that a random solver would win, was less than 0.003, making their $P(S_p) - P(S_r)$ metric equivalent to solvability. 
+
+Instead, we define challenge difficulty here to be the minimum number of moves required to solve the challenge, and are interested in the distribution of challenge difficulties generated by each algorithm. We compare here the median level of challenge difficulty generated by each algorithm. The shortest possible solution to a Fujisan challenge involves eight moves, while 
 the longest-known constructed challenge requires 62 moves\footnote{http://www.ludism.org/ppwiki/Fuji-san\#Heading9}.
 
 \begin{figure}[t]
@@ -920,193 +1113,84 @@ Figure \ref{fig:difficultycomp} shows histograms of the minimum solution length 
 
 The algorithm responsible for this result is {\bf Engraved Tiles}. We can see a strong tendency to have shorter solution lengths, with almost 10\% of challenges having a solution length of eight or nine, whereas for {\bf Dominoes}, this is true for only 3\% of challenges. In {\bf Engraved Tiles}, there are five tiles that contain a 0 value; since there will be ten total tiles hidden, on average a challenge will contain 2.5 zeros values. It appears that 0 values are one part of what makes Fujisan challenges interesting, since having fewer 0 values decreases the challenge difficulty.
 
-
-\subsubsection{Summary}
-\begin{table}[]
-\centering
-\renewcommand{\arraystretch}{1.3}
-\caption{Ranks of Fujisan Setup Algorithms for each metric.\\ Statistical ties are denoted with *.}
-\label{table_example}
-\begin{tabular}{l|c|c|c|}
-\multicolumn{1}{c|}{\textbf{PCG}} & \multicolumn{1}{l|}{\textit{\textbf{Setup}}} & \multicolumn{1}{l|}{\textit{\textbf{Solvability}}} & \multicolumn{1}{l|}{\textit{\textbf{Difficulty}}} \\ \hline
-\textbf{Shuffled}                 & 3                                            & 4                                                  & 1*                                                 \\ \hline
-\textbf{piecepack}                & 4                                            & 3                                                  & 1*                                                 \\ \hline
-\textbf{Engraved}                 & 2                                            & 1*                                                  & 4                                                 \\ \hline
-\textbf{Domino}                   & 1                                            & 1*                                                  & 1*                                                 \\ \hline
-\end{tabular}
-\end{table}
-
-Table \ref{table_example} summarizes our results on the three evaluation metrics. We can see computational evidence that the original {\bf piecepack} ruleset is an improvement over both the {\bf Pure Random} and {\bf Shuffled} setup algorithm as hoped by the designer. While {\bf Engraved Tiles} simplifies the ease of physical setup over the {\bf piecepack} version, it is at the cost of challenge difficulty. The {\bf Dominoes} algorithm maintains this easy setup and returns the challenge generation to a reasonable difficulty distribution.
-
 %==========================================================
 
-\section{BoxOff}
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=8.8cm]{boxoff6x82.png}
-\caption{6$\times$8 BoxOff challenge with three colors.}
-\label{fig:boxoffbig}
-\end{figure}
+%============================================
 
-BoxOff is a 2D token removal puzzle designed by Stephen Myers.  \cite{BoxOffGAMES} Challenges for this puzzle consist of a 6$\times$8 grid of squares filled with exactly 16 each of three colors, as shown in 
-Figure \ref{fig:boxoffbig}. The solver can eliminate two squares of the same color at a time if either of the following two rules apply.
-\begin{enumerate}
-    \item The two squares are adjacent.
-    \item All other squares inside the box that circumscribes the two squares have previously been eliminated.\footnote{Rule 1 is actually subsumed by this rule, however, we find it helpful to separate them into two cases to facilitate our component design discussions later.}
-\end{enumerate}
-The challenge is solved when every square in the grid has been eliminated.
-
-SHOW A DIAGRAM OF RULE 2!
-
-Browne and Maire previously investigated altering the game design parameters for BoxOff using Monte Carlo simulation \cite{MCPUZZLE}. They explored multiple grid sizes and numbers of colors, ultimately finding that challenges generated for the original 6$\times$8 puzzle configuration described by Myers were highly solvable and robust against random solvers. Other configurations, either of smaller board sizes, or more colors, exhibited poor solvability. In particular, we will examine the 4$\times$6 board with four colors, where challenge solvability was less than 25\%, and the 6$\times$6 board with six colors, where challenge solvability was less than 3\%.
-
-%\begin{figure}[t]
-%\centering
-%\includegraphics[width=8.8cm]{boxoff4x6.png}
-%\caption{4$\times$6 BoxOff challenge with four colors, %generated with a simple shuffle of the 24 color tokens. }
-%\label{fig:boxoffbasic}
-%\end{figure}
-
-\subsection{Components and Algorithms}
-
-The components of the original 6$\times$8 physical BoxOff puzzle consist of 48 tokens evenly distributed among three colors. 
-\subsubsection{Shuffled}
-With these components, the solver can employ a simple shuffling algorithm to create a challenge.
-\begin{quote}
-    Shuffle the color tokens randomly, and arrange into a grid.
-\end{quote}
-
-HOW MANY CHALLENGES???
-
-This shuffling works well on moderate sized boards with few colors, but as demonstrated by Browne and Maire, it suffers when applied to more colors, as shown in Figure \ref{fig:boxoff666}. The uniform nature of the shuffling appears to prevent enough critical mass of adjacent tokens of the same color that can fulfill Rule 1 above and be eliminated.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=8.8cm]{boxoff66basic.png}
-\caption{6$\times$6 BoxOff challenge with four colors, generated with a simple shuffle of the 36 color tokens. }
-\label{fig:boxoff666}
-\end{figure}
-
-CAN I CONFIRM THIS WITH GRAPHS, LIKE CONNECTEDNESS BELOW????
-
-\subsubsection{Tiles}
-To address this issue, we introduce a different level of abstraction for creating the challenge using L-shaped tiles, as shown in Figure \ref{fig:ltiles}.
-Our goal in creating these tiles is encourage more adjacent tokens of the same color. However, we also must avoid creating situations where all tiles are adjacent to tokens of the same color, else the puzzle becomes to easy to solve. 
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=6.8cm]{boxoffltiles.png}
-\caption{Sample L-tiles for BoxOff challenge creation. Tile can be rotated 180 degrees, and the dashed line shows how they can be flipped. }
-\label{fig:ltiles}
-\end{figure}
-
-
-For both the 4$\times$6 and 6$\times$6 grids, each tile will have exactly two squares of the same color and one square of a different color. We then distribute the third square colors as even as possible using a cyclic arrangement of the colors, as shown in Figures \ref{fig:boxoff4x6cycle} and \ref{fig:boxoff6x6cycle}. To increase the number of possible challenges, these tiles can be rotated 180 degrees, as well as flipped to a mirror image along the center square of the L.
-
-HOW MANY CHALLENGES???
-
-The algorithm to create a challenge then is as follows:
-
-\begin{quote}
-    Shuffle and flip the tiles randomly, then arrange into a grid of connected 3$\times$2 subgrids. 
-\end{quote}
-
-Figure \ref{fig:boxofftiles} shows a 4$\times$6 grid created with L-tiles. To physically play BoxOff with this tile setup, the solver will need to place neutral tokens on each square as they are eliminated, continuing until the board is full of tokens. In essence, this transforms the game from BoxOff to BoxOn, yet it retains the same ruleset.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=4cm]{boxoff.png}
-\caption{Cycle of color connections used to construct L-shaped tiles for 4$\times$6 BoxOff challenges with four colors.}
-\label{fig:boxoff4x6cycle}
-\end{figure}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=5cm]{boxoff666.png}
-\caption{Cycle of color connections used to construct L-shaped tiles for 6$\times$6 BoxOff challenges with six colors.}
-\label{fig:boxoff6x6cycle}
-\end{figure}
-
-
-\begin{figure}[b]
-\centering
-\includegraphics[width=8.8cm]{boxoff46tiles.png}
-\caption{4$\times$6 BoxOff challenge with four colors, generated using L-shaped tiles. }
-\label{fig:boxofftiles}
-\end{figure}
-
-
-
-\subsection{Evaluation}
-
-We see increased in solvability!
-
-\begin{figure}[t]
-\includegraphics[width=8.8cm]{boxonsolve.png}
-\caption{Effect of challenge generation algorithms on solvability for BoxOff 4$\times$6 with four colors.}
-\label{fig:boxoffsolvediff}
-\end{figure}
-
-\begin{figure}[t]
-\includegraphics[width=8.8cm]{6x6solvediff.png}
-\caption{Effect of challenge generation algorithms on solvability for BoxOff 6$\times$6 with six colors.}
-\label{fig:boxoff666solvediff}
-\end{figure}
-
-This comes at a cost of difficulty.
-
-\section{Pretzel}
-Also known as Montana or Gaps.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=8.8cm]{pretzelbasic.png}
-\caption{Pretzel solitaire challenge with four suits and four values, generated with a random shuffle.}
-\label{fig:pretzelbasic}
-\end{figure}
-
-\subsection{Components and Algorithms}
-
-\subsubsection{Shuffled}
-
-\subsubsection{Random Suits}
-
-\subsubsection{Sequential Suits}
-
-\subsection{Evaluation}
-
-\begin{figure}[t]
-\includegraphics[width=8.8cm]{pretzelsolve4x8.png}
-\caption{Effect of challenge generation algorithms on solvability for BoxOff 4$\times$6 with four colors.}
-\label{fig:boxoffsolvediff}
-\end{figure}
-
-\begin{figure}[t]
-\includegraphics[width=8.8cm]{pretzelfulln.png}
-\caption{Effect of challenge generation algorithms on solvability for BoxOff 4$\times$6 with four colors.}
-\label{fig:boxoffsolvediff}
-\end{figure}
-
-
-
-\section{General Patterns?}
+\section{Entangled Components}
 
 Coarse versus fine abstraction of components. 
 
 background vs foreground (doesn't work for Pretzel)
 
+Fujisand and Boxoff can be reworked, with L-Tiles, but not with Pretzel or token Boxoff.
+
 Individual, connected through algorithm via component attribute (suit), embedded into tiles at a higher level.
 
 Good algorithms make use of the embedded elements
 
-Each game has a basic Shuffled strategy, simple components placed on a board.
+
 
 Boxoff, we can use tiles to connect the pieces and clump the colors to enable starting points for the puzzles. Maintained the global uniform distribution, but altered the local connections.
 
 Pretzel, we create stripes based on the suits.  But cards are both background and foreground components.
 
 Fujisan, we can use tiles with two mechanics, one within the tile, one between the tiles.
+
+Important statistics about each algorithm are summarized in Table \ref{table_stats}, namely the number of possible challenges, the number of times a value may be repeated in a challenge, if the same value can occur in two spaces on the same step, and if the value pair present on a step can be repeated elsewhere in the challenge.
+
+\begin{table*}[]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\caption{Statistics about Fujisan Setup Algorithms for each metric.}
+\label{table_stats}
+\begin{tabular}{l|c|c|c|c|}
+\multicolumn{1}{c|}{\textbf{PCG}} & \multicolumn{1}{c|}{\textit{\textbf{Possible Challenges}}} & \multicolumn{1}{l|}{\textit{\textbf{Count of Each Value}}} & \multicolumn{1}{l|}{\textit{\textbf{Identical Step Values}}} & \multicolumn{1}{l|}{\textit{\textbf{Repeated Step Values}}} \\ \hline
+\textbf{Shuffled}                 & $10^{14}$ & exactly 4                                                  & yes                                                      & yes                                                            \\ \hline
+\textbf{Piecepack}                & $10^{10}$                                             & exactly 4                                                  & no                                                       & yes                                                            \\ \hline
+\textbf{Engraved}                 & $10^{13}$                                                 & 0 to 7$^*$                                                     & yes                                                      & only at summit                                                 \\ \hline
+\textbf{Domino}                   & $10^{14} $                                                   & 2 to 5                                                     & no                                                       & no                                                             \\ \hline
+\end{tabular}
+
+\vspace{0.2cm} * 0 to 5 for value 0
+\end{table*}
+
+
+\begin{table}[]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\caption{Ranks of Fujisan Setup Algorithms for each metric.\\ Statistical ties are denoted with *.}
+\label{table_example}
+\begin{tabular}{l|c|c|c|}
+\multicolumn{1}{c|}{\textbf{PCG}} & \multicolumn{1}{l|}{\textit{\textbf{Solvability}}} & \multicolumn{1}{l|}{\textit{\textbf{Difficulty}}} \\ \hline
+\textbf{Shuffled}                 & 4                                                  & 1*                                                 \\ \hline
+\textbf{piecepack}                & 3                                                  & 1*                                                 \\ \hline
+\textbf{Engraved}                 & 1*                                                  & 4                                                 \\ \hline
+\textbf{Domino}                   & 1*                                                  & 1*                                                 \\ \hline
+\end{tabular}
+\end{table}
+
+Table \ref{table_example} summarizes our results on the three evaluation metrics. We can see computational evidence that the original {\bf piecepack} ruleset is an improvement over both the {\bf Pure Random} and {\bf Shuffled} setup algorithm as hoped by the designer. While {\bf Engraved Tiles} simplifies the ease of physical setup over the {\bf piecepack} version, it is at the cost of challenge difficulty. The {\bf Dominoes} algorithm maintains this easy setup and returns the challenge generation to a reasonable difficulty distribution.
+
+
+Why does entanglement work for BoxOff?
+
+in the 4x6 board, there are 38 unique neighbors. with 4 colors, randomly distributed, we find that on average ???
+
+If we constrain at least 8 of them to be the same color, with our L-Tiles, then we are more likely to be in the solvable range.
+
+\begin{figure}[t]
+\includegraphics[width=8.8cm]{boxoffneighborsim.png}
+\caption{Average neighbor similarity for 4$\times$6 with four color BoxOff challenges across each setup algorithm. }
+\label{fig:connected}
+\end{figure}
+
+Why does entanglement work for Pretzel?
+
+
+Why does entanglement work for Fujisan?
+
 
 To understand these results, we first explore the connections between steps in a challenge. We say step $A$ is connected to step $B$ in Fujisan if there is a move available according to rule 2 from $B$ to $A$. While critical to solving most challenges, we simplify our connectedness calculation by ignoring the impact of intermediate Priests between $B$ and $A$. 
 
@@ -1127,9 +1211,15 @@ Solvable challenges shown in black, and unsolvable challenges shown in white.}
 \section{Conclusion}   \label{sec:Conclusion}
 
 \noindent
-Our work helps frame puzzle generation, particularly within solitaire puzzle games, within the taxonomy of procedural content generation (PCG). By examining variants for challenge creation, we can see that subtle changes in the \hl{game components and the subsequent} random distribution used in an algorithm can have large-scale changes on the generated content.
+Our work helps frame puzzle generation, \hl{particularly for physical} solitaire puzzle games, within the taxonomy of procedural content generation (PCG). By examining variants for challenge creation, we can see that subtle changes in the \hl{game components and the subsequent} random distribution used in an algorithm can have large-scale changes on the generated content.
 
-There are many open questions related to physical games and PCG. First, we believe there is work to be done in formalizing our ease of physical setup metric. A simple approximation would be the time complexity of the algorithm, however, certain operations that are straightforward to a computer can be difficult for humans to track, and vice versa. With a formal metric, game and puzzle designers could be inclined to include more intricate PCG algorithms in their designs when provided guarantees these algorithms can reasonably be executed by a human player.
+There are many open questions related to physical games and PCG. First, we believe there is work to be done in formalizing an ease of physical setup metric. A simple approximation would be the time complexity of the algorithm, however, certain operations that are straightforward to a computer can be difficult for humans to track, and vice versa. With a formal metric, game and puzzle designers could be inclined to include more intricate PCG algorithms in their designs when provided guarantees these algorithms can reasonably be executed by a human player.
+
+%\subsubsection{Ease of Physical Setup}
+
+%{\bf Shuffled} is \hl{a straightforward algorithm}, since the coins can be shuffled on the table quickly, then added one by one to the board spaces. The {\bf piecepack} constraint, while equivalent in the number of actual coin placements, is a little more difficult to setup by the solver. Tracking the ordering of suits and following the pattern can slow down a solver setup, but this ordering can be quickly memorized on repeated play.
+
+%{\bf Engraved Tiles} shows a marked improvement in physical setup ease. The numbers are already on the tiles, so the challenge is created in the process of building the mountain; no additional algorithm is needed. Likewise with {\bf Dominoes}, the challenge is again encoded in the board setup, and with fewer tiles, this setup is even more elegant.
 
 A further point to clarify is the exact relationship between the minimum solution length and challenge difficulty. We believe this metric can be expanded to include the branching factor along the solution path. Also, we have ignored a difference in move clarity for Fujisan. Up and down moves are always available for Priests on the mountain, but left and right moves must be visually identified and recalculated as spaces become occupied. It is unclear, therefore, whether both types of movement contribute equally to the level of challenge experienced by the solver. A more sophisticated difficulty metric could take these into account and further differentiate the above setup algorithms.
 
@@ -1328,7 +1418,7 @@ Finally, are there general methods that allow solvers to {\it construct} challen
 % simpler here.)
 %\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
 % or if you just want to reserve a space for a photo:
-\newpage 
+%\newpage 
 
 \begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{markpic.png}}]{Mark Goadrich} earned an A.B. in Mathematics and Philosophy at Kenyon College, and a M.S. and Ph.D. in Computer Sciences from the University of Wisconsin - Madison.
 He is currently an Associate Professor of Computer Science at Hendrix College in Conway, AR.
