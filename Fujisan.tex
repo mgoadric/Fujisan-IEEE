@@ -629,7 +629,7 @@ E-mail: see http://mark.goadrich.com/schedule.html
 % in the abstract or keywords.
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-    Challenges for physical solitaire puzzle games are typically designed in advance by humans and limited in number. Alternatively, some games incorporate rules for stochastic setup, where the human solver randomly sets up the game board before solving the challenge. \hl{These setup rules} greatly increase the number of possible challenges, but can often generate unsolvable or uninteresting challenges. To better understand \hl{the compromises involved in minimizing undesirable challenges, we examine three games where component design choices can influence the stochastic nature of the resulting challenge generation algorithms.} We evaluate the effect of these components and algorithms on challenge solvability \hl{and challenge engagement. We find that algorithms which control randomness through entangling components based on sub-elements of the puzzle mechanics can generate interesting challenges with high probability of being solvable.}
+    Challenges for physical solitaire puzzle games are typically designed in advance by humans and limited in number. Alternatively, some games incorporate rules for stochastic setup, where the human solver randomly sets up the game board before solving the challenge. \hl{These setup rules} greatly increase the number of possible challenges, but can often generate unsolvable or uninteresting challenges. To better understand \hl{the compromises involved in minimizing undesirable challenges, we examine three games where component design choices can influence the stochastic nature of the resulting challenge generation algorithms.} We evaluate the effect of these components and algorithms on challenge solvability \hl{and challenge engagement. We find that algorithms which control randomness through entangling components based on sub-elements of the puzzle mechanics can generate interesting challenges with a high probability of being solvable.}
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -765,7 +765,7 @@ With these components, the solver can employ a simple shuffling algorithm to cre
 \end{quote}
 
 We can use the multinomial theorem to determine that this method can create
-$\frac{(hw)!}{c!^{k}4}$, where $k=\frac{hw}{c}$. In the (4, 6, 4) puzzle this is $\approx 10^{11}$ possible challenges.  We divide by 4 here and in subsequent calculations to account for BoxOff challenges displaying rotational, horizontal, and vertical symmetry; however, this slightly underestimates due to some challenges displaying more than one symmetry.
+$\frac{(hw)!}{c!^{k}}$, where $k=\frac{hw}{c}$. In the (4, 6, 4) puzzle this is $\approx 10^{11}$ possible challenges.  We acknowledge here and in subsequent calculations that rotational, horizontal, and vertical symmetry will alter the precise number of challenges, but not by an order of magnitude.
 
 This shuffling works very well on moderate sized boards with few colors, achieving near 100\% solvability, but as demonstrated by Browne and Maire, it suffers when applied to more colors, as shown in Figure \ref{fig:boxoff666}. The uniform nature of the shuffling appears to prevent a critical mass of adjacent tokens of the same color. Such adjacent tokens are the only way Rule 1 above can be fulfilled so that more distant tokens can then be eliminated via Rule 2.
 
@@ -796,7 +796,7 @@ For both the 4$\times$6 and 6$\times$6 grids, each tile is composed of exactly t
 \label{fig:boxoffcycle}
 \end{figure}
 
-Each of these tiles has two possible orientations, for a total of $\frac{2^{t}t!}{4}$, where $t=\frac{hw}{3}$, for $\approx 10^{6}$ possible challenges in the (4, 6, 4) puzzle. 
+Each of these tiles has two possible orientations, for a total of $2^{t}t!$, where $t=\frac{hw}{3}$, for $\approx 10^{6}$ possible challenges in the (4, 6, 4) puzzle. 
 The algorithm to create a challenge then is as follows:
 
 \begin{quote}
@@ -1035,7 +1035,7 @@ We examine first a simple algorithm that can make use of the piecepack coin comp
 \end{quote}
 
 We can use the multinomial theorem to determine that this method can create
-$\frac{24!}{4!^{6}4} \approx 10^{14}$ possible challenges.  We divide by 4 here and in subsequent calculations to account for Fujisan challenges displaying rotational, horizontal, and vertical symmetry, however, this slightly underestimates due to some challenges displaying more than one symmetry.
+$\frac{24!}{4!^{6}} \approx 10^{14}$ possible challenges.  We acknowledge here and in subsequent calculations that rotational, horizontal, and vertical symmetry will alter the precise number of challenges, but not by an order of magnitude.
 
 However, if two 0 coins end up placed in the same column, then it becomes impossible to move a Priest onto that column. This creates holes in our challenges and reduces the number of solvable setups. 
 More importantly, when both spaces of either of the summit columns contain 0s, the challenge becomes impossible to solve.
@@ -1047,7 +1047,7 @@ The original published Fujisan ruleset was devised to address the issue of doubl
   {\it \bf Piecepack:} Shuffle the 24 coins face-down, and separate into four groups based on their suit. Then repeatedly place two coins on the two right-most available spaces, choosing from each of the suits in turn (sun, moon, crown, arms).
 \end{quote}
 
-With each space limited to choosing from a particular suit, the \textbf{Piecepack} algorithm will generate $\frac{6!^4}{4} \approx 10^{10}$ possible challenges. This algorithm will guarantee there are no double numbers on a step, thus eliminating the double 0 issue noted above. 
+With each space limited to choosing from a particular suit, the \textbf{Piecepack} algorithm will generate $6!^4 \approx 10^{10}$ possible challenges. This algorithm will guarantee there are no double numbers on a step, thus eliminating the double 0 issue noted above. 
 
 \begin{figure}[t]
 \centering
@@ -1072,7 +1072,7 @@ Another way to \hl{entangle the components in Fujisan} is to combine the values 
   {\it \bf Engraved Tiles:} Shuffle the tiles face-down. Then, assemble the mountain by turning tiles face-up, using six for the bottom layer, five for the next layer, then four, then three, and finally two. The summit will be the center four spaces.
 \end{quote}
 
-This further constrains each pair of numbers to appear no more than once in the puzzle, except for the top two tiles. There are 20 possible tiles, and only 10 of them can be seen once the puzzle is constructed, as shown in Figure \ref{fig:tileexample}. 15 of these tiles have two possible orientations, for a total of $\sum_{i = 5}^{10}\frac{{15 \choose i}\binom{5}{10 - i}2^{i}10!}{4} \approx 10^{13}
+This further constrains each pair of numbers to appear no more than once in the puzzle, except for the top two tiles. There are 20 possible tiles, and only 10 of them can be seen once the puzzle is constructed, as shown in Figure \ref{fig:tileexample}. 15 of these tiles have two possible orientations, for a total of $\sum_{i = 5}^{10}{15 \choose i}\binom{5}{10 - i}2^{i}10! \approx 10^{13}
 $ possible challenges.
 
 Furthermore, a standard double-six domino set, which includes 28 dominoes, 
@@ -1084,7 +1084,7 @@ can be used \hl{as entangled components}. If we eliminate those dominoes that in
 \end{quote}
 
 This constraint is similar to \textbf{Engraved Tiles}, but with a subset of the value pairs, thus a different probability on their selection.  Additionally, unlike \textbf{Engraved Tiles}, the summit values are distinct from the two steps closest the summit.
-With 15 possible dominoes, only 12 of them are used in the challenge, as shown in Figure \ref{fig:dominoexample}. Each of these dominoes has two possible orientations, for a total of $\frac{{15 \choose 12}2^{12}12!}{4} \approx 10^{14}$ possible challenges. 
+With 15 possible dominoes, only 12 of them are used in the challenge, as shown in Figure \ref{fig:dominoexample}. Each of these dominoes has two possible orientations, for a total of ${15 \choose 12}2^{12}12! \approx 10^{14}$ possible challenges. 
 
 \begin{figure}[b]
 \includegraphics[width=8.8cm]{dominoexample.png}
@@ -1125,7 +1125,7 @@ the longest-known constructed challenge requires 62 moves\footnote{http://www.lu
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=8cm]{standalonediff2.png}
+\includegraphics[width=8cm]{fujisandiff4.png}
 \caption{Histograms showing the effect of Fujisan challenge generation algorithms on minimum solution length.}
 \label{fig:difficultycomp}
 \end{figure}
