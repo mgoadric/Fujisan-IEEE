@@ -1,667 +1,667 @@
 
-%% bare_adv.tex
-%% V1.4b
-%% 2015/08/26
-%% by Michael Shell
-%% See: 
-%% http://www.michaelshell.org/
-%% for current contact information.
-%%
-%% This is a skeleton file demonstrating the advanced use of IEEEtran.cls
-%% (requires IEEEtran.cls version 1.8b or later) with an IEEE Computer
-%% Society journal paper.
-%%
-%% Support sites:
-%% http://www.michaelshell.org/tex/ieeetran/
-%% http://www.ctan.org/pkg/ieeetran
-%% and
-%% http://www.ieee.org/
-
-%%*************************************************************************
-%% Legal Notice:
-%% This code is offered as-is without any warranty either expressed or
-%% implied; without even the implied warranty of MERCHANTABILITY or
-%% FITNESS FOR A PARTICULAR PURPOSE! 
-%% User assumes all risk.
-%% In no event shall the IEEE or any contributor to this code be liable for
-%% any damages or losses, including, but not limited to, incidental,
-%% consequential, or any other damages, resulting from the use or misuse
-%% of any information contained here.
-%%
-%% All comments are the opinions of their respective authors and are not
-%% necessarily endorsed by the IEEE.
-%%
-%% This work is distributed under the LaTeX Project Public License (LPPL)
-%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
-%% distributed and modified. A copy of the LPPL, version 1.3, is included
-%% in the base LaTeX documentation of all distributions of LaTeX released
-%% 2003/12/01 or later.
-%% Retain all contribution notices and credits.
-%% ** Modified files should be clearly indicated as such, including  **
-%% ** renaming them and changing author support contact information. **
-%%*************************************************************************
-
-
-% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
-% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
-% *** with production work. The IEEE's font choices and paper sizes can   ***
-% *** trigger bugs that do not appear when using other class files.       ***                          ***
-% The testflow support page is at:
-% http://www.michaelshell.org/tex/testflow/
-
-
-% IEEEtran V1.7 and later provides for these CLASSINPUT macros to allow the
-% user to reprogram some IEEEtran.cls defaults if needed. These settings
-% override the internal defaults of IEEEtran.cls regardless of which class
-% options are used. Do not use these unless you have good reason to do so as
-% they can result in nonIEEE compliant documents. User beware. ;)
 %
-%\newcommand{\CLASSINPUTbaselinestretch}{1.0} % baselinestretch
-%\newcommand{\CLASSINPUTinnersidemargin}{1in} % inner side margin
-%\newcommand{\CLASSINPUToutersidemargin}{1in} % outer side margin
-%\newcommand{\CLASSINPUTtoptextmargin}{1in}   % top text margin
-%\newcommand{\CLASSINPUTbottomtextmargin}{1in}% bottom text margin
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
+
+%
+%
+%
+%
+%
+%
+
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
 
 
 
 
 %
 \documentclass[journal]{IEEEtran}
-% If IEEEtran.cls has not been installed into the LaTeX system files,
-% manually specify the path to it like:
-% \documentclass[10pt,journal,compsoc]{../sty/IEEEtran}
+%
+%
+%
 
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{hyperref}
 \usepackage{color,soul}
-% For Computer Society journals, IEEEtran defaults to the use of 
-% Palatino/Palladio as is done in IEEE Computer Society journals.
-% To go back to Times Roman, you can use this code:
-%\renewcommand{\rmdefault}{ptm}\selectfont
-
-
-
-
-
-% Some very useful LaTeX packages include:
-% (uncomment the ones you want to load)
-
-
-
-% *** MISC UTILITY PACKAGES ***
 %
-%\usepackage{ifpdf}
-% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
-% compilation based on whether the output is pdf or dvi.
-% usage:
-% \ifpdf
-%   % pdf code
-% \else
-%   % dvi code
-% \fi
-% The latest version of ifpdf.sty can be obtained from:
-% http://www.ctan.org/pkg/ifpdf
-% Also, note that IEEEtran.cls V1.7 and later provides a builtin
-% \ifCLASSINFOpdf conditional that works the same way.
-% When switching from latex to pdflatex and vice-versa, the compiler may
-% have to be run twice to clear warning/error messages.
+%
+%
+%
+
+
+
+
+
+%
+%
+
+
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
 
 
 
 
 
 
-% *** CITATION PACKAGES ***
+%
 %
 \ifCLASSOPTIONcompsoc
-  % The IEEE Computer Society needs nocompress option
-  % requires cite.sty v4.0 or later (November 2003)
+  %
+  %
   \usepackage[nocompress]{cite}
 \else
-  % normal IEEE
+  %
   \usepackage{cite}
 \fi
-% cite.sty was written by Donald Arseneau
-% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
-% \cite{} output to follow that of the IEEE. Loading the cite package will
-% result in citation numbers being automatically sorted and properly
-% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
-% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
-% \cite will automatically add leading space, if needed. Use cite.sty's
-% noadjust option (cite.sty V3.8 and later) if you want to turn this off
-% such as if a citation ever needs to be enclosed in parenthesis.
-% cite.sty is already installed on most LaTeX systems. Be sure and use
-% version 5.0 (2009-03-20) and later if using hyperref.sty.
-% The latest version can be obtained at:
-% http://www.ctan.org/pkg/cite
-% The documentation is contained in the cite.sty file itself.
 %
-% Note that some packages require special options to format as the Computer
-% Society requires. In particular, Computer Society  papers do not use
-% compressed citation ranges as is done in typical IEEE papers
-% (e.g., [1]-[4]). Instead, they list every citation separately in order
-% (e.g., [1], [2], [3], [4]). To get the latter we need to load the cite
-% package with the nocompress option which is supported by cite.sty v4.0
-% and later.
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
 
 
 
 
 
-% *** GRAPHICS RELATED PACKAGES ***
+%
 %
 \ifCLASSINFOpdf
-  % \usepackage[pdftex]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../pdf/}{../jpeg/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+  %
+  %
+  %
+  %
+  %
+  %
 \else
-  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
-  % will default to the driver specified in the system graphics.cfg if no
-  % driver is specified.
-  % \usepackage[dvips]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../eps/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.eps}
+  %
+  %
+  %
+  %
+  %
+  %
+  %
+  %
+  %
 \fi
-% graphicx was written by David Carlisle and Sebastian Rahtz. It is
-% required if you want graphics, photos, etc. graphicx.sty is already
-% installed on most LaTeX systems. The latest version and documentation
-% can be obtained at: 
-% http://www.ctan.org/pkg/graphicx
-% Another good source of documentation is "Using Imported Graphics in
-% LaTeX2e" by Keith Reckdahl which can be found at:
-% http://www.ctan.org/pkg/epslatex
 %
-% latex, and pdflatex in dvi mode, support graphics in encapsulated
-% postscript (.eps) format. pdflatex in pdf mode supports graphics
-% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
-% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
-% not a bitmapped formats (.jpeg, .png). The IEEE frowns on bitmapped formats
-% which can result in "jaggedy"/blurry rendering of lines and letters as
-% well as large increases in file sizes.
 %
-% You can find documentation about the pdfTeX application at:
-% http://www.tug.org/applications/pdftex
-
-
-
-
-
-% *** MATH PACKAGES ***
 %
-%\usepackage{amsmath}
-% A popular package from the American Mathematical Society that provides
-% many useful and powerful commands for dealing with mathematics.
 %
-% Note that the amsmath package sets \interdisplaylinepenalty to 10000
-% thus preventing page breaks from occurring within multiline equations. Use:
-%\interdisplaylinepenalty=2500
-% after loading amsmath to restore such page breaks as IEEEtran.cls normally
-% does. amsmath.sty is already installed on most LaTeX systems. The latest
-% version and documentation can be obtained at:
-% http://www.ctan.org/pkg/amsmath
-
-
-
-
-
-% *** SPECIALIZED LIST PACKAGES ***
-%\usepackage{acronym}
-% acronym.sty was written by Tobias Oetiker. This package provides tools for
-% managing documents with large numbers of acronyms. (You don't *have* to
-% use this package - unless you have a lot of acronyms, you may feel that
-% such package management of them is bit of an overkill.)
-% Do note that the acronym environment (which lists acronyms) will have a
-% problem when used under IEEEtran.cls because acronym.sty relies on the
-% description list environment - which IEEEtran.cls has customized for
-% producing IEEE style lists. A workaround is to declared the longest
-% label width via the IEEEtran.cls \IEEEiedlistdecl global control:
 %
-% \renewcommand{\IEEEiedlistdecl}{\IEEEsetlabelwidth{SONET}}
-% \begin{acronym}
 %
-% \end{acronym}
-% \renewcommand{\IEEEiedlistdecl}{\relax}% remember to reset \IEEEiedlistdecl
 %
-% instead of using the acronym environment's optional argument.
-% The latest version and documentation can be obtained at:
-% http://www.ctan.org/pkg/acronym
-
-
-%\usepackage{algorithmic}
-% algorithmic.sty was written by Peter Williams and Rogerio Brito.
-% This package provides an algorithmic environment fo describing algorithms.
-% You can use the algorithmic environment in-text or within a figure
-% environment to provide for a floating algorithm. Do NOT use the algorithm
-% floating environment provided by algorithm.sty (by the same authors) or
-% algorithm2e.sty (by Christophe Fiorio) as the IEEE does not use dedicated
-% algorithm float types and packages that provide these will not provide
-% correct IEEE style captions. The latest version and documentation of
-% algorithmic.sty can be obtained at:
-% http://www.ctan.org/pkg/algorithms
-% Also of interest may be the (relatively newer and more customizable)
-% algorithmicx.sty package by Szasz Janos:
-% http://www.ctan.org/pkg/algorithmicx
-
-
-
-
-% *** ALIGNMENT PACKAGES ***
 %
-%\usepackage{array}
-% Frank Mittelbach's and David Carlisle's array.sty patches and improves
-% the standard LaTeX2e array and tabular environments to provide better
-% appearance and additional user controls. As the default LaTeX2e table
-% generation code is lacking to the point of almost being broken with
-% respect to the quality of the end results, all users are strongly
-% advised to use an enhanced (at the very least that provided by array.sty)
-% set of table tools. array.sty is already installed on most systems. The
-% latest version and documentation can be obtained at:
-% http://www.ctan.org/pkg/array
-
-
-%\usepackage{mdwmath}
-%\usepackage{mdwtab}
-% Also highly recommended is Mark Wooding's extremely powerful MDW tools,
-% especially mdwmath.sty and mdwtab.sty which are used to format equations
-% and tables, respectively. The MDWtools set is already installed on most
-% LaTeX systems. The lastest version and documentation is available at:
-% http://www.ctan.org/pkg/mdwtools
-
-
-% IEEEtran contains the IEEEeqnarray family of commands that can be used to
-% generate multiline equations as well as matrices, tables, etc., of high
-% quality.
-
-
-%\usepackage{eqparbox}
-% Also of notable interest is Scott Pakin's eqparbox package for creating
-% (automatically sized) equal width boxes - aka "natural width parboxes".
-% Available at:
-% http://www.ctan.org/pkg/eqparbox
-
-
-
-
-% *** SUBFIGURE PACKAGES ***
-%\ifCLASSOPTIONcompsoc
-%  \usepackage[caption=false,font=footnotesize,labelfont=sf,textfont=sf]{subfig}
-%\else
-%  \usepackage[caption=false,font=footnotesize]{subfig}
-%\fi
-% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
-% for subfigure.sty, the latter of which is no longer maintained and is
-% incompatible with some LaTeX packages including fixltx2e. However,
-% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
-% which will override IEEEtran.cls' handling of captions and this will result
-% in non-IEEE style figure/table captions. To prevent this problem, be sure
-% and invoke subfig.sty's "caption=false" package option (available since
-% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
-% handling of captions.
-% Note that the Computer Society format requires a sans serif font rather
-% than the serif font used in traditional IEEE formatting and thus the need
-% to invoke different subfig.sty package options depending on whether
-% compsoc mode has been enabled.
 %
-% The latest version and documentation of subfig.sty can be obtained at:
-% http://www.ctan.org/pkg/subfig
-
-
-
-
-% *** FLOAT PACKAGES ***
 %
-%\usepackage{fixltx2e}
-% fixltx2e, the successor to the earlier fix2col.sty, was written by
-% Frank Mittelbach and David Carlisle. This package corrects a few problems
-% in the LaTeX2e kernel, the most notable of which is that in current
-% LaTeX2e releases, the ordering of single and double column floats is not
-% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
-% single column figure to be placed prior to an earlier double column
-% figure.
-% Be aware that LaTeX2e kernels dated 2015 and later have fixltx2e.sty's
-% corrections already built into the system in which case a warning will
-% be issued if an attempt is made to load fixltx2e.sty as it is no longer
-% needed.
-% The latest version and documentation can be found at:
-% http://www.ctan.org/pkg/fixltx2e
-
-
-%\usepackage{stfloats}
-% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
-% the ability to do double column floats at the bottom of the page as well
-% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
-% LaTeX2e). It also provides a command:
-%\fnbelowfloat
-% to enable the placement of footnotes below bottom floats (the standard
-% LaTeX2e kernel puts them above bottom floats). This is an invasive package
-% which rewrites many portions of the LaTeX2e float routines. It may not work
-% with other packages that modify the LaTeX2e float routines. The latest
-% version and documentation can be obtained at:
-% http://www.ctan.org/pkg/stfloats
-% Do not use the stfloats baselinefloat ability as the IEEE does not allow
-% \baselineskip to stretch. Authors submitting work to the IEEE should note
-% that the IEEE rarely uses double column equations and that authors should try
-% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
-% packages (also by Sigitas Tolusis) as the IEEE does not format its papers in
-% such ways.
-% Do not attempt to use stfloats with fixltx2e as they are incompatible.
-% Instead, use Morten Hogholm'a dblfloatfix which combines the features
-% of both fixltx2e and stfloats:
 %
-% \usepackage{dblfloatfix}
-% The latest version can be found at:
-% http://www.ctan.org/pkg/dblfloatfix
-
-
-%\ifCLASSOPTIONcaptionsoff
-%  \usepackage[nomarkers]{endfloat}
-% \let\MYoriglatexcaption\caption
-% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
-%\fi
-% endfloat.sty was written by James Darrell McCauley, Jeff Goldberg and 
-% Axel Sommerfeldt. This package may be useful when used in conjunction with 
-% IEEEtran.cls'  captionsoff option. Some IEEE journals/societies require that
-% submissions have lists of figures/tables at the end of the paper and that
-% figures/tables without any captions are placed on a page by themselves at
-% the end of the document. If needed, the draftcls IEEEtran class option or
-% \CLASSINPUTbaselinestretch interface can be used to increase the line
-% spacing as well. Be sure and use the nomarkers option of endfloat to
-% prevent endfloat from "marking" where the figures would have been placed
-% in the text. The two hack lines of code above are a slight modification of
-% that suggested by in the endfloat docs (section 8.4.1) to ensure that
-% the full captions always appear in the list of figures/tables - even if
-% the user used the short optional argument of \caption[]{}.
-% IEEE papers do not typically make use of \caption[]'s optional argument,
-% so this should not be an issue. A similar trick can be used to disable
-% captions of packages such as subfig.sty that lack options to turn off
-% the subcaptions:
-% For subfig.sty:
-% \let\MYorigsubfloat\subfloat
-% \renewcommand{\subfloat}[2][\relax]{\MYorigsubfloat[]{#2}}
-% However, the above trick will not work if both optional arguments of
-% the \subfloat command are used. Furthermore, there needs to be a
-% description of each subfigure *somewhere* and endfloat does not add
-% subfigure captions to its list of figures. Thus, the best approach is to
-% avoid the use of subfigure captions (many IEEE journals avoid them anyway)
-% and instead reference/explain all the subfigures within the main caption.
-% The latest version of endfloat.sty and its documentation can obtained at:
-% http://www.ctan.org/pkg/endfloat
 %
-% The IEEEtran \ifCLASSOPTIONcaptionsoff conditional can also be used
-% later in the document, say, to conditionally put the References on a 
-% page by themselves.
-
-
-
-
-
-% *** PDF, URL AND HYPERLINK PACKAGES ***
 %
-%\usepackage{url}
-% url.sty was written by Donald Arseneau. It provides better support for
-% handling and breaking URLs. url.sty is already installed on most LaTeX
-% systems. The latest version and documentation can be obtained at:
-% http://www.ctan.org/pkg/url
-% Basically, \url{my_url_here}.
-
-
-% NOTE: PDF thumbnail features are not required in IEEE papers
-%       and their use requires extra complexity and work.
-%\ifCLASSINFOpdf
-%  \usepackage[pdftex]{thumbpdf}
-%\else
-%  \usepackage[dvips]{thumbpdf}
-%\fi
-% thumbpdf.sty and its companion Perl utility were written by Heiko Oberdiek.
-% It allows the user a way to produce PDF documents that contain fancy
-% thumbnail images of each of the pages (which tools like acrobat reader can
-% utilize). This is possible even when using dvi->ps->pdf workflow if the
-% correct thumbpdf driver options are used. thumbpdf.sty incorporates the
-% file containing the PDF thumbnail information (filename.tpm is used with
-% dvips, filename.tpt is used with pdftex, where filename is the base name of
-% your tex document) into the final ps or pdf output document. An external
-% utility, the thumbpdf *Perl script* is needed to make these .tpm or .tpt
-% thumbnail files from a .ps or .pdf version of the document (which obviously
-% does not yet contain pdf thumbnails). Thus, one does a:
-% 
-% thumbpdf filename.pdf 
 %
-% to make a filename.tpt, and:
 %
-% thumbpdf --mode dvips filename.ps
 %
-% to make a filename.tpm which will then be loaded into the document by
-% thumbpdf.sty the NEXT time the document is compiled (by pdflatex or
-% latex->dvips->ps2pdf). Users must be careful to regenerate the .tpt and/or
-% .tpm files if the main document changes and then to recompile the
-% document to incorporate the revised thumbnails to ensure that thumbnails
-% match the actual pages. It is easy to forget to do this!
-% 
-% Unix systems come with a Perl interpreter. However, MS Windows users
-% will usually have to install a Perl interpreter so that the thumbpdf
-% script can be run. The Ghostscript PS/PDF interpreter is also required.
-% See the thumbpdf docs for details. The latest version and documentation
-% can be obtained at.
-% http://www.ctan.org/pkg/thumbpdf
+%
+%
+%
 
 
-% NOTE: PDF hyperlink and bookmark features are not required in IEEE
-%       papers and their use requires extra complexity and work.
-% *** IF USING HYPERREF BE SURE AND CHANGE THE EXAMPLE PDF ***
-% *** TITLE/SUBJECT/AUTHOR/KEYWORDS INFO BELOW!!           ***
+
+
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
+
+
+
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
+
+
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
+
+%
+%
+%
+%
+%
+%
+%
+
+
+%
+%
+%
+
+
+%
+%
+%
+%
+%
+
+
+
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
+
+
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
+
+
+
+
+%
+%
+%
+%
+%
+%
+%
+%
+
+
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
+
+%
+%
+%
+%
 \newcommand\MYhyperrefoptions{bookmarks=true,bookmarksnumbered=true,
 pdfpagemode={UseOutlines},plainpages=false,pdfpagelabels=true,
 colorlinks=true,linkcolor={black},citecolor={black},urlcolor={black},
-pdftitle={Bare Demo of IEEEtran.cls for Computer Society Journals},%<!CHANGE!
-pdfsubject={Typesetting},%<!CHANGE!
-pdfauthor={Michael D. Shell},%<!CHANGE!
+pdftitle={Bare Demo of IEEEtran.cls for Computer Society Journals},%
+pdfsubject={Typesetting},%
+pdfauthor={Michael D. Shell},%
 pdfkeywords={Computer Society, IEEEtran, journal, LaTeX, paper,
-             template}}%<^!CHANGE!
-%\ifCLASSINFOpdf
-%\usepackage[\MYhyperrefoptions,pdftex]{hyperref}
-%\else
-%\usepackage[\MYhyperrefoptions,breaklinks=true,dvips]{hyperref}
-%\usepackage{breakurl}
-%\fi
-% One significant drawback of using hyperref under DVI output is that the
-% LaTeX compiler cannot break URLs across lines or pages as can be done
-% under pdfLaTeX's PDF output via the hyperref pdftex driver. This is
-% probably the single most important capability distinction between the
-% DVI and PDF output. Perhaps surprisingly, all the other PDF features
-% (PDF bookmarks, thumbnails, etc.) can be preserved in
-% .tex->.dvi->.ps->.pdf workflow if the respective packages/scripts are
-% loaded/invoked with the correct driver options (dvips, etc.). 
-% As most IEEE papers use URLs sparingly (mainly in the references), this
-% may not be as big an issue as with other publications.
+             template}}%
 %
-% That said, Vilar Camara Neto created his breakurl.sty package which
-% permits hyperref to easily break URLs even in dvi mode.
-% Note that breakurl, unlike most other packages, must be loaded
-% AFTER hyperref. The latest version of breakurl and its documentation can
-% be obtained at:
-% http://www.ctan.org/pkg/breakurl
-% breakurl.sty is not for use under pdflatex pdf mode.
 %
-% The advanced features offer by hyperref.sty are not required for IEEE
-% submission, so users should weigh these features against the added
-% complexity of use.
-% The package options above demonstrate how to enable PDF bookmarks
-% (a type of table of contents viewable in Acrobat Reader) as well as
-% PDF document information (title, subject, author and keywords) that is
-% viewable in Acrobat reader's Document_Properties menu. PDF document
-% information is also used extensively to automate the cataloging of PDF
-% documents. The above set of options ensures that hyperlinks will not be
-% colored in the text and thus will not be visible in the printed page,
-% but will be active on "mouse over". USING COLORS OR OTHER HIGHLIGHTING
-% OF HYPERLINKS CAN RESULT IN DOCUMENT REJECTION BY THE IEEE, especially if
-% these appear on the "printed" page. IF IN DOUBT, ASK THE RELEVANT
-% SUBMISSION EDITOR. You may need to add the option hypertexnames=false if
-% you used duplicate equation numbers, etc., but this should not be needed
-% in normal IEEE work.
-% The latest version of hyperref and its documentation can be obtained at:
-% http://www.ctan.org/pkg/hyperref
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
 
 
 
 
 
-% *** Do not adjust lengths that control margins, column widths, etc. ***
-% *** Do not use packages that alter fonts (such as pslatex).         ***
-% There should be no need to do such things with IEEEtran.cls V1.6 and later.
-% (Unless specifically asked to do so by the journal or conference you plan
-% to submit to, of course. )
+%
+%
+%
+%
+%
 
 
-% correct bad hyphenation here
+%
 \hyphenation{op-tical net-works semi-conduc-tor}
 
 
 \begin{document}
 %
-% paper title
-% Titles are generally capitalized except for words such as a, an, and, as,
-% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
-% not capitalized unless they are the first or last word of the title.
-% Linebreaks \\ can be used within to get better formatting as desired.
-% Do not put math or special symbols in the title.
+%
+%
+%
+%
+%
+%
 \title{Improving Solvability for Procedurally\\ Generated Challenges in Physical Solitaire\\Games Through Entangled Components}
 %
 %
-% author names and IEEE memberships
-% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
-% a structure at a ~ so this keeps an author's name from being broken across
-% two lines.
-% use \thanks{} to gain access to the first footnote area
-% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
-% was not built to handle multiple paragraphs
 %
 %
-%\IEEEcompsocitemizethanks is a special \thanks that produces the bulleted
-% lists the Computer Society journals use for "first footnote" author
-% affiliations. Use \IEEEcompsocthanksitem which works much like \item
-% for each affiliation group. When not in compsoc mode,
-% \IEEEcompsocitemizethanks becomes like \thanks and
-% \IEEEcompsocthanksitem becomes a line break with idention. This
-% facilitates dual compilation, although admittedly the differences in the
-% desired content of \author between the different types of papers makes a
-% one-size-fits-all approach a daunting prospect. For instance, compsoc 
-% journal papers have the author affiliations above the "Manuscript
-% received ..."  text while in non-compsoc journals this is reversed. Sigh.
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
 
 \author{Mark~Goadrich
-        and~James~Droscha% <-this % stops a space
+        and~James~Droscha%
 \IEEEcompsocitemizethanks{\IEEEcompsocthanksitem M. Goadrich is with the Department
 of Mathematics and Computer Science, Hendrix College, Conway,
 AR, 72034.\protect\\
-% note need leading \protect in front of \\ to get a newline within \thanks as
-% \\ is fragile and will error, could use \hfil\break instead.
+%
+%
 E-mail: see http://mark.goadrich.com/schedule.html
-\IEEEcompsocthanksitem J. Droscha is with Glastyn Games.}% <-this % stops a space
-%\thanks{Manuscript received September 30, 2018; revised ???}
+\IEEEcompsocthanksitem J. Droscha is with Glastyn Games.}%
+%
 }
 
-% note the % following the last \IEEEmembership and also \thanks - 
-% these prevent an unwanted space from occurring between the last author name
-% and the end of the author line. i.e., if you had this:
-% 
-% \author{....lastname \thanks{...} \thanks{...} }
-%                     ^------------^------------^----Do not want these spaces!
 %
-% a space would be appended to the last name and could cause every name on that
-% line to be shifted left slightly. This is one of those "LaTeX things". For
-% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
-% "AB" then you have to do: "\textbf{A}\textbf{B}"
-% \thanks is no different in this regard, so shield the last } of each \thanks
-% that ends a line with a % and do not let a space in before the next \thanks.
-% Spaces after \IEEEmembership other than the last one are OK (and needed) as
-% you are supposed to have spaces between the names. For what it is worth,
-% this is a minor point as most people would not even notice if the said evil
-% space somehow managed to creep in.
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
 
 
 
-% The paper headers
-%\markboth{IEEE Transactions on Games,~Vol.~2, No.~1, January~2019}%
-\markboth{}%IEEE Transactions on Games,~Vol.~2, No.~1, January~2019}%
+%
+%
+\markboth{}%
 {Shell \MakeLowercase{\textit{et al.}}: Bare Advanced Demo of IEEEtran.cls for IEEE Computer Society Journals}
-% The only time the second header will appear is for the odd numbered pages
-% after the title page when using the twoside option.
-% 
-% *** Note that you probably will NOT want to include the author's ***
-% *** name in the headers of peer review papers.                   ***
-% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
-% you desire.
+%
+%
+%
+%
+%
+%
+%
 
 
 
-% The publisher's ID mark at the bottom of the page is less important with
-% Computer Society journal papers as those publications place the marks
-% outside of the main text columns and, therefore, unlike regular IEEE
-% journals, the available text space is not reduced by their presence.
-% If you want to put a publisher's ID mark on the page you can do it like
-% this:
-%\IEEEpubid{0000--0000/00\$00.00~\copyright~2015 IEEE}
-% or like this to get the Computer Society new two part style.
-%\IEEEpubid{\makebox[\columnwidth]{\hfill 0000--0000/00/\$00.00~\copyright~2015 IEEE}%
-%\hspace{\columnsep}\makebox[\columnwidth]{Published by the IEEE Computer Society\hfill}}
-% Remember, if you use this you must call \IEEEpubidadjcol in the second
-% column for its text to clear the IEEEpubid mark (Computer Society journal
-% papers don't need this extra clearance.)
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
 
 
 
-% use for special paper notices
-%\IEEEspecialpapernotice{(Invited Paper)}
+%
+%
 
 
 
-% for Computer Society papers, we must declare the abstract and index terms
-% PRIOR to the title within the \IEEEtitleabstractindextext IEEEtran
-% command as these need to go into the title area created by \maketitle.
-% As a general rule, do not put math, special symbols or citations
-% in the abstract or keywords.
+%
+%
+%
+%
+%
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-    Challenges for physical solitaire puzzle games are typically designed in advance by humans and limited in number. Alternatively, some games incorporate rules for stochastic setup, where the game board is randomly setup before the challenge is solved. \hl{These setup rules} greatly increase the number of possible challenges, but can often generate unsolvable or uninteresting challenges. To better understand \hl{the compromises involved in minimizing undesirable challenges, we examine three games where component design choices can influence the stochastic nature of the resulting challenge generation algorithms.} We evaluate the effect of these components and algorithms on challenge solvability \hl{and challenge engagement. We find that algorithms which control randomness through entangling components based on sub-elements of the puzzle mechanics can generate interesting challenges with a high probability of being solvable.}
+    Challenges for physical solitaire puzzle games are typically designed in advance by humans and limited in number. Alternatively, some games incorporate rules for stochastic setup, where the game board is randomly setup before the challenge is solved. These setup rules greatly increase the number of possible challenges, but can often generate unsolvable or uninteresting challenges. To better understand the compromises involved in minimizing undesirable challenges, we examine three games where component design choices can influence the stochastic nature of the resulting challenge generation algorithms. We evaluate the effect of these components and algorithms on challenge solvability and challenge engagement. We find that algorithms which control randomness through entangling components based on sub-elements of the puzzle mechanics can generate interesting challenges with a high probability of being solvable.
 \end{abstract}
 
-% Note that keywords are not normally used for peerreview papers.
+%
 \begin{IEEEkeywords}
 Board Games, Procedural Content, Monte Carlo Methods, Game Design
 \end{IEEEkeywords}}
 
 
-% make the title area
+%
 \maketitle
 
 
-% To allow for easy dual compilation without having to reenter the
-% abstract/keywords data, the \IEEEtitleabstractindextext text will
-% not be used in maketitle, but will appear (i.e., to be "transported")
-% here as \IEEEdisplaynontitleabstractindextext when compsoc mode
-% is not selected <OR> if conference mode is selected - because compsoc
-% conference papers position the abstract like regular (non-compsoc)
-% papers do!
-\IEEEdisplaynontitleabstractindextext
-% \IEEEdisplaynontitleabstractindextext has no effect when using
-% compsoc under a non-conference mode.
-
-
-% For peer review papers, you can put extra information on the cover
-% page as needed:
-% \ifCLASSOPTIONpeerreview
-% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
-% \fi
 %
-% For peerreview papers, this IEEEtran command inserts a page break and
-% creates the second title. It will be ignored for other modes.
+%
+%
+%
+%
+%
+%
+\IEEEdisplaynontitleabstractindextext
+%
+%
+
+
+%
+%
+%
+%
+%
+%
+%
+%
 \IEEEpeerreviewmaketitle
 
 
@@ -671,53 +671,53 @@ Board Games, Procedural Content, Monte Carlo Methods, Game Design
 \section{Introduction}
 \label{sec:introduction}
 \fi
-% Computer Society journal (but not conference!) papers do something unusual
-% with the very first section heading (almost always called "Introduction").
-% They place it ABOVE the main text! IEEEtran.cls does not automatically do
-% this for you, but you can achieve this effect with the provided
-% \IEEEraisesectionheading{} command. Note the need to keep any \label that
-% is to refer to the section immediately after \section in the above as
-% \IEEEraisesectionheading puts \section within a raised box.
+%
+%
+%
+%
+%
+%
+%
 
 
 
 
-% The very first letter is a 2 line initial drop letter followed
-% by the rest of the first word in caps (small caps for compsoc).
-% 
-% form to use if the first word consists of a single letter:
-% \IEEEPARstart{A}{demo} file is ....
-% 
-% form to use if you need the single drop letter followed by
-% normal text (unknown if ever used by the IEEE):
-% \IEEEPARstart{A}{}demo file is ....
-% 
-% Some journals put the first two words in caps:
-% \IEEEPARstart{T}{his demo} file is ....
-% 
-% Here we have the typical use of a "T" for an initial drop letter
-% and "HIS" in caps to complete the first word.
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
 
 \IEEEPARstart{P}{rocedural} content generation (PCG) algorithms are increasingly being used to derive new content for a wide variety of games\cite{PCGSURVEY}. Using the PCG taxonomy described by Togelius et al. \cite{SBPCG}, PCG can occur {\it offline} (beforehand) or {\it online} (dynamically during the game), the content can be {\it constructed}
 by a system of rules, or use a {\it generate-and-test} process to winnow potential candidates for inclusion in the game, and the algorithm can be {\it deterministic} and fixed or {\it stochastic}, incorporating randomness. 
 
-Following the puzzle terminology of Browne \cite{PUZZLENATURE}, such that there is a setter who creates challenges and a solver who solves them, \hl{we can apply the above PCG terminology to puzzle design.} Setters typically {\it construct} their challenges using creative yet {\it deterministic} means. 
-Researchers have explored using PCG to replace the setter, employing metaheuristics to find interesting challenges for deductive logic puzzles, ranging from Sudoku \cite{SUDOKU} to Nonograms \cite{NONOGRAM}. These algorithms construct their challenges offline \hl{or online}, and guarantee they are solvable, but substitute {\it stochastic} algorithms for the creative human process. Khalifa and Fayek\cite{PUZZLELANG} investigated a combination of construction and generate-and-test PCG for \hl{Sokoban and related games} within a genetic algorithm framework, and this approach was extended to Monte Carlo Tree Search by Kartal et al. \cite{SOKOBAN}.
+Following the puzzle terminology of Browne \cite{PUZZLENATURE}, such that there is a setter who creates challenges and a solver who solves them, we can apply the above PCG terminology to puzzle design. Setters typically {\it construct} their challenges using creative yet {\it deterministic} means. 
+Researchers have explored using PCG to replace the setter, employing metaheuristics to find interesting challenges for deductive logic puzzles, ranging from Sudoku \cite{SUDOKU} to Nonograms \cite{NONOGRAM}. These algorithms construct their challenges offline or online, and guarantee they are solvable, but substitute {\it stochastic} algorithms for the creative human process. Khalifa and Fayek\cite{PUZZLELANG} investigated a combination of construction and generate-and-test PCG for Sokoban and related games within a genetic algorithm framework, and this approach was extended to Monte Carlo Tree Search by Kartal et al. \cite{SOKOBAN}.
 
 A less-explored variety of puzzle with relation to PCG 
-are \hl{physical} solitaire games, for example
+are physical solitaire games, for example
 sliding block puzzles \cite{FIFTEEN} (including Rush Hour\footnote{https://www.thinkfun.com/products/rush-hour/}), 
-and Hi-Q (generalized peg solitaire) \cite{PEG}. In these games, solvers must manipulate physical pieces to solve a challenge. Since the initial setup for these games must be executed by the solver, providing the solver with predefined challenges \hl{created offline} and a solution book is common practice. PCG can also be applied to these games by, again, constructing challenges offline and guaranteeing they are solvable, as seen in recent work by Fogleman \cite{RUSHHOUR} and K{\"o}pp \cite{TANGRAM}. 
+and Hi-Q (generalized peg solitaire) \cite{PEG}. In these games, solvers must manipulate physical pieces to solve a challenge. Since the initial setup for these games must be executed by the solver, providing the solver with predefined challenges created offline and a solution book is common practice. PCG can also be applied to these games by, again, constructing challenges offline and guaranteeing they are solvable, as seen in recent work by Fogleman \cite{RUSHHOUR} and K{\"o}pp \cite{TANGRAM}. 
 
-There are, however, alternative PCG approaches available for physical solitaire games, most popularly demonstrated by the card game Klondike Solitaire \cite{morehead2014complete}. In particular, this game uses an {\it online, stochastic, generate-and-test} PCG algorithm, which is as simple as shuffling the deck of cards at the start of the game. Also of note, the {\it test} portion of the generate-and-test algorithm is left to the solver as they play through the game. Wolter \cite{SOLITAIREVARIANTS} developed the Politaire system, and examines the effect of various shuffling algorithms across multiple solitaire card game variations. One variant called Thoughtful Solitaire, played such that all card locations are known to the solver at the beginning of the game, has been separately found to have between 82\% and 91.44\% \hl{of generated challenges} solvable \cite{THOUGHTFUL}. 
+There are, however, alternative PCG approaches available for physical solitaire games, most popularly demonstrated by the card game Klondike Solitaire \cite{morehead2014complete}. In particular, this game uses an {\it online, stochastic, generate-and-test} PCG algorithm, which is as simple as shuffling the deck of cards at the start of the game. Also of note, the {\it test} portion of the generate-and-test algorithm is left to the solver as they play through the game. Wolter \cite{SOLITAIREVARIANTS} developed the Politaire system, and examines the effect of various shuffling algorithms across multiple solitaire card game variations. One variant called Thoughtful Solitaire, played such that all card locations are known to the solver at the beginning of the game, has been separately found to have between 82\% and 91.44\% of generated challenges solvable \cite{THOUGHTFUL}. 
 
-\hl{While some claim that solitaire games with potentially unwinnable challenges are ``a rather sad form of amusing oneself,"} \cite{de1981pretzel} \hl{others find a ``catharsis [in] patience" even without perfect solvability} \cite{morehead2014complete}. Thus, \hl{to address either side}, when designing such a random setup process to assemble a challenge, \hl{two questions naturally arise for the designer:}{\it What percentage of such challenges can be solved? Are the created challenges interesting?}\cite{MCPUZZLE} \hl{Also, since these puzzle challenges are instantiated physically, they are restricted to using only the components included in the puzzle. However, as much of PCG research involves digital games and puzzles, where algorithms are only limited by computational time and space constraints, there is little research into the relationship between the structural design of physical puzzle components and PCG}. 
+While some claim that solitaire games with potentially unwinnable challenges are ``a rather sad form of amusing oneself," \cite{de1981pretzel} others find a ``catharsis [in] patience" even without perfect solvability \cite{morehead2014complete}. Thus, to address either side, when designing such a random setup process to assemble a challenge, two questions naturally arise for the designer:{\it What percentage of such challenges can be solved? Are the created challenges interesting?}\cite{MCPUZZLE} Also, since these puzzle challenges are instantiated physically, they are restricted to using only the components included in the puzzle. However, as much of PCG research involves digital games and puzzles, where algorithms are only limited by computational time and space constraints, there is little research into the relationship between the structural design of physical puzzle components and PCG. 
 
-\hl{To understand this component/algorithm relationship, we examine three different styles of physical solitaire games with perfect information that incorporate} {\it online, stochastic, generate-and-test} \hl{PCG algorithms for challenge setup: BoxOff} \cite{BoxOffGAMES} \hl{, a token removal puzzle, Pretzel} \cite{de1981pretzel} \hl{, a card arrangement puzzle, and Fujisan\footnote{http://www.ludism.org/ppwiki/Fuji-san}, a transportation puzzle.}
+To understand this component/algorithm relationship, we examine three different styles of physical solitaire games with perfect information that incorporate {\it online, stochastic, generate-and-test} PCG algorithms for challenge setup: BoxOff \cite{BoxOffGAMES} , a token removal puzzle, Pretzel \cite{de1981pretzel} , a card arrangement puzzle, and Fujisan\footnote{http://www.ludism.org/ppwiki/Fuji-san}, a transportation puzzle.
 
-\hl{Each of these puzzles includes a basic algorithm where simple components (tokens or cards) are randomly shuffled to create a challenge. We define these components to become} {\it entangled} \hl{if their arrangement is no longer independent, either due to algorithmic constraints, or having been subsumed by new, larger components.} We provide detailed descriptions of \hl{entangled game components and} challenge setup algorithms \hl{for each game}, then compare and contrast these using computational \hl{Monte Carlo} simulations. Finally, we evaluate these algorithms with respect to solvability and interest. We find that \hl{entanglements that incorporate desirable constraints based on each puzzle's mechanics are more successful across both metrics}.
+Each of these puzzles includes a basic algorithm where simple components (tokens or cards) are randomly shuffled to create a challenge. We define these components to become {\it entangled} if their arrangement is no longer independent, either due to algorithmic constraints, or having been subsumed by new, larger components. We provide detailed descriptions of entangled game components and challenge setup algorithms for each game, then compare and contrast these using computational Monte Carlo simulations. Finally, we evaluate these algorithms with respect to solvability and interest. We find that entanglements that incorporate desirable constraints based on each puzzle's mechanics are more successful across both metrics.
 
-%==================================
+%
 
 \section{BoxOff}
 
@@ -747,12 +747,12 @@ Figure \ref{fig:boxoffrules} shows an in-progress BoxOff challenge. The solver h
 
 Browne and Maire previously investigated altering the game design parameters for BoxOff using Monte Carlo simulation \cite{MCPUZZLE}. They explored multiple grid sizes and numbers of colors, $(h, w, c)$, where $h \times w$ is the size of the grid, and $c$ is the number of colors, ultimately finding that challenges generated for the original (6, 8, 3) puzzle configuration described by Myers were highly solvable and robust against random solvers. Other configurations, either of smaller board sizes, or more colors, exhibited poor solvability. In particular, we will examine the (4, 6, 4) puzzle, where challenge solvability was approximately 25\%, and the (6, 6, 6) puzzle, where challenge solvability was less than 5\%.
 
-%\begin{figure}[t]
-%\centering
-%\includegraphics[width=8.8cm]{boxoff4x6.png}
-%\caption{4$\times$6 BoxOff challenge with four colors, %generated with a simple shuffle of the 24 color tokens. }
-%\label{fig:boxoffbasic}
-%\end{figure}
+%
+%
+%
+%
+%
+%
 
 \subsection{Components and Algorithms}
 \noindent
@@ -838,14 +838,14 @@ Following Browne and Maire \cite{MCPUZZLE}, if a challenge is solvable by the so
 
 We see in both cases for {\bf L-Tiles}, there is an increase in the random solver performance over {\bf Shuffled}. However, there remains a significant gap between the general and random solvability in both puzzles. For the (4, 6, 4) puzzle, this difference is 62\%, and for the (6, 6, 6) puzzle, this difference is 50\%. We can conclude that while more easy challenges are generated from {\bf L-Tiles}, the large majority of generated solvable challenges involve interesting solutions.
 
-%=================================================
+%
 
 \section{Pretzel}
 \noindent
 The Montana family of patience card games includes variations such as Gaps, Spaces, Vacancies, Clown, Paganini, Red Moon, and Blue Moon. One variant, which allows no re-shuffles or re-deals, is a puzzle described and named by de Bruijn \cite{de1981pretzel} called Pretzel solitaire.
 
 To set up a Pretzel challenge, denoted as $(k, n)$, where $k$ represents the number of suits and $n$ represents the number of ranks in each suit, the setter shuffles a deck containing one card for each of $n$ ranks in $k$ suits. The shuffled cards are dealt face-up into a grid with $k$ rows, each with $n$ columns. The setter then removes the lowest ranked card of each suit (traditionally aces) and places them in a new column to the left of the existing grid in a prescribed order (traditionally for four suits, from top to bottom: spades[$\spadesuit$], hearts[$\heartsuit$], diamonds[$\diamondsuit$], clubs[$\clubsuit$]). Doing so vacates $k$ cells in the grid, thereafter called holes. 
-%A sample (4, 4) Pretzel setup is shown in Figure \ref{fig:pretzelbasic}.
+%
 
 The solver's goal is to arrange all cards into ascending sorted order, one suit per row, following a single rule:
 
@@ -853,12 +853,12 @@ The solver's goal is to arrange all cards into ascending sorted order, one suit 
     \item A card may be moved from any grid location into any hole only if the card being moved is of the same suit and exactly one rank higher than the card immediately to the hole's left.
 \end{enumerate}
 
-%\begin{figure}[t]
-%\centering
-%\includegraphics[width=4.8cm]{pretzelbasic.png}
-%\caption{Pretzel solitaire (4, 4) challenge with four suits and four ranks, generated with a random shuffle.}
-%\label{fig:pretzelbasic}
-%\end{figure}
+%
+%
+%
+%
+%
+%
 
 \begin{figure}[t]
 \centering
@@ -877,21 +877,21 @@ Here we explore different PCG algorithms that can be used for Pretzel challenge 
     {\bf Shuffled:} Shuffle the entire deck and deal all cards into the grid, left to right, top to bottom.
 \end{quote}
 
-%Figure \ref{fig:pretzelbasic} shows a sample Pretzel solitaire challenge with four suits and four ranks generated with the \textbf{Shuffled} method.
+%
 The number of possible challenges that result from the standard shuffle is the total number of permutations of cards in the deck, namely $(kn)!$. For the (4, 4) case, this is $16! \approx 10^{13}$ distinct challenges.
 
 In his paper, de Bruijn empirically established a solvability of 45\% for the (4, 4) case with a \textbf{Shuffled} setup. In an attempt to improve solvability with the next two setup algorithms, we introduce \textit{entanglement} of the cards by first dividing the deck into smaller decks according to suit. The two algorithms differ in how they distribute these \textit{entangled} components to complete the setup. Although the \textit{entanglement} is not preserved during play, the lasting effects of deck substitution during setup are nonetheless observable by measures similar to the other games we explored.
 
-%\begin{quote}
-%    {\bf Random Suits:} Divide the deck into $S$ smaller decks, each comprising all cards of a single suit. Shuffle each small deck separately. Take the top card of all small decks, shuffle these $S$ cards together, and deal them out. Again, take the top card of each small deck, shuffle these cards together, and continue dealing out. Proceed in like fashion until all cards have been dealt, left to right, top to bottom.
-%\end{quote}
+%
+%
+%
 
-%HOW TO CONSTRUCT THE FOLLOWING AS A GENERALIZED EXPRESSION?
+%
 
-%The number of challenges that can result from the %Random Suits setup algorithm for the (4, 4) case is
-%$\prod_{n = 1}^Sn^V(V!)
-% for (4,5) = (20 x 16 x 12 x 8 x 4) x (15 x 12 x 9 x 6 x 3) x (10 x 8 x 6 x 4 x 2) x (5 x 4 x 3 x 2 x 1) 
-%\approx 10^{11}$.
+%
+%
+%
+%
 
 \begin{quote}
     {\bf Sequential Suits:} Divide the deck into $k$ smaller decks, each comprising all cards of a single suit. Shuffle each suit deck separately. Deal the top card from the first suit deck, then the top card from the second suit deck, and so on.  After the top card of each suit deck has been dealt, return to the first suit deck and deal the top card, then the top card of the second suit deck, and so on. Proceed in like fashion until all cards have been dealt, left to right, top to bottom.
@@ -940,18 +940,18 @@ We found that whether entanglement helped or hindered solvability when using the
 
 The cost of solvability gains for \textbf{Banded Suits} is a decrease in minimum required solution length (in moves) which became statistically significant as the number of ranks increased. As a specific example, Figure \ref{fig:pretzellength} graphs the distribution of minimum required solution lengths recorded by our breadth-first solver for each of the setup algorithms in the (4, 8) case. The median minimum required solution lengths for \textbf{Shuffled} and \textbf{Sequential Suits} were identical at 44, while the median for \textbf{Banded Suits} dipped to 42. As with BoxOff, however, we judge the interest of challenges not primarily by their solution lengths, but by their resistance to random play.
 
-% Figure \ref{fig:pretzel44solved} shows the distribution of solvability for the three PCG algorithms across the 10 trials in a box-and-whisker plot for the (4, 4) case. 
+%
 
-% Figure \ref{fig:pretzel44solved} also illustrates the susceptibility of the (4, 4) Pretzel to solution by random decisions during play, surely an undesirable trait. By adding a full decision tree analysis to our solver, we determined the somewhat surprising cause for the high rate of success exhibited by random play. For the (4, 4) case, roughly 1 in 3 solvable challenges is unlosable. In such ``challenges'', any sequence of legal moves eventually leads to the solution state.
+%
 
-%\subsubsection{Ease of Physical Setup}
+%
 
 
-%\begin{figure}[t]
-%\includegraphics[width=8.8cm]{pretzelsolve4x4.png}
-%\caption{Effect of challenge generation algorithms on solvability for Pretzel, four suits and four ranks. $P(S_p)$ denoted in red, and $P(S_r)$ shown in blue.}
-%\label{fig:pretzel44solved}
-%\end{figure}
+%
+%
+%
+%
+%
 
 \subsubsection{Interest}
 
@@ -960,7 +960,7 @@ Again denoting the probability of solving using the breadth-first search solver 
 Here we see that \textbf{Banded Suits} exhibits the desired resistance to random play. For (4, 4) Pretzels, \textbf{Sequential Suits} and \textbf{Banded Suits} perform similarly. This is expected since they produce identical suit patterns for this case. But at five ranks and beyond, intelligent play outpaces random play by a significant margin as compared with \textbf{Shuffled} and \textbf{Sequential Suits}. We conclude that despite a slight decrease in minimum required solution length for \textbf{Banded Suits}, interest is retained.
 
 
-%====================================================================================
+%
 
 \section{Fujisan}
 \noindent
@@ -978,11 +978,11 @@ The goal of the solver is to move Priests one at a time until all four are at th
 \begin{enumerate}
 \item No more than one Priest may occupy a space at any given time.
 
-\item A Priest may move onto a space if that space's value matches the number of unoccupied spaces the Priest must move in a straight line, left or right, to get there (including the destination space itself, but not including the Priest's starting space). %For example, a Priest may move onto a space containing a 4 if there are three unoccupied spaces between it and the Priest.
+\item A Priest may move onto a space if that space's value matches the number of unoccupied spaces the Priest must move in a straight line, left or right, to get there (including the destination space itself, but not including the Priest's starting space). %
 \begin{enumerate}
-\item Occupied spaces (containing intervening Priests) are not counted when determining the distance from a Priest to a given space. %For example, a Priest may move onto a space containing a 2 if there are three occupied spaces and one unoccupied space between it and the Priest.
+\item Occupied spaces (containing intervening Priests) are not counted when determining the distance from a Priest to a given space. %
 \end{enumerate}
-\item A Priest may move freely up and down between the two spaces of any given step of the mountain. %This is the only manner in which a Priest may move onto a space containing a 0.
+\item A Priest may move freely up and down between the two spaces of any given step of the mountain. %
 \begin{enumerate}
 \item A Priest's first move from the starting position must land on the mountain; that is, the Priest cannot move up or down while on the ground.
 \end{enumerate}
@@ -995,36 +995,36 @@ The goal of the solver is to move Priests one at a time until all four are at th
 
 Figure \ref{fig:priestrules} shows a visual example of how these rules can be used to begin solving a sample challenge. We denote the goal summit spaces in gray. 
 
-%====================================================================================
-%\subsection{Piecepack Components}
+%
+%
 
-%Fujisan was created specifically for the piecepack game system\footnote{http://www.ludism.org/ppwiki/SolitaryConfinement}. The piecepack is a set of board game parts that can be used to design and play a wide variety of games. The piecepack was designed and placed into the public domain in 2000. Figure \ref{fig:piecepackinfinite} shows one published version of the piecepack, including a rulebook of over 50 games that can be played with a piecepack.
+%
 
-%Although several variations and ``expansions'' exist, a standard piecepack consists of the following components:
-%\begin{itemize}
-%\item 24 square tiles, indexed on the obverse in four suits (suns, moons, crowns, and arms) of six values each (null, ace, 2, 3, 4, and 5) and divided on the reverse into a 2$\times$2 space grid.
-%\item 24 round coins, each sized to fit comfortably into one space of a tile, marked on the obverse with one of the six values and on the reverse with one of the four suits.
-%\item 4 cubic dice, one per suit, each side marked with one of the six values.
-%\item 4 pawns, one per suit, each sized to fit comfortably into one space of a tile.
-%\end{itemize}
+%
+%
+%
+%
+%
+%
+%
 
-%Fujisan uses the reverse side of 21 of the 24 tiles to form the mountain, the obverse of all 24 coins to assign values to spaces, and the four pawns to represent the Priests. Ace coins are assigned a value of 1, while null coins are assigned a value of 0. The dice are not used.
+%
 
-%\begin{figure}[t]
-%\centering
-%\includegraphics[width=7cm]{infinite2.jpg}
-%\caption{The piecepack, Infinite Board Game version. Photo used by permission of Workman Publishing Co., Inc., New York.}
-%\label{fig:piecepackinfinite}
-%\end{figure}
+%
+%
+%
+%
+%
+%
 
-%====================================================================================
+%
 
 \subsection{Components and Algorithms}
 \label{section:pcgalgs}
 \noindent
-Here we explore \hl{three different sets of physical components and their resulting PCG} algorithms that can be used for challenge setup for Fujisan. 
+Here we explore three different sets of physical components and their resulting PCG algorithms that can be used for challenge setup for Fujisan. 
 
-The piecepack is a set of board game parts that can be used to design and play a wide variety of games\cite{GAMESYSTEM}. \hl{The mountain in Fujisan was constructed with game tiles each marked with a 2$\times$2 grid. The values were added using 24 round coins, which represented the cross product of two sets: suits (sun, moon, crown, arms) and values (0, 1, 2, 3, 4, 5). Values are indicated on the front of the coin, while suits are found on the back.}
+The piecepack is a set of board game parts that can be used to design and play a wide variety of games\cite{GAMESYSTEM}. The mountain in Fujisan was constructed with game tiles each marked with a 2$\times$2 grid. The values were added using 24 round coins, which represented the cross product of two sets: suits (sun, moon, crown, arms) and values (0, 1, 2, 3, 4, 5). Values are indicated on the front of the coin, while suits are found on the back.
 
 We examine first a simple algorithm that can make use of the piecepack coin components to generate randomness. 
 
@@ -1040,7 +1040,7 @@ $\frac{24!}{4!^{6}} \approx 10^{14}$ possible challenges.  We acknowledge here a
 However, if two 0 coins end up placed in the same column, then it becomes impossible to move a Priest onto that column. This creates holes in our challenges and reduces the number of solvable setups. 
 More importantly, when both spaces of either of the summit columns contain 0s, the challenge becomes impossible to solve.
 
-The original published Fujisan ruleset was devised to address the issue of double 0 steps, adding the constraint that each step must have two different values. This was achieved by using the suit information on the backs of the coins \hl{to \textit{entangle} the coins as they are placed, similar to the \textbf{Sequential Suits} method for Pretzel}.
+The original published Fujisan ruleset was devised to address the issue of double 0 steps, adding the constraint that each step must have two different values. This was achieved by using the suit information on the backs of the coins to \textit{entangle} the coins as they are placed, similar to the \textbf{Sequential Suits} method for Pretzel.
 
 \begin{quote}
     
@@ -1065,7 +1065,7 @@ With each space limited to choosing from a particular suit, the \textbf{Piecepac
 
 
 
-Another way to \hl{entangle the components in Fujisan} is to combine the values with the 2$\times$2 tiles, engraving numerals onto the spaces, \hl{similar to the \textbf{L-Tiles} method for BoxOff}. Here, we explore creating tiles with every possible pairing of values 0 through 5, including pairing a value with itself, and repeating these values diagonally on the tiles. Example tiles of this style are shown in Figure \ref{fig:engravedsample}. We remove the 0:0 pairing, since it can create unsolvable challenges, leaving 20 tiles.
+Another way to entangle the components in Fujisan is to combine the values with the 2$\times$2 tiles, engraving numerals onto the spaces, similar to the \textbf{L-Tiles} method for BoxOff. Here, we explore creating tiles with every possible pairing of values 0 through 5, including pairing a value with itself, and repeating these values diagonally on the tiles. Example tiles of this style are shown in Figure \ref{fig:engravedsample}. We remove the 0:0 pairing, since it can create unsolvable challenges, leaving 20 tiles.
 
 \begin{quote}
     
@@ -1076,7 +1076,7 @@ This further constrains each pair of numbers to appear no more than once in the 
 $ possible challenges.
 
 Furthermore, a standard double-six domino set, which includes 28 dominoes, 
-can be used \hl{as entangled components}. If we eliminate those dominoes that include a 6, along with all doubles, we are left with 15 dominoes. 
+can be used as entangled components. If we eliminate those dominoes that include a 6, along with all doubles, we are left with 15 dominoes. 
 
 \begin{quote}
     
@@ -1095,7 +1095,7 @@ With 15 possible dominoes, only 12 of them are used in the challenge, as shown i
 \subsection{Evaluation}
 
  \noindent
-%First, our stochastic generation algorithm must be easy for the solver to execute without complicated lookup tables or large numbers of components. 
+%
 
 
 \begin{figure}[t]
@@ -1105,22 +1105,22 @@ With 15 possible dominoes, only 12 of them are used in the challenge, as shown i
 \end{figure}
 
 We encoded a Monte Carlo Fujisan challenge generator using C\#, along with an A* solver for Fujisan challenges. Our admissible heuristic for A* is the number of empty spaces on the summit. For each PCG algorithm, we generated 1000 random challenges.
-For each generated challenge in our trials, we recorded if the challenge was solvable, and if so, we also recorded the minimum solution length found with our A* solver. \hl{To enable testing for statistical significance on solvability between these algorithms, we divided our pool of generated challenges into 10 trials of 100 challenges. }
+For each generated challenge in our trials, we recorded if the challenge was solvable, and if so, we also recorded the minimum solution length found with our A* solver. To enable testing for statistical significance on solvability between these algorithms, we divided our pool of generated challenges into 10 trials of 100 challenges. 
  
 \subsubsection{Solvability}
 
-Figure \ref{fig:strategycomp} shows the distribution of solvability for the four PCG algorithms across the 10 trials in a box-and-whisker plot. Each method produces a healthy \hl{probability} of solvable challenges. {\bf Shuffled} \hl{has} the lowest mean value for solvability at 85\%, and \hl{this} result is significantly lower than the other three algorithms, which is confirmed by t-tests using a p-value of 0.05. Within the top three algorithms, only {\bf Dominoes} is statistically higher than {\bf Piecepack}. 
+Figure \ref{fig:strategycomp} shows the distribution of solvability for the four PCG algorithms across the 10 trials in a box-and-whisker plot. Each method produces a healthy probability of solvable challenges. {\bf Shuffled} has the lowest mean value for solvability at 85\%, and this result is significantly lower than the other three algorithms, which is confirmed by t-tests using a p-value of 0.05. Within the top three algorithms, only {\bf Dominoes} is statistically higher than {\bf Piecepack}. 
 
 \subsubsection{Interest}
 
-Applying the interest metric of Brown and Maire \cite{MCPUZZLE} across all of our PCG algorithms, we found that $P(S_r)$, the probability that a random solver would win, was less than 0.003, making $P(S_p) - P(S_r)$ equivalent to solvability. \hl{As our goal is to determine if the above algorithms change the interest distribution of generated challenges, we consider two other measures found by 
+Applying the interest metric of Brown and Maire \cite{MCPUZZLE} across all of our PCG algorithms, we found that $P(S_r)$, the probability that a random solver would win, was less than 0.003, making $P(S_p) - P(S_r)$ equivalent to solvability. As our goal is to determine if the above algorithms change the interest distribution of generated challenges, we consider two other measures found by 
 Jaru{\v{s}}ek and Pel{\'a}nek to be correlated with challenge difficulty for one-way transport puzzles:
-the minimum number of moves required to solve the challenge, and the number of counter-intuitive moves along the minimum solution path.} \cite{jaruvsek2010difficulty}
+the minimum number of moves required to solve the challenge, and the number of counter-intuitive moves along the minimum solution path. \cite{jaruvsek2010difficulty}
 \cite{jaruvsek2011determines}
 
-\hl{First, we determined that a move in Fujisan is counter-intuitive if it involves moving a Priest further away from the summit. For each solvable challenge, we counted the number of counter-intuitive moves used on the minimum solution path length. Using this metric, values ranged from 0-8, and we found that there was no statistical difference between the four algorithms.}
+First, we determined that a move in Fujisan is counter-intuitive if it involves moving a Priest further away from the summit. For each solvable challenge, we counted the number of counter-intuitive moves used on the minimum solution path length. Using this metric, values ranged from 0-8, and we found that there was no statistical difference between the four algorithms.
 
-Second, we calculated the distribution of \hl{minimum solution path length} generated by each algorithm. We compared here the median \hl{length} generated by each algorithm. The shortest possible solution to a Fujisan challenge involves eight moves, while 
+Second, we calculated the distribution of minimum solution path length generated by each algorithm. We compared here the median length generated by each algorithm. The shortest possible solution to a Fujisan challenge involves eight moves, while 
 the longest-known constructed challenge requires 62 moves\footnote{http://www.ludism.org/ppwiki/Fuji-san\#Heading9}.
 
 \begin{figure}[t]
@@ -1135,55 +1135,55 @@ Figure \ref{fig:difficultycomp} shows histograms of the minimum solution length 
 The algorithm responsible for this result was {\bf Engraved Tiles}. We can see a strong tendency to have shorter solution lengths, with almost 10\% of challenges having a solution length of eight or nine, whereas for {\bf Dominoes}, this is true for only 3\% of challenges. In {\bf Engraved Tiles}, there are five tiles that contain a zero value; since there will be ten total tiles hidden, on average a challenge will contain 2.5 zero values. It appears that zero values are one part of what makes Fujisan challenges interesting.
 
 
-%==========================================================
+%
 
 
-%============================================
+%
 
 \section{Entangled Components}
 \label{entangled}
 
 
-%Important statistics about each algorithm are summarized in Table \ref{table_stats}, namely the number of possible challenges, the number of times a value may be repeated in a challenge, if the same value can occur in two spaces on the same step, and if the value pair present on a step can be repeated elsewhere in the challenge.
+%
 
-%\begin{table*}[]
-%\centering
-%\renewcommand{\arraystretch}{1.3}
-%\caption{Statistics about Fujisan Setup Algorithms for each metric.}
-%\label{table_stats}
-%\begin{tabular}{l|c|c|c|c|}
-%\multicolumn{1}{c|}{\textbf{PCG}} & \multicolumn{1}{c|}{\textit{\textbf{Possible Challenges}}} & \multicolumn{1}{l|}{\textit{\textbf{Count of Each Value}}} & \multicolumn{1}{l|}{\textit{\textbf{Identical Step Values}}} & \multicolumn{1}{l|}{\textit{\textbf{Repeated Step Values}}} \\ \hline
-%\textbf{Shuffled}                 & $10^{14}$ & exactly 4                                                  & yes                                                      & yes                                                            \\ \hline
-%\textbf{Piecepack}                & $10^{10}$                                             & exactly 4                                                  & no                                                       & yes                                                            \\ \hline
-%\textbf{Engraved}                 & $10^{13}$                                                 & 0 to 7$^*$                                                     & yes                                                      & only at summit                                                 \\ \hline
-%\textbf{Domino}                   & $10^{14} $                                                   & 2 to 5                                                     & no                                                       & no                                                             \\ \hline
-%\end{tabular}
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
 
-%\vspace{0.2cm} * 0 to 5 for value 0
-%\end{table*}
+%
+%
 
 
-%\begin{table}[]
-%\centering
-%\renewcommand{\arraystretch}{1.3}
-%\caption{Ranks of Fujisan Setup Algorithms for each metric.\\ Statistical ties are denoted with *.}
-%\label{table_example}
-%\begin{tabular}{l|c|c|c|}
-%\multicolumn{1}{c|}{\textbf{PCG}} & %\multicolumn{1}{l|}{\textit{\textbf{Solvability}}} & %\multicolumn{1}{l|}{\textit{\textbf{Difficulty}}} \\ %\hline
-%\textbf{Shuffled}                 & 4                                                  & 1*                                                 \\ \hline
-%\textbf{Piecepack}                & 3                                                  & 1*                                                 \\ \hline
-%\textbf{Engraved}                 & 1*                                                  & 4                                                 \\ \hline
-%\textbf{Domino}                   & 1*                                                  & 1*                                                 \\ \hline
-%\end{tabular}
-%\end{table}
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
 
-%Table \ref{table_example} summarizes our results on the three evaluation metrics. We can see computational evidence that the original {\bf Piecepack} ruleset is an improvement over both the {\bf Pure Random} and {\bf Shuffled} setup algorithm as hoped by the designer. While {\bf Engraved Tiles} simplifies the ease of physical setup over the {\bf Piecepack} version, it is at the cost of challenge difficulty. The {\bf Dominoes} algorithm maintains this easy setup and returns the challenge generation to a reasonable difficulty distribution.
+%
 \noindent
-\hl{Recall that we define components to become} {\it entangled} \hl{if their arrangement is no longer independent, either due to algorithmic constraints, or having been subsumed by new, larger components. In each of the explored puzzles above, we see that entangled components can be used to produce challenges with higher solvability without sacrificing the interesting qualities of the puzzle. Here we provide evidence that this is due to aligning the entanglements with desirable portions of the underlying puzzle mechanics. For each puzzle, metrics can be found that are correlated with higher solvability. Entangled components can then be biased toward solvability by encouraging these metrics in generated challenges.}
+Recall that we define components to become {\it entangled} if their arrangement is no longer independent, either due to algorithmic constraints, or having been subsumed by new, larger components. In each of the explored puzzles above, we see that entangled components can be used to produce challenges with higher solvability without sacrificing the interesting qualities of the puzzle. Here we provide evidence that this is due to aligning the entanglements with desirable portions of the underlying puzzle mechanics. For each puzzle, metrics can be found that are correlated with higher solvability. Entangled components can then be biased toward solvability by encouraging these metrics in generated challenges.
 
-%Why does entanglement work for BoxOff?
+%
 
-\hl{In BoxOff, Rule 1 underscores the importance of adjacent grid squares of the same color, as they are the first moves available in the game. The (4, 6, 4) board contains 38 unique pairs of adjacent grid squares. If we randomly distribute the four colors using the \textbf{Shuffled} method, on average a pair will be the same color 22\% of the time. We label this metric} {\it pair equality}. \hl{However, if we separate the generated challenges by solvability, we see in Figure} \ref{fig:boxoffconnected} \hl{that while unsolvable challenges average 20\% pair equality, for solvable challenges the average increases to 26\%, and this difference is statistically significant.}
+In BoxOff, Rule 1 underscores the importance of adjacent grid squares of the same color, as they are the first moves available in the game. The (4, 6, 4) board contains 38 unique pairs of adjacent grid squares. If we randomly distribute the four colors using the \textbf{Shuffled} method, on average a pair will be the same color 22\% of the time. We label this metric {\it pair equality}. However, if we separate the generated challenges by solvability, we see in Figure \ref{fig:boxoffconnected} that while unsolvable challenges average 20\% pair equality, for solvable challenges the average increases to 26\%, and this difference is statistically significant.
 
 \begin{figure}[t]
 \includegraphics[width=8.8cm]{figure18.png}
@@ -1191,19 +1191,19 @@ The algorithm responsible for this result was {\bf Engraved Tiles}. We can see a
 \label{fig:boxoffconnected}
 \end{figure}
 
-\hl{Through entanglement, the \textbf{L-Tiles} constrain adjacent pairs such that at least eight of them are the same color, resulting in a minimum of 21\% pair equality. Thus, these challenges are more likely to be in the solvable range, as shown in Figure} \ref{fig:boxoffconnected}\hl{, with 32\% pair equality for unsolvable challenges, and 34\% pair equality for those that are solvable. To verify that the entangled components must align with the puzzle mechanics, we also tested a configuration of \textbf{L-Tiles} for the (4, 6, 4) puzzle with three unique colors on each tile, evenly distributed among the colors. This resulted in an overall solvability of 8.2\%, much worse than using the original \textbf{Shuffled} algorithm.}
+Through entanglement, the \textbf{L-Tiles} constrain adjacent pairs such that at least eight of them are the same color, resulting in a minimum of 21\% pair equality. Thus, these challenges are more likely to be in the solvable range, as shown in Figure \ref{fig:boxoffconnected}, with 32\% pair equality for unsolvable challenges, and 34\% pair equality for those that are solvable. To verify that the entangled components must align with the puzzle mechanics, we also tested a configuration of \textbf{L-Tiles} for the (4, 6, 4) puzzle with three unique colors on each tile, evenly distributed among the colors. This resulted in an overall solvability of 8.2\%, much worse than using the original \textbf{Shuffled} algorithm.
 
-\hl{To better understand how entangled components improve solvability for Pretzel solitaire, it is revealing to compare the dip in solvability for (4, 3) \textbf{Sequential Suits} with the dramatic spike in solvability for (4, 4) \textbf{Sequential Suits}, both clearly evident in Figure} \ref{fig:pretzelfullsolve}. \hl{As discussed by de Bruijn, sequences of necessarily dependent moves that turn back on themselves to form loops, which de Bruijn calls cyclic blockades, are the bane of the Pretzel solver. Once a cyclic blockade forms, the Pretzel is no longer solvable. These can either be present immediately following the deal or can develop during the course of play. (4, 3) Pretzels with \textbf{Sequential Suits} are highly prone to at least two shapes of dealt cyclic blockades that are readily detected.}
+To better understand how entangled components improve solvability for Pretzel solitaire, it is revealing to compare the dip in solvability for (4, 3) \textbf{Sequential Suits} with the dramatic spike in solvability for (4, 4) \textbf{Sequential Suits}, both clearly evident in Figure \ref{fig:pretzelfullsolve}. As discussed by de Bruijn, sequences of necessarily dependent moves that turn back on themselves to form loops, which de Bruijn calls cyclic blockades, are the bane of the Pretzel solver. Once a cyclic blockade forms, the Pretzel is no longer solvable. These can either be present immediately following the deal or can develop during the course of play. (4, 3) Pretzels with \textbf{Sequential Suits} are highly prone to at least two shapes of dealt cyclic blockades that are readily detected.
 
-\hl{To recognize the first, we observe that exactly three spades will be dealt into the grid in a diagonal line, from the first column of the first row to the third column of the third row. There is a 1 in 6 chance that the $3\spadesuit$ will be dealt into the first column of the first row and the $2\spadesuit$ into the third column of the third row. When this occurs, the $2\spadesuit$ can never move into its goal location, occupied by the $3\spadesuit$, which itself cannot move into a hole following the $2\spadesuit$, since the $2\spadesuit$ is in the rightmost column and is unable to leave that column. We shall call this shape of cyclic blockade a Ducking Crab.}
+To recognize the first, we observe that exactly three spades will be dealt into the grid in a diagonal line, from the first column of the first row to the third column of the third row. There is a 1 in 6 chance that the $3\spadesuit$ will be dealt into the first column of the first row and the $2\spadesuit$ into the third column of the third row. When this occurs, the $2\spadesuit$ can never move into its goal location, occupied by the $3\spadesuit$, which itself cannot move into a hole following the $2\spadesuit$, since the $2\spadesuit$ is in the rightmost column and is unable to leave that column. We shall call this shape of cyclic blockade a Ducking Crab.
 
-\hl{So, at least 1 in 6 (4, 3) Pretzels with \textbf{Sequential Suits} are unsolvable immediately after setup. Notice, however, that a Ducking Crab is just as probable for diamonds, so at least 1 in 3 are immediately unsolvable.}
+So, at least 1 in 6 (4, 3) Pretzels with \textbf{Sequential Suits} are unsolvable immediately after setup. Notice, however, that a Ducking Crab is just as probable for diamonds, so at least 1 in 3 are immediately unsolvable.
 
-\hl{A second shape of cyclic blockade that plagues \textbf{Sequential Suits} for the (4, 3) case occurs when the $2\clubsuit$ and $2\heartsuit$ are dealt into each other's goal locations, preventing either from ever moving. Such Duelling Deuces occur in 1 of 9 challenges.}
+A second shape of cyclic blockade that plagues \textbf{Sequential Suits} for the (4, 3) case occurs when the $2\clubsuit$ and $2\heartsuit$ are dealt into each other's goal locations, preventing either from ever moving. Such Duelling Deuces occur in 1 of 9 challenges.
 
-\hl{Ducking Crabs and Duelling Deuces are not, of course, exclusive to (4, 3) Pretzels with \textbf{Sequential Suits}. Nor have we attempted to identify and enumerate an exhaustive list of every possible shape for cyclic blockades. We offer Ducking Crabs and Duelling Deuces merely as examples of the kinds of structures that limit solvability for Pretzels. They are suitable examples not only because they account for a significant portion of unsolvable (4, 3) Pretzels with \textbf{Sequential Suits}, but also because it is plain to see how both are completely avoided by \textbf{Sequential Suits} for the (4, 4) case and indeed for all cases $S = V$, as well as \textbf{Banded Suits}. With a stripe of spades filling the first column, there can only ever be a single 2 in the column, preventing Deulling Deuces. Although the $3\spadesuit$ might be dealt into $2\spadesuit$'s goal location, the $2\spadesuit$ can never be dealt into the rightmost column, so Ducking Crabs are likewise impossible. Thus for Pretzel solitaire, entangled components help to avoid some, but not all, of the structures that destroy solvability.}
+Ducking Crabs and Duelling Deuces are not, of course, exclusive to (4, 3) Pretzels with \textbf{Sequential Suits}. Nor have we attempted to identify and enumerate an exhaustive list of every possible shape for cyclic blockades. We offer Ducking Crabs and Duelling Deuces merely as examples of the kinds of structures that limit solvability for Pretzels. They are suitable examples not only because they account for a significant portion of unsolvable (4, 3) Pretzels with \textbf{Sequential Suits}, but also because it is plain to see how both are completely avoided by \textbf{Sequential Suits} for the (4, 4) case and indeed for all cases $S = V$, as well as \textbf{Banded Suits}. With a stripe of spades filling the first column, there can only ever be a single 2 in the column, preventing Deulling Deuces. Although the $3\spadesuit$ might be dealt into $2\spadesuit$'s goal location, the $2\spadesuit$ can never be dealt into the rightmost column, so Ducking Crabs are likewise impossible. Thus for Pretzel solitaire, entangled components help to avoid some, but not all, of the structures that destroy solvability.
 
-\hl{For Fujisan, the entangled components are a direct result of the puzzle movement mechanics. We first develop a metric called} {\it connectivity} \hl{based on Rule 2 to explore the connections between steps in a challenge.} We say step $A$ is connected to step $B$ in Fujisan if there is a move available according to Rule 2 from $B$ to $A$. \hl{This metric, only an approximation of true puzzle connectivity as it ignores connections possible from Rule 2.a with intermediate Priests, contains enough information to bias our entangled components.}
+For Fujisan, the entangled components are a direct result of the puzzle movement mechanics. We first develop a metric called {\it connectivity} based on Rule 2 to explore the connections between steps in a challenge. We say step $A$ is connected to step $B$ in Fujisan if there is a move available according to Rule 2 from $B$ to $A$. This metric, only an approximation of true puzzle connectivity as it ignores connections possible from Rule 2.a with intermediate Priests, contains enough information to bias our entangled components.
 
 \begin{figure}[t]
 \includegraphics[width=8.8cm]{figure19.png}
@@ -1217,106 +1217,106 @@ Solvable challenges shown in black, and unsolvable challenges shown in white.}
 Figure \ref{fig:connected} shows the average step connectivity within a challenge for each setup algorithm, differentiating solvable challenges in black from unsolvable challenges in white. 
 In the \textbf{Shuffled} algorithm, we can see a large divide between solvable and unsolvable challenges, and across all algorithms, higher connectivity is always related to higher solvability. Also, both \textbf{Piecepack} and \textbf{Dominoes} require that each step has two unique values. In these two algorithms, this uniqueness constraint strongly increases the connectivity of both solvable and unsolvable challenges, but the divide remains intact.
 
-\hl{However, even if each step is well-connected to other steps, the connections could form patterns and loops between the steps, thus breaking the potential Priest movement into disjoint sets. If we add a restriction that each step pair in a challenge be a unique set of values, this will cause the connections between steps to be more distributed and bind the puzzle together as a whole. In our experiments, we found that Shuffled challenges which fit this restriction can be solved at a rate of 89\%, a statistical improvement over the general Shuffled challenge population.} As we noted earlier, the {\bf Engraved Tiles} and {\bf Dominoes} incorporate this prohibition on the repetition of steps as they subsume the coins into larger components. In fact, the most successful algorithm, {\bf Dominoes}, combines both of these constraints to create well-connected and well-distributed challenges.
+However, even if each step is well-connected to other steps, the connections could form patterns and loops between the steps, thus breaking the potential Priest movement into disjoint sets. If we add a restriction that each step pair in a challenge be a unique set of values, this will cause the connections between steps to be more distributed and bind the puzzle together as a whole. In our experiments, we found that Shuffled challenges which fit this restriction can be solved at a rate of 89\%, a statistical improvement over the general Shuffled challenge population. As we noted earlier, the {\bf Engraved Tiles} and {\bf Dominoes} incorporate this prohibition on the repetition of steps as they subsume the coins into larger components. In fact, the most successful algorithm, {\bf Dominoes}, combines both of these constraints to create well-connected and well-distributed challenges.
 
 
-%====================================================================================
+%
 
 \section{Conclusion}   \label{sec:Conclusion}
 
 \noindent
-\hl{Our work introduces the idea of entangled components for physical solitaire puzzle games, and explores their implications for procedural content generation algorithms across three puzzles. We can see that subtle changes in the game components can affect their random distribution, leading to large-scale changes on the generated challenges. When aligned with the puzzle mechanics, entangled components lead to increased challenge solvability without sacrificing the interesting nature of the puzzle.}
+Our work introduces the idea of entangled components for physical solitaire puzzle games, and explores their implications for procedural content generation algorithms across three puzzles. We can see that subtle changes in the game components can affect their random distribution, leading to large-scale changes on the generated challenges. When aligned with the puzzle mechanics, entangled components lead to increased challenge solvability without sacrificing the interesting nature of the puzzle.
 
-There are many open questions related to physical games and PCG. First, we believe there is work to be done in formalizing, \hl{and validating with human subjects,} an ease of physical setup metric. \hl{While the \textbf{Shuffled} algorithm for each puzzle is very simple to execute, some of the more entangled algorithms could be time-consuming and tedious for a human to implement.} A simple approximation metric would be the time complexity of the algorithm; however, certain operations that are straightforward to a computer can be difficult for humans to track, and vice versa. With a formal metric, game designers could be inclined to include more intricate PCG algorithms when provided guarantees these algorithms can reasonably be executed by a human player.
+There are many open questions related to physical games and PCG. First, we believe there is work to be done in formalizing, and validating with human subjects, an ease of physical setup metric. While the \textbf{Shuffled} algorithm for each puzzle is very simple to execute, some of the more entangled algorithms could be time-consuming and tedious for a human to implement. A simple approximation metric would be the time complexity of the algorithm; however, certain operations that are straightforward to a computer can be difficult for humans to track, and vice versa. With a formal metric, game designers could be inclined to include more intricate PCG algorithms when provided guarantees these algorithms can reasonably be executed by a human player.
 
-A further point to clarify is the exact relationship between \hl{challenge interest} and challenge difficulty. \hl{We focused here on how entangled components maintained challenge interest, but this simplifies the potential for gradations of challenge difficulty within each puzzle. Validating a sophisticated difficulty metric for each puzzle, again with human subject tests as disussed in Jaru{\v{s}}ek and Pel{\'a}nek} \cite{jaruvsek2011determines}
-\hl{, could further illustrate the effects of entangled components.}
+A further point to clarify is the exact relationship between challenge interest and challenge difficulty. We focused here on how entangled components maintained challenge interest, but this simplifies the potential for gradations of challenge difficulty within each puzzle. Validating a sophisticated difficulty metric for each puzzle, again with human subject tests as disussed in Jaru{\v{s}}ek and Pel{\'a}nek \cite{jaruvsek2011determines}
+, could further illustrate the effects of entangled components.
 
-%OTHER QUESTIONS????
+%
 
-Finally, are there general \hl{entangled} methods PCG algorithms can use to {\it construct} challenges online and guarantee solvability, as opposed to the {\it generate-and-test} algorithms discussed here? While this may be possible in certain situations, 
-%as employed in another piecepack solitaire game Cell Management \footnote{http://www.ludism.org/ppwiki/CellManagement}, 
+Finally, are there general entangled methods PCG algorithms can use to {\it construct} challenges online and guarantee solvability, as opposed to the {\it generate-and-test} algorithms discussed here? While this may be possible in certain situations, 
+%
 care must be taken that the construction process does not give away the solution to the challenge.
 
 
-%====================================================================================
+%
 
-%\section*{Acknowledgements}
+%
 
-%\noindent
-%Thanks to XYZ and the anonymous reviewers for their helpful and insightful comments.
+%
+%
 
-%====================================================================================
+%
 
 
 
-% Can use something like this to put references on a page
-% by themselves when using endfloat and the captionsoff option.
+%
+%
 \ifCLASSOPTIONcaptionsoff
   \newpage
 \fi
 
 
 
-% trigger a \newpage just before the given reference
-% number - used to balance the columns on the last page
-% adjust value as needed - may need to be readjusted if
-% the document is modified later
-%\IEEEtriggeratref{8}
-% The "triggered" command can be changed if desired:
-%\IEEEtriggercmd{\enlargethispage{-5in}}
+%
+%
+%
+%
+%
+%
+%
 
-% references section
+%
 
-% can use a bibliography generated by BibTeX as a .bbl file
-% BibTeX documentation can be easily obtained at:
-% http://mirror.ctan.org/biblio/bibtex/contrib/doc/
-% The IEEEtran BibTeX style support page is at:
-% http://www.michaelshell.org/tex/ieeetran/bibtex/
+%
+%
+%
+%
+%
 \bibliographystyle{IEEEtran}
-% argument is your BibTeX string definitions and bibliography database(s)
+%
 \bibliography{references.bib}
 %
-% biography section
-% 
-% If you have an EPS/PDF photo (graphicx package needed) extra braces are
-% needed around the contents of the optional argument to biography to prevent
-% the LaTeX parser from getting confused when it sees the complicated
-% \includegraphics command within an optional argument. (You could create
-% your own custom macro containing the \includegraphics command to make things
-% simpler here.)
-%\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
-% or if you just want to reserve a space for a photo:
-%\newpage 
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
 
 \begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{markpic.png}}]{Mark Goadrich} earned an A.B. in Mathematics and Philosophy at Kenyon College, and a M.S. and Ph.D. in Computer Sciences from the University of Wisconsin - Madison.
 He is currently an Associate Professor of Computer Science at Hendrix College in Conway, AR.
 \end{IEEEbiography}
 
-% if you will not have a photo at all:
+%
 \begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{jamespic.png}}]{James Droscha}
 is a designer and developer of software, games, and puzzles, including the piecepack and Fujisan.
 \end{IEEEbiography}
 
-% insert where needed to balance the two columns on the last page with
-% biographies
-%\newpage
+%
+%
+%
 
-% You can push biographies down or up by placing
-% a \vfill before or after them. The appropriate
-% use of \vfill depends on what kind of text is
-% on the last page and whether or not the columns
-% are being equalized.
+%
+%
+%
+%
+%
 
 \vfill
 
-% Can be used to pull up biographies so that the bottom of the last one
-% is flush with the other column.
-%\enlargethispage{-5in}
+%
+%
+%
 
 
 
-% that's all folks
+%
 \end{document}
 
 
