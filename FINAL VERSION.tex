@@ -629,7 +629,7 @@ E-mail: see http://mark.goadrich.com/schedule.html
 % in the abstract or keywords.
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-    Challenges for physical solitaire puzzle games are typically designed in advance by humans and limited in number. Alternatively, some games incorporate rules for stochastic setup, where the human solver randomly sets up the game board before solving the challenge. \hl{These setup rules} greatly increase the number of possible challenges, but can often generate unsolvable or uninteresting challenges. To better understand \hl{the compromises involved in minimizing undesirable challenges, we examine three games where component design choices can influence the stochastic nature of the resulting challenge generation algorithms.} We evaluate the effect of these components and algorithms on challenge solvability \hl{and challenge engagement. We find that algorithms which control randomness through entangling components based on sub-elements of the puzzle mechanics can generate interesting challenges with a high probability of being solvable.}
+    Challenges for physical solitaire puzzle games are typically designed in advance by humans and limited in number. Alternatively, some games incorporate rules for stochastic setup, where the game board is randomly setup before the challenge is solved. \hl{These setup rules} greatly increase the number of possible challenges, but can often generate unsolvable or uninteresting challenges. To better understand \hl{the compromises involved in minimizing undesirable challenges, we examine three games where component design choices can influence the stochastic nature of the resulting challenge generation algorithms.} We evaluate the effect of these components and algorithms on challenge solvability \hl{and challenge engagement. We find that algorithms which control randomness through entangling components based on sub-elements of the puzzle mechanics can generate interesting challenges with a high probability of being solvable.}
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -711,7 +711,7 @@ and Hi-Q (generalized peg solitaire) \cite{PEG}. In these games, solvers must ma
 
 There are, however, alternative PCG approaches available for physical solitaire games, most popularly demonstrated by the card game Klondike Solitaire \cite{morehead2014complete}. In particular, this game uses an {\it online, stochastic, generate-and-test} PCG algorithm, which is as simple as shuffling the deck of cards at the start of the game. Also of note, the {\it test} portion of the generate-and-test algorithm is left to the solver as they play through the game. Wolter \cite{SOLITAIREVARIANTS} developed the Politaire system, and examines the effect of various shuffling algorithms across multiple solitaire card game variations. One variant called Thoughtful Solitaire, played such that all card locations are known to the solver at the beginning of the game, has been separately found to have between 82\% and 91.44\% \hl{of generated challenges} solvable \cite{THOUGHTFUL}. 
 
-\hl{While some claim that solitaire games with potentially unwinnable challenges are ``a rather sad form of amusing oneself,"} \cite{de1981pretzel} \hl{others find a ``catharsis [in] patience" even without perfect solvability} \cite{morehead2014complete}. Thus, \hl{to address either side}, when designing such a random setup process to assemble a challenge, \hl{two questions naturally arise for the designer:}{\it What percentage of such challenges can be solved? Are the created challenges interesting?}\cite{MCPUZZLE} \hl{Also, since these puzzle challenges are instantiated by the solver, they are restricted to using only the components included in the puzzle. However, as much of PCG research involves digital games and puzzles, where algorithms are only limited by computational time and space constraints, there is little research into the relationship between the structural design of physical puzzle components and PCG}. 
+\hl{While some claim that solitaire games with potentially unwinnable challenges are ``a rather sad form of amusing oneself,"} \cite{de1981pretzel} \hl{others find a ``catharsis [in] patience" even without perfect solvability} \cite{morehead2014complete}. Thus, \hl{to address either side}, when designing such a random setup process to assemble a challenge, \hl{two questions naturally arise for the designer:}{\it What percentage of such challenges can be solved? Are the created challenges interesting?}\cite{MCPUZZLE} \hl{Also, since these puzzle challenges are instantiated physically, they are restricted to using only the components included in the puzzle. However, as much of PCG research involves digital games and puzzles, where algorithms are only limited by computational time and space constraints, there is little research into the relationship between the structural design of physical puzzle components and PCG}. 
 
 \hl{To understand this component/algorithm relationship, we examine three different styles of physical solitaire games with perfect information that incorporate} {\it online, stochastic, generate-and-test} \hl{PCG algorithms for challenge setup: BoxOff} \cite{BoxOffGAMES} \hl{, a token removal puzzle, Pretzel} \cite{de1981pretzel} \hl{, a card arrangement puzzle, and Fujisan\footnote{http://www.ludism.org/ppwiki/Fuji-san}, a transportation puzzle.}
 
@@ -723,12 +723,12 @@ There are, however, alternative PCG approaches available for physical solitaire 
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=6.8cm]{boxoff6x83.png}
+\includegraphics[width=6.8cm]{figure1.png}
 \caption{A sample 6$\times$8 BoxOff challenge with three colors.}
 \label{fig:boxoffbig}
 \end{figure}
 \noindent
-BoxOff is a 2D token removal puzzle designed by Stephen Myers  \cite{BoxOffGAMES}. Challenges for this puzzle consist of a 6$\times$8 grid of squares filled with exactly 16 each of three colors, an example of which is shown in 
+BoxOff is a 2D token removal puzzle designed by Stephen Meyers  \cite{BoxOffGAMES}. Challenges for this puzzle consist of a 6$\times$8 grid of squares filled with exactly 16 each of three colors, an example of which is shown in 
 Figure \ref{fig:boxoffbig}. The challenge is solved when every square in the grid has been eliminated.  The solver can eliminate two squares of the same color at a time if either of the following two rules apply.
 \begin{enumerate}
     \item The two squares are adjacent.
@@ -739,7 +739,7 @@ Figure \ref{fig:boxoffrules} shows an in-progress BoxOff challenge. The solver h
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=6.8cm]{boxoffrules1.png}
+\includegraphics[width=6.8cm]{figure2.png}
 \caption{Application of Rules 1 and 2 to an in-progress BoxOff challenge, and an illustrative invalid move.}
 \label{fig:boxoffrules}
 \end{figure}
@@ -771,7 +771,7 @@ This shuffling works very well on moderate sized boards with few colors, achievi
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=5.6cm]{boxoff666basic1.png}
+\includegraphics[width=5.6cm]{figure3.png}
 \caption{A sample (6, 6, 6) BoxOff challenge, generated with a simple shuffle of the 36 color tokens. }
 \label{fig:boxoff666}
 \end{figure}
@@ -779,7 +779,7 @@ This shuffling works very well on moderate sized boards with few colors, achievi
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=5.6cm]{boxofftiles1.png}
+\includegraphics[width=5.6cm]{figure4.png}
 \caption{Sample L-Tiles for BoxOff challenge creation. Tiles can be rotated 180 degrees, and the dashed line shows how they can be flipped. }
 \label{fig:ltiles}
 \end{figure}
@@ -791,7 +791,7 @@ For both the 4$\times$6 and 6$\times$6 grids, each tile is composed of exactly t
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=8.8cm]{boxoffcycle1.png}
+\includegraphics[width=8.8cm]{figure5.png}
 \caption{Cycle of color connections used to construct L-Tiles for BoxOff challenges, (4, 6, 4) on the left, and (6, 6, 6) challenges on the right.}
 \label{fig:boxoffcycle}
 \end{figure}
@@ -807,7 +807,7 @@ Figure \ref{fig:boxofftiles} shows a (4, 6, 4) grid created with L-tiles. To phy
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=5.6cm]{boxoff46tiles1.png}
+\includegraphics[width=5.6cm]{figure6.png}
 \caption{A sample (4, 6, 4) BoxOff challenge, generated using L-Tiles. }
 \label{fig:boxofftiles}
 \end{figure}
@@ -823,7 +823,7 @@ First, we judge a PCG algorithm to be working well when a high percentage of gen
 \subsubsection{Solvability}
 
 \begin{figure}[t]
-\includegraphics[width=8.8cm]{boxoffsolvability.png}
+\includegraphics[width=8.8cm]{figure7.png}
 \caption{Effect of challenge generation algorithms on solvability for BoxOff (4, 6, 4) and (6, 6, 6). $P(S_p)$ denoted in red with hatching, and $P(S_r)$ shown in blue with dots.}
 \label{fig:boxoffsolvediff}
 \end{figure}
@@ -844,7 +844,7 @@ We see in both cases for {\bf L-Tiles}, there is an increase in the random solve
 \noindent
 The Montana family of patience card games includes variations such as Gaps, Spaces, Vacancies, Clown, Paganini, Red Moon, and Blue Moon. One variant, which allows no re-shuffles or re-deals, is a puzzle described and named by de Bruijn \cite{de1981pretzel} called Pretzel solitaire.
 
-To set up a Pretzel challenge, denoted as $(k, n)$, where $k$ represents the number of suits and $n$ represents the number of ranks in each suit, the solver shuffles a deck containing one card for each of $n$ ranks in $k$ suits. The shuffled cards are dealt face-up into a grid with $k$ rows, each with $n$ columns. The solver then removes the lowest ranked card of each suit (traditionally aces) and places them in a new column to the left of the existing grid in a prescribed order (traditionally for four suits, from top to bottom: spades[$\spadesuit$], hearts[$\heartsuit$], diamonds[$\diamondsuit$], clubs[$\clubsuit$]). Doing so vacates $k$ cells in the grid, thereafter called holes. 
+To set up a Pretzel challenge, denoted as $(k, n)$, where $k$ represents the number of suits and $n$ represents the number of ranks in each suit, the setter shuffles a deck containing one card for each of $n$ ranks in $k$ suits. The shuffled cards are dealt face-up into a grid with $k$ rows, each with $n$ columns. The setter then removes the lowest ranked card of each suit (traditionally aces) and places them in a new column to the left of the existing grid in a prescribed order (traditionally for four suits, from top to bottom: spades[$\spadesuit$], hearts[$\heartsuit$], diamonds[$\diamondsuit$], clubs[$\clubsuit$]). Doing so vacates $k$ cells in the grid, thereafter called holes. 
 %A sample (4, 4) Pretzel setup is shown in Figure \ref{fig:pretzelbasic}.
 
 The solver's goal is to arrange all cards into ascending sorted order, one suit per row, following a single rule:
@@ -862,7 +862,7 @@ The solver's goal is to arrange all cards into ascending sorted order, one suit 
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=7cm]{pretzel4x8.png}
+\includegraphics[width=7cm]{figure8.png}
 \caption{Pretzel solitaire challenge with four suits and eight ranks, generated with the Sequential Suits method.}
 \label{fig:pretzelsequential}
 \end{figure}
@@ -905,7 +905,7 @@ Depending on the ratio of $k$ to $n$, challenges generated by this algorithm exh
     {\bf Banded Suits:} Divide the deck into $k$ smaller decks, each comprising all cards of a single suit. Shuffle each suit deck separately. Deal all cards from the first suit deck \textbf{top to bottom, left to right}. After each suit deck is exhausted, continue dealing with the next suit deck. Proceed in like fashion until all cards have been dealt, \textbf{top to bottom, left to right}.
 \end{quote}
 
-Dealing the cards from top to bottom, left to right is essential to the \textbf{Banded Suits} algorithm. In other words, the solver deals the first card into the upper-left location in the grid, then deals the next directly below the first in the same column, and so on. Only as each column is filled are cards dealt into the next column to the right. The result is $k$ bold, vertical suit bands.
+Dealing the cards from top to bottom, left to right is essential to the \textbf{Banded Suits} algorithm. In other words, the setter deals the first card into the upper-left location in the grid, then deals the next directly below the first in the same column, and so on. Only as each column is filled are cards dealt into the next column to the right. The result is $k$ bold, vertical suit bands.
 
 As with \textbf{Sequential Suits}, distinct challenges created from \textbf{Banded Suits} is equal to $n!^{k}$. Also, note that \textbf{Sequential Suits} and \textbf{Banded Suits} produce identical suit patterns when $k = n$, but differing patterns for $k \neq n$.
 
@@ -916,20 +916,20 @@ As with BoxOff, we encoded a Monte Carlo Pretzel challenge generator using C\#, 
 \subsubsection{Solvability}
 
 \begin{figure}[t]
-\includegraphics[width=8.8cm]{pretzelfulln.png}
+\includegraphics[width=8.8cm]{figure9.png}
 \caption{Effect of challenge generation algorithms on solvability for Pretzel, four suits and 2-9 ranks.}
 \label{fig:pretzelfullsolve}
 \end{figure}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=8cm]{pretzel48length.png}
+\includegraphics[width=8cm]{figure10.png}
 \caption{Histograms showing the effect of Pretzel challenge generation algorithms on solution length, four suits and eight ranks.}
 \label{fig:pretzellength}
 \end{figure}
 
 \begin{figure}[t]
-\includegraphics[width=8.8cm]{pretzelfullinterest.png}
+\includegraphics[width=8.8cm]{figure11.png}
 \caption{Effect of challenge generation algorithms on $P(S_p) - P(S_r)$ for Pretzel, four suits and 2-9 ranks.}
 \label{fig:pretzelinterest}
 \end{figure}
@@ -968,7 +968,7 @@ Fujisan was created specifically for the piecepack game system \cite{GAMESYSTEM}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=7.8cm]{priestrulesfixed2.png}
+\includegraphics[width=7.8cm]{figure12.png}
 \caption{The start of a solution demonstrating the rules of Priest movement in Fujisan, with move notation followed by the matching rule. }
 \label{fig:priestrules}
 \end{figure}
@@ -1051,14 +1051,14 @@ With each space limited to choosing from a particular suit, the \textbf{Piecepac
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=3cm]{engravedsample.png}
+\includegraphics[width=3cm]{figure13.png}
 \caption{Sample Engraved Fujisan Tiles.}
 \label{fig:engravedsample}
 \end{figure}
 
 
 \begin{figure}[b]
-\includegraphics[width=8.8cm]{fujisan-engraved.png}
+\includegraphics[width=8.8cm]{figure14.png}
 \caption{A sample Fujisan challenge from the Engraved Tiles algorithm.}
 \label{fig:tileexample}
 \end{figure}
@@ -1087,7 +1087,7 @@ This constraint is similar to \textbf{Engraved Tiles}, but with a subset of the 
 With 15 possible dominoes, only 12 of them are used in the challenge, as shown in Figure \ref{fig:dominoexample}. Each of these dominoes has two possible orientations, for a total of ${15 \choose 12}2^{12}12! \approx 10^{14}$ possible challenges. 
 
 \begin{figure}[b]
-\includegraphics[width=8.8cm]{dominoexample.png}
+\includegraphics[width=8.8cm]{figure15.png}
 \caption{A sample Fujisan challenge from the Dominoes algorithm.}
 \label{fig:dominoexample}
 \end{figure}
@@ -1099,7 +1099,7 @@ With 15 possible dominoes, only 12 of them are used in the challenge, as shown i
 
 
 \begin{figure}[t]
-\includegraphics[width=8.8cm]{standalonesolve2.png}
+\includegraphics[width=8.8cm]{figure16.png}
 \caption{Effect of Fujisan challenge generation algorithms on solvability.}
 \label{fig:strategycomp}
 \end{figure}
@@ -1125,7 +1125,7 @@ the longest-known constructed challenge requires 62 moves\footnote{http://www.lu
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=8cm]{fujisandiff4.png}
+\includegraphics[width=8cm]{figure17.png}
 \caption{Histograms showing the effect of Fujisan challenge generation algorithms on minimum solution length.}
 \label{fig:difficultycomp}
 \end{figure}
@@ -1186,7 +1186,7 @@ The algorithm responsible for this result was {\bf Engraved Tiles}. We can see a
 \hl{In BoxOff, Rule 1 underscores the importance of adjacent grid squares of the same color, as they are the first moves available in the game. The (4, 6, 4) board contains 38 unique pairs of adjacent grid squares. If we randomly distribute the four colors using the \textbf{Shuffled} method, on average a pair will be the same color 22\% of the time. We label this metric} {\it pair equality}. \hl{However, if we separate the generated challenges by solvability, we see in Figure} \ref{fig:boxoffconnected} \hl{that while unsolvable challenges average 20\% pair equality, for solvable challenges the average increases to 26\%, and this difference is statistically significant.}
 
 \begin{figure}[t]
-\includegraphics[width=8.8cm]{pairequal.png}
+\includegraphics[width=8.8cm]{figure18.png}
 \caption{Average pair equality for (4, 6, 4) color BoxOff challenges across each setup algorithm. Solvable challenges shown in black, and unsolvable challenges shown in white.}
 \label{fig:boxoffconnected}
 \end{figure}
@@ -1206,7 +1206,7 @@ The algorithm responsible for this result was {\bf Engraved Tiles}. We can see a
 \hl{For Fujisan, the entangled components are a direct result of the puzzle movement mechanics. We first develop a metric called} {\it connectivity} \hl{based on Rule 2 to explore the connections between steps in a challenge.} We say step $A$ is connected to step $B$ in Fujisan if there is a move available according to Rule 2 from $B$ to $A$. \hl{This metric, only an approximation of true puzzle connectivity as it ignores connections possible from Rule 2.a with intermediate Priests, contains enough information to bias our entangled components.}
 
 \begin{figure}[t]
-\includegraphics[width=8.8cm]{connectivity.png}
+\includegraphics[width=8.8cm]{figure19.png}
 \caption{Average connectedness for Fujisan challenges across each setup algorithm. 
 Solvable challenges shown in black, and unsolvable challenges shown in white.}
 \label{fig:connected}
@@ -1234,7 +1234,7 @@ A further point to clarify is the exact relationship between \hl{challenge inter
 
 %OTHER QUESTIONS????
 
-Finally, are there general \hl{entangled} methods that allow solvers to {\it construct} challenges online to guarantee solvability, as opposed to the {\it generate-and-test} algorithms discussed here? While this may be possible in certain situations, 
+Finally, are there general \hl{entangled} methods PCG algorithms can use to {\it construct} challenges online and guarantee solvability, as opposed to the {\it generate-and-test} algorithms discussed here? While this may be possible in certain situations, 
 %as employed in another piecepack solitaire game Cell Management \footnote{http://www.ludism.org/ppwiki/CellManagement}, 
 care must be taken that the construction process does not give away the solution to the challenge.
 
