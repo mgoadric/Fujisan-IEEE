@@ -968,7 +968,7 @@ Fujisan was created specifically for the piecepack game system \cite{GAMESYSTEM}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=7.8cm]{figure12.png}
+\includegraphics[width=7.2cm]{figure12.png}
 \caption{The start of a solution demonstrating the rules of Priest movement in Fujisan, with move notation followed by the matching rule. }
 \label{fig:priestrules}
 \end{figure}
@@ -1094,7 +1094,6 @@ With 15 possible dominoes, only 12 of them are used in the challenge, as shown i
 
 \subsection{Evaluation}
 
- \noindent
 %
 
 
@@ -1104,6 +1103,7 @@ With 15 possible dominoes, only 12 of them are used in the challenge, as shown i
 \label{fig:strategycomp}
 \end{figure}
 
+\noindent
 We encoded a Monte Carlo Fujisan challenge generator using C\#, along with an A* solver for Fujisan challenges. Our admissible heuristic for A* is the number of empty spaces on the summit. For each PCG algorithm, we generated 1000 random challenges.
 For each generated challenge in our trials, we recorded if the challenge was solvable, and if so, we also recorded the minimum solution length found with our A* solver. To enable testing for statistical significance on solvability between these algorithms, we divided our pool of generated challenges into 10 trials of 100 challenges. 
  
@@ -1125,7 +1125,7 @@ the longest-known constructed challenge requires 62 moves\footnote{http://www.lu
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=8cm]{figure17.png}
+\includegraphics[width=7.2cm]{figure17.png}
 \caption{Histograms showing the effect of Fujisan challenge generation algorithms on minimum solution length.}
 \label{fig:difficultycomp}
 \end{figure}
@@ -1229,8 +1229,7 @@ Our work introduces the idea of entangled components for physical solitaire puzz
 
 There are many open questions related to physical games and PCG. First, we believe there is work to be done in formalizing, and validating with human subjects, an ease of physical setup metric. While the \textbf{Shuffled} algorithm for each puzzle is very simple to execute, some of the more entangled algorithms could be time-consuming and tedious for a human to implement. A simple approximation metric would be the time complexity of the algorithm; however, certain operations that are straightforward to a computer can be difficult for humans to track, and vice versa. With a formal metric, game designers could be inclined to include more intricate PCG algorithms when provided guarantees these algorithms can reasonably be executed by a human player.
 
-A further point to clarify is the exact relationship between challenge interest and challenge difficulty. We focused here on how entangled components maintained challenge interest, but this simplifies the potential for gradations of challenge difficulty within each puzzle. Validating a sophisticated difficulty metric for each puzzle, again with human subject tests as disussed in Jaru{\v{s}}ek and Pel{\'a}nek \cite{jaruvsek2011determines}
-, could further illustrate the effects of entangled components.
+A further point to clarify is the exact relationship between challenge interest and challenge difficulty. We focused here on how entangled components maintained challenge interest, but this simplifies the potential for gradations of challenge difficulty within each puzzle. Validating a sophisticated difficulty metric for each puzzle, again with human subject tests as disussed in Jaru{\v{s}}ek and Pel{\'a}nek \cite{jaruvsek2011determines}, could further illustrate the effects of entangled components.
 
 %
 
@@ -1243,7 +1242,9 @@ care must be taken that the construction process does not give away the solution
 
 %
 
-%
+\section*{Acknowledgements}
+\noindent	
+Thanks to the anonymous reviewers, Matt Jadud, Brent Yorgey, Gabriel Ferrer, and Laura Goadrich for their challenging, critical, and thoughtful comments.
 %
 
 %
