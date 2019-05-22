@@ -629,7 +629,7 @@ E-mail: see http://mark.goadrich.com/schedule.html
 %
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-    Challenges for physical solitaire puzzle games are typically designed in advance by humans and limited in number. Alternatively, some games incorporate rules for stochastic setup, where the game board is randomly setup before the challenge is solved. These setup rules greatly increase the number of possible challenges, but can often generate unsolvable or uninteresting challenges. To better understand the compromises involved in minimizing undesirable challenges, we examine three games where component design choices can influence the stochastic nature of the resulting challenge generation algorithms. We evaluate the effect of these components and algorithms on challenge solvability and challenge engagement. We find that algorithms which control randomness through entangling components based on sub-elements of the puzzle mechanics can generate interesting challenges with a high probability of being solvable.
+    Challenges for physical solitaire puzzle games are typically designed in advance by humans and limited in number. Alternatively, some games incorporate rules for stochastic setups, where the game board is randomly set up before the challenge is solved. These rules greatly increase the number of possible challenges, but can often generate unsolvable or uninteresting challenges. To better understand the compromises involved in minimizing undesirable challenges, we examine three games where component design choices can influence the stochastic nature of the resulting challenge generation algorithms. We evaluate the effect of these components and algorithms on challenge solvability and challenge engagement. We find that algorithms which control randomness through entangling components based on sub-elements of the puzzle mechanics can generate interesting challenges with a high probability of being solvable.
 \end{abstract}
 
 %
@@ -732,7 +732,7 @@ BoxOff is a 2D token removal puzzle designed by Stephen Meyers  \cite{BoxOffGAME
 Figure \ref{fig:boxoffbig}. The challenge is solved when every square in the grid has been eliminated.  The solver can eliminate two squares of the same color at a time if either of the following two rules apply.
 \begin{enumerate}
     \item The two squares are adjacent.
-    \item All other squares inside the box that circumscribes the two squares have previously been eliminated.\footnote{Rule 1 is actually subsumed by this rule, however, we find it helpful to separate them into two cases to facilitate our component design discussions.}
+    \item All other squares inside the box that circumscribes the two squares have previously been eliminated.\footnote{Rule 1 is actually subsumed by this rule; we find it helpful, however, to separate them into two cases to facilitate our component design discussions.}
 \end{enumerate}
 
 Figure \ref{fig:boxoffrules} shows an in-progress BoxOff challenge. The solver has a few options available, two of which are highlighted in dashed boxes. They could eliminate the two yellow squares in the upper-left quadrant using Rule 1, or eliminate the two blue squares in the middle using Rule 2. An invalid move is also shown in the upper right quadrant, where Rule 2 would not apply because of the blue square in the circumscribed box around the two red squares.
@@ -756,7 +756,7 @@ Browne and Maire previously investigated altering the game design parameters for
 
 \subsection{Components and Algorithms}
 \noindent
-Here we discuss two different sets of physical components and their resulting PCG algorithms that can be used for challenge setup for Boxoff. 
+Here we discuss two different sets of physical components and their resulting PCG algorithms that can be used for challenge setup for BoxOff. 
 
 The components of a physical BoxOff puzzle consist of circular tokens equal to the number of grid squares. These tokens are equally distributed among the number of colors. 
 With these components, the solver can employ a simple shuffling algorithm to create a challenge.
@@ -765,7 +765,7 @@ With these components, the solver can employ a simple shuffling algorithm to cre
 \end{quote}
 
 We can use the multinomial theorem to determine that this method can create
-$\frac{(hw)!}{c!^{k}}$, where $k=\frac{hw}{c}$. In the (4, 6, 4) puzzle this is $\approx 10^{11}$ possible challenges.  We acknowledge here and in subsequent calculations that rotational, horizontal, and vertical symmetry will alter the precise number of challenges, but not by an order of magnitude.
+$\frac{(hw)!}{c!^{k}}$ challenges, where $k=\frac{hw}{c}$. In the (4, 6, 4) puzzle this is $\approx 10^{11}$ possible challenges.  We acknowledge here and in subsequent calculations that rotational, horizontal, and vertical symmetry will alter the precise number of challenges, but not by an order of magnitude.
 
 This shuffling works very well on moderate sized boards with few colors, achieving near 100\% solvability, but as demonstrated by Browne and Maire, it suffers when applied to more colors, as shown in Figure \ref{fig:boxoff666}. The uniform nature of the shuffling appears to prevent a critical mass of adjacent tokens of the same color. Such adjacent tokens are the only way Rule 1 above can be fulfilled so that more distant tokens can then be eliminated via Rule 2.
 
@@ -796,8 +796,8 @@ For both the 4$\times$6 and 6$\times$6 grids, each tile is composed of exactly t
 \label{fig:boxoffcycle}
 \end{figure}
 
-Each of these tiles has two possible orientations, for a total of $2^{t}t!$, where $t=\frac{hw}{3}$, for $\approx 10^{6}$ possible challenges in the (4, 6, 4) puzzle. 
-The algorithm to create a challenge then is as follows:
+Each of these tiles has two possible orientations, for a total of $2^{t}t!$ challenges, where $t=\frac{hw}{3}$, or $\approx 10^{6}$ possible challenges in the (4, 6, 4) puzzle. 
+The algorithm to create a challenge, therefore, is as follows:
 
 \begin{quote}
     {\it \bf L-Tiles:} Shuffle and flip the tiles randomly, then arrange into a grid of connected 2$\times$3 subgrids. 
@@ -814,11 +814,11 @@ Figure \ref{fig:boxofftiles} shows a (4, 6, 4) grid created with L-tiles. To phy
 
 \subsection{Evaluation}
 \noindent
-We encoded a Monte Carlo BoxOff challenge generator using C\#, and implemented a breadth-first solver for BoxOff challenges. For each PCG algorithm, we generated 1000 random challenges. For each generated challenge in our trials, we recorded if the challenge was solvable. The code used for our simulations for this and subsequent puzzles is available on Github \footnote{http://github.com/mgoadric/entangled-components}. 
+We encoded a Monte Carlo BoxOff challenge generator using C\#, and implemented a breadth-first solver for BoxOff challenges. For each PCG algorithm, we generated 1000 random challenges. For each generated challenge in our trials, we recorded whether the challenge was solvable. The code used for our simulations for this and subsequent puzzles is available on Github\footnote{http://github.com/mgoadric/entangled-components}. 
 To enable testing for statistical significance on solvability between these algorithms, we divided our pool of generated challenges into 10 trials of 100 challenges. We repeated this for both the (4, 6, 4) puzzle and the (6, 6, 6) puzzle.
  
 We will use two criteria to quantify each of the above components and algorithms.
-First, we judge a PCG algorithm to be working well when a high percentage of generated challenges are solvable by our solver. Beyond solvability, we also wish for PCG algorithms to maintain or improve on the challenge interest for the basic \textbf{Shuffled} algorithm. 
+First, we judge a PCG algorithm to be working well when a high percentage of generated challenges are solvable by our solver. Beyond solvability, we also wish for PCG algorithms to equal or exceed the challenge interest for the basic \textbf{Shuffled} algorithm. 
 
 \subsubsection{Solvability}
 
@@ -828,7 +828,7 @@ First, we judge a PCG algorithm to be working well when a high percentage of gen
 \label{fig:boxoffsolvediff}
 \end{figure}
 
-Figure \ref{fig:boxoffsolvediff} shows the challenge solvability, in red with slashes, for the (4, 6, 4) BoxOff. This plot displays the distribution of the two PCG algorithms across the 10 trials in a box-and-whisker plot.  
+Figure \ref{fig:boxoffsolvediff} shows the challenge solvability, in red with hatching, for the (4, 6, 4) BoxOff. This plot displays the distribution of the two PCG algorithms across the 10 trials in a box-and-whisker plot.  
 We found the {\bf L-Tiles} setup method produces solvable challenges at a rate of 88\%, a marked increase over the {\bf Shuffled} probability of 27\%, with this difference being statistically significant.
 Similarly, Figure \ref{fig:boxoffsolvediff} also shows the solvability distributions in red for the (6, 6, 6) puzzle. We again saw a drastic increase in solvability, moving from 3\% for {\bf Shuffled} up to 57\% for {\bf L-Tiles}. 
 
@@ -938,7 +938,7 @@ Figure \ref{fig:pretzelfullsolve} compares the solvability of our three setup al
 
 We found that whether entanglement helped or hindered solvability when using the \textbf{Sequential Suits} setup algorithm is dependent on whether the number of ranks in the deck is even or odd. We also observed a marked increase in solvability with \textbf{Banded Suits} as compared to \textbf{Shuffled}, with the increase being statistically significant for all ranks tested. We include more details on the success of entangled components in Section \ref{entangled}.
 
-The cost of solvability gains for \textbf{Banded Suits} is a decrease in minimum required solution length (in moves) which became statistically significant as the number of ranks increased. As a specific example, Figure \ref{fig:pretzellength} graphs the distribution of minimum required solution lengths recorded by our breadth-first solver for each of the setup algorithms in the (4, 8) case. The median minimum required solution lengths for \textbf{Shuffled} and \textbf{Sequential Suits} were identical at 44, while the median for \textbf{Banded Suits} dipped to 42. As with BoxOff, however, we judge the interest of challenges not primarily by their solution lengths, but by their resistance to random play.
+The cost of solvability gains for \textbf{Banded Suits} is a decrease in minimum required solution length (in moves) which became statistically significant as the number of ranks increased. As a specific example, Figure \ref{fig:pretzellength} graphs the distribution of minimum required solution lengths recorded by our breadth-first solver for each of the setup algorithms in the (4, 8) case. The median minimum required solution lengths for \textbf{Shuffled} and \textbf{Sequential Suits} were identical at 44, while the median for \textbf{Banded Suits} dipped to 42. As with BoxOff, however, we judge the interest of challenges primarily by their resistance to random play.
 
 %
 
@@ -1105,7 +1105,7 @@ With 15 possible dominoes, only 12 of them are used in the challenge, as shown i
 
 \noindent
 We encoded a Monte Carlo Fujisan challenge generator using C\#, along with an A* solver for Fujisan challenges. Our admissible heuristic for A* is the number of empty spaces on the summit. For each PCG algorithm, we generated 1000 random challenges.
-For each generated challenge in our trials, we recorded if the challenge was solvable, and if so, we also recorded the minimum solution length found with our A* solver. To enable testing for statistical significance on solvability between these algorithms, we divided our pool of generated challenges into 10 trials of 100 challenges. 
+For each generated challenge in our trials, we recorded whether the challenge was solvable, and if so, we also recorded the minimum solution length found with our A* solver. To enable testing for statistical significance on solvability between these algorithms, we divided our pool of generated challenges into 10 trials of 100 challenges. 
  
 \subsubsection{Solvability}
 
